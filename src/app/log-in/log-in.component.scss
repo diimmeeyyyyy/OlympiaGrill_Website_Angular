@@ -1,30 +1,28 @@
+@import "../../styles.scss";
+
 .position {
   height: 100vh;
   width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include dflex();
   background-image: url("../../assets/img/logIn-background.png");
   background-position-x: center;
   background-position-y: -260px;
   background-repeat: no-repeat;
+  background-color: antiquewhite;
   > main {
     width: 500px;
     border: 2px solid black;
-    display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 50px;
+    @include dflex($g: 30px);
     border-radius: 20px;
     padding-block: 30px;
-    background-color: aliceblue;
+    background-color: navajowhite;
   }
 }
 
 .headline {
   position: absolute;
-  top: 180px;
+  top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,7 +37,16 @@
 .log-in {
   padding: 10px;
   border-radius: 10px 0 10px 0;
-  background-color: aliceblue;
+  background-color: $main-color;
+  color: white;
+}
+
+.color {
+  color: $main-color;
+}
+
+.log-in-button {
+  @include dflex($g: 24px);
 }
 
 form {
@@ -61,5 +68,8 @@ form {
     background-size: cover;
     background-position-x: unset;
     background-position-y: unset;
+  }
+  .headline {
+    top: 100px;
   }
 }
