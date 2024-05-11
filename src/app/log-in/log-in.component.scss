@@ -27,7 +27,8 @@
   color: aliceblue;
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 20px;
-  padding: 10px;
+  padding-inline: 10px;
+  padding-top: 10px;
   > h1 {
     font-size: clamp(25px, 4vw, 40px);
   }
@@ -62,6 +63,8 @@ form {
 }
 
 .not-registered-yet-div {
+  position: absolute;
+  bottom: 100px;
   flex-direction: column;
   @include dflex($g: 10px);
   background-color: antiquewhite;
@@ -82,7 +85,6 @@ form {
     font-size: 17px;
   }
 }
-
 
 /* MEDIA-QUERIES */
 @media (max-width: 800px) {

@@ -1,0 +1,41 @@
+@import "../../../styles.scss";
+
+header {
+  background-image: url("../../../assets/img/aot.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 190px;
+  > img:first-child {
+    width: 180px;
+    position: absolute;
+    left: 16px;
+    top: 90px;
+    object-fit: cover;
+  }
+  > img:last-child {
+    position: absolute;
+    top: 32px;
+    right: 32px;
+  }
+  > nav {
+    position: absolute;
+    right: 10px;
+    display: flex;
+    gap: 20px;
+    > a {
+      text-decoration: none;
+      background-color: $main-color;
+      color: whitesmoke;
+      font-size: 17px;
+      padding: 10px;
+      border-radius: 0px 0px 12px 12px;
+      border-bottom: 1px solid white;
+      border-right: 1px solid white;
+      border-left: 1px solid white;
+      filter: drop-shadow(2px 4px 6px black);
+      &:hover {
+        background-color: rgb(18, 48, 111);
+      }
+    }
+  }
+}

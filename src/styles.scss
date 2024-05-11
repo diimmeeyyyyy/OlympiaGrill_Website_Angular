@@ -21,11 +21,6 @@ $main-color: rgb(63, 80, 181);
   gap: $g;
 }
 
-html,
-body {
-  height: 100%;
-}
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+.d-none {
+  display: none;
 }

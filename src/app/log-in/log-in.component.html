@@ -8,8 +8,8 @@
     <h2 class="log-in">Anmeldung</h2>
 
     <form onsubmit="logInUser(); return false" class="form">
-      <input type="email" placeholder="E-Mail" required />
-      <input type="password" placeholder="Passwort" required />
+      <input type="email" placeholder="E-Mail" />
+      <input type="password" placeholder="Passwort"/>
       <div class="log-in-button">
         <button
           mat-fab
@@ -22,6 +22,7 @@
           mat-flat-button
           color="primary"
           aria-label="Example icon button with a delete icon"
+          (click)="navigateToPreOrder()"
         >
           Guest Log-In
         </button>
@@ -29,7 +30,7 @@
     </form>
     <div class="not-registered-yet-div">
       <p>Noch nicht registriert?</p>
-      <a href="#">Registrieren</a>
+      <a href="register">Registrieren</a>
     </div>
   </main>
 </div>
