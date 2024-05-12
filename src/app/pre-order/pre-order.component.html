@@ -1,5 +1,8 @@
 <main>
   <app-header></app-header>
-  <app-food-menu-nav style="flex-grow: 1"></app-food-menu-nav>
+  <app-food-menu-nav
+    style="flex-grow: 1"
+    (foodTypeString)="nameLog($event)"
+  ></app-food-menu-nav>
   <app-footer></app-footer>
 </main>

@@ -1,75 +1,31 @@
 <section id="Food_Choice" class="food-choice">
   <h2>Unsere Speisekarte</h2>
   <nav #Food_Navigation class="food-navigation">
+    <img src="../../../assets/img/icons8-left-arrow-50.png" #Arrow_Left />
+    <p #Popular_Dishes (click)="updateSelectedFoodType(0, 'Beliebte Gerichte')">
+      Beliebte Gerichte
+    </p>
+    <p #Appetizer (click)="updateSelectedFoodType(1, 'Vorspeisen')">
+      Vorspeisen
+    </p>
+    <p #Sides (click)="updateSelectedFoodType(2, 'Beilagen')">Beilagen</p>
+    <p #Quick_Dishes (click)="updateSelectedFoodType(3, 'Schnelle Gerichte')">
+      Schnelle Gerichte
+    </p>
+    <p #Kids (click)="updateSelectedFoodType(4, 'Kinder')">Kinder</p>
+    <p #Schnitzel (click)="updateSelectedFoodType(5, 'Schnitzel')">Schnitzel</p>
+    <p #Grill (click)="updateSelectedFoodType(6, 'Grill')">Vom Grill</p>
+    <p #Gyros_Dishes (click)="updateSelectedFoodType(7, 'Gyros Gerichte')">
+      Gyros Gerichte
+    </p>
+    <p #Pita (click)="updateSelectedFoodType(8, 'Pita')">Pita</p>
+    <p #Sauces (click)="updateSelectedFoodType(9, 'Saucen')">Saucen</p>
     <img
-      src="../../../assets/img/food-menu-nav-arrow-left.png"
-      #Arrow_Left
-    />
-    <a
-      href="#"
-      id="Popular_Dishes"
-      onclick="event.preventDefault();renderPopularDishes()"
-      >Beliebte Gerichte</a
-    >
-
-    <a
-      href="#"
-      id="Appetizer"
-      onclick="event.preventDefault();renderSection(appetizer, 'Vorspeisen', 'Appetizer',this)"
-      >Vorspeisen</a
-    >
-    <a
-      href="#"
-      id="Sides"
-      onclick="event.preventDefault();renderSection(Sides, 'Beilagen', 'Sides',this)"
-      >Beilagen</a
-    >
-    <a
-      href="#"
-      id="Quick_Dishes"
-      onclick="event.preventDefault();renderSection(quickDishes, 'Schnelle Gerichte', 'Quick_Dishes')"
-      >Schnelle Gerichte</a
-    >
-    <a
-      href="#"
-      id="Kids"
-      onclick="event.preventDefault();renderSection(kids, 'Kinder', 'Kids')"
-      >Kinder</a
-    >
-    <a
-      href="#"
-      id="Schnitzel"
-      onclick="event.preventDefault();renderSection(schnitzel, 'Schnitzel', 'Schnitzel')"
-      >Schnitzel</a
-    >
-    <a
-      href="#"
-      id="Grill"
-      onclick="event.preventDefault();renderSection(grilledDishes, 'Vom Grill', 'Grill')"
-      >Vom Grill</a
-    >
-    <a
-      href="#"
-      id="Gyros_Dishes"
-      onclick="event.preventDefault();renderSection(gyrosDishes, 'Gyros Gerichte', 'Gyros_Dishes')"
-      >Gyros Gerichte</a
-    >
-    <a
-      href="#"
-      id="Pita"
-      onclick="event.preventDefault();renderSection(pitaDishes, 'Pita', 'Pita')"
-      >Pita</a
-    >
-    <a
-      href="#"
-      id="Sauces"
-      onclick="event.preventDefault();renderSection(sauces, 'Saucen', 'Sauces')"
-      >Saucen</a
-    >
-    <img
-      src="../../../assets/img/food-menu-nav-arrow-right.png"
+      src="../../../assets/img/icons8-forward-50.png"
       class="arrow-right"
       #Arrow_Right
     />
   </nav>
 </section>
+
+<h2 class="selected-food-type" #Selected_Food_Type>Beliebte Gerichte</h2>

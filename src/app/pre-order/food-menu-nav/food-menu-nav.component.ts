@@ -1,5 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Output,
+  ViewChild,
+} from '@angular/core';
 
 @Component({
   selector: 'app-food-menu-nav',
@@ -8,24 +15,13 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
   templateUrl: './food-menu-nav.component.html',
   styleUrl: './food-menu-nav.component.scss',
 })
-/* export class FoodMenuNavComponent implements AfterViewInit {
-  @ViewChild('Food_Navigation') foodNavigation!: ElementRef;
-  @ViewChild('Arrow_Left') arrowLeft!: ElementRef;
-
-  ngAfterViewInit() {
-    this.foodNavigation.nativeElement.addEventListener('scroll', () => {
-      if (this.foodNavigation.nativeElement.scrollLeft > 50) {
-        this.arrowLeft.nativeElement.style.display = 'flex';
-      } else {
-        this.arrowLeft.nativeElement.style.display = 'none';
-      }
-    });
-  }
-} */
 export class FoodMenuNavComponent implements AfterViewInit {
   @ViewChild('Food_Navigation') foodNavigation!: ElementRef;
   @ViewChild('Arrow_Left') arrowLeft!: ElementRef;
   @ViewChild('Arrow_Right') arrowRight!: ElementRef;
+  @ViewChild('Selected_Food_Type') selectedFoodType!: ElementRef;
+
+  @Output() foodTypeString = new EventEmitter<string>();
 
   ngAfterViewInit() {
     this.updateArrowVisibility();
@@ -55,5 +51,19 @@ export class FoodMenuNavComponent implements AfterViewInit {
       this.arrowRight.nativeElement.style.position = 'absolute';
       this.arrowRight.nativeElement.style.right = '0';
     }
+  }
+
+  updateSelectedFoodType(foodTypeNumber: number, foodTypeText: string) {
+    const pTags = this.foodNavigation.nativeElement.querySelectorAll('p');
+    for (let i = 0; i < pTags.length; i++) {
+      pTags[i].style.fontWeight = 'normal';
+    }
+    pTags[foodTypeNumber].style.fontWeight = 'bold';
+    this.selectedFoodType.nativeElement.textContent = foodTypeText;
+    this.emitFoodTypeText(foodTypeText);
+  }
+
+  emitFoodTypeText(foodTypeText: string) {
+    this.foodTypeString.emit(foodTypeText);
   }
 }
