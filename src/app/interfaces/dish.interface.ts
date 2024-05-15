@@ -3,4 +3,5 @@ export interface Dish {
   title: string;
   description: string;
   price: number;
+  background?: string;
 }

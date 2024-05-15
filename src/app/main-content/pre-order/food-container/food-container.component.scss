@@ -1,0 +1,39 @@
+@import "../../../../styles.scss";
+
+.dish-container {
+  background-color: pink;
+  width: 300px;
+  border-radius: 10px;
+  @include dflex($jc: space-between, $ai: unset);
+  min-height: 90px;
+  border: 1px solid black;
+}
+
+.right {
+  display: flex;
+  align-items: flex-start;
+  > img {
+    width: 55px;
+    background-color: whitesmoke;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    cursor: pointer;
+    border-radius: 0px 10px 0px 10px;
+  }
+}
+
+.left {
+  max-width: 75%;
+  padding-left: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  > h1 {
+    font-size: 21px;
+  }
+}
+
+.withoutDescription {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

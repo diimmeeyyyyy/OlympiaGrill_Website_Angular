@@ -1,5 +1,10 @@
 <app-food-menu-nav
   style="flex-grow: 1"
-  (foodTypeString)="nameLog($event)"
+  (foodTypeString)="renderFoodTypeSection($event)"
 ></app-food-menu-nav>
-<app-food-container> </app-food-container>
+<section class="meal-section">
+  <app-food-container
+    *ngFor="let dish of getFoodTypeList()"
+    [dish]="dish"
+  ></app-food-container>
+</section>

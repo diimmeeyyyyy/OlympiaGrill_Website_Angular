@@ -1,3 +1,13 @@
-<div>
-    <!-- <h1>{{food.title}}</h1> -->
+<div
+  class="dish-container"
+  style="background-image: url('{{ dish.background }}')"
+>
+  <div class="left" [ngClass]="{ withoutDescription: dish.description == '' }">
+    <h1>{{ dish.title }}</h1>
+    <p>{{ dish.description }}</p>
+    <h3>{{ dish.price.toFixed(2).replace(".", ",") }} €</h3>
+  </div>
+  <div class="right">
+    <img src="/assets/img/icons8-plus-40.png" alt="" />
+  </div>
 </div>

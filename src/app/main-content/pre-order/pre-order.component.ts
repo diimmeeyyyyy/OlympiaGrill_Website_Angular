@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FoodMenuNavComponent } from './food-menu-nav/food-menu-nav.component';
 import { PreorderdataService } from '../../shared/firebase-services/preorderdata.service';
 import { FoodContainerComponent } from './food-container/food-container.component';
+import { Dish } from '../../interfaces/dish.interface';
 
 @Component({
   selector: 'app-pre-order',
@@ -21,15 +22,31 @@ import { FoodContainerComponent } from './food-container/food-container.componen
 })
 export class PreOrderComponent {
   preorderdata = inject(PreorderdataService);
-
   selectedFoodType: string = '';
 
-  nameLog(name: string) {
-    console.log(name);
+  foodList: Dish[] = [];
+
+  constructor(private preOrderService: PreorderdataService) {}
+
+  renderFoodTypeSection(name: string) {
     this.selectedFoodType = name;
-    alert(this.selectedFoodType);
-    //Anstatt nameLog müsste dann hier die renderSection() sein oder so
+    console.log(this.selectedFoodType);
+    this.getFoodTypeList();
   }
 
-  getFoodTypeList() {}
+  getFoodTypeList() {
+    if (this.selectedFoodType === 'Salate') {
+      return this.preOrderService.salads;
+    } else if (this.selectedFoodType === 'Beilagen') {
+      return this.preOrderService.sides;
+    } else if (this.selectedFoodType === 'Vorspeisen') {
+      return this.preOrderService.appetizers;
+    } else if (this.selectedFoodType === 'Schnelle Gerichte') {
+      return this.preOrderService.fastDishes;
+    } else if (this.selectedFoodType === 'Kinder') {
+      return this.preOrderService.kids;
+    } else {
+      return this.preOrderService.popularDishes;
+    }
+  }
 }
