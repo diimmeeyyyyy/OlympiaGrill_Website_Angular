@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "olympiagrill-2d6e0": {
+      "hosting": {
+        "olympiagrill": [
+          "olympiagrill-2d6e0"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "olympiagrill-2d6e0"
+  }
+}

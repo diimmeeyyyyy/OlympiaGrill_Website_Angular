@@ -1,14 +1,6 @@
-@import "../../styles.scss";
+@import "../../../styles.scss";
 
-main {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  padding: 0;
-}
-
-nav {
+/* nav {
   overflow-x: auto;
   white-space: nowrap;
   display: flex;
@@ -22,3 +14,4 @@ nav {
     color: white;
   }
 }
+ */
