@@ -6,3 +6,9 @@
   padding-block: 20px;
   background-color: floralwhite;
 }
+
+.arrange-food-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

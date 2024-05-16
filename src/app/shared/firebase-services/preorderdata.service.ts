@@ -5,10 +5,13 @@ import {
   collection,
   doc,
   onSnapshot,
+  query,
   orderBy,
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Dish } from '../../interfaces/dish.interface';
+import { subscriptionLogsToBeFn } from 'rxjs/internal/testing/TestScheduler';
+import { FoodClass } from '../../interfaces/food-class.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -22,6 +25,9 @@ export class PreorderdataService {
   appetizers: Dish[] = [];
   fastDishes: Dish[] = [];
   kids: Dish[] = [];
+
+  foodClassTX: FoodClass[] = [];
+  unsubFoodClassTX;
 
   unsubPopularDishes;
   unsubSalads;
@@ -43,10 +49,12 @@ export class PreorderdataService {
     this.unsubFastDishes = this.subFastDishes();
     //CHILDS
     this.unsubChildren = this.subChildren();
+    //FOOD-CLASS-TX
+    this.unsubFoodClassTX = this.subFoodClassTX();
   }
 
   subPopularDishesList() {
-    return onSnapshot(this.getPopularDishesRef(), (list) => {
+    return onSnapshot(this.getFoodTypeRef('popularDishes'), (list) => {
       list.forEach((dish) => {
         this.popularDishes.push(this.setDishObject(dish.data(), dish.id));
       });
@@ -54,7 +62,7 @@ export class PreorderdataService {
   }
 
   subSaladList() {
-    return onSnapshot(this.getSaladsRef(), (list) => {
+    return onSnapshot(this.getFoodTypeRef('salads'), (list) => {
       list.forEach((dish) => {
         this.salads.push(this.setDishObject(dish.data(), dish.id));
       });
@@ -62,7 +70,7 @@ export class PreorderdataService {
   }
 
   subSidesList() {
-    return onSnapshot(this.getSidesRef(), (list) => {
+    return onSnapshot(this.getFoodTypeRef('sides'), (list) => {
       list.forEach((dish) => {
         this.sides.push(this.setDishObject(dish.data(), dish.id));
       });
@@ -70,7 +78,7 @@ export class PreorderdataService {
   }
 
   subAppetizersList() {
-    return onSnapshot(this.getAppetizersRef(), (list) => {
+    return onSnapshot(this.getFoodTypeRef('appetizers'), (list) => {
       list.forEach((dish) => {
         this.appetizers.push(this.setDishObject(dish.data(), dish.id));
       });
@@ -78,7 +86,7 @@ export class PreorderdataService {
   }
 
   subFastDishes() {
-    return onSnapshot(this.getFastDishesRef(), (list) => {
+    return onSnapshot(this.getFoodTypeRef('fastDishes'), (list) => {
       list.forEach((dish) => {
         this.fastDishes.push(this.setDishObject(dish.data(), dish.id));
       });
@@ -86,9 +94,18 @@ export class PreorderdataService {
   }
 
   subChildren() {
-    return onSnapshot(this.getKinderRef(), (list) => {
+    return onSnapshot(this.getFoodTypeRef('kinder'), (list) => {
       list.forEach((dish) => {
         this.kids.push(this.setDishObject(dish.data(), dish.id));
+      });
+    });
+  }
+
+  //FOOD-CLASSES
+  subFoodClassTX() {
+    return onSnapshot(this.getFoodClassRef('TX'), (list) => {
+      list.forEach((topping) => {
+        this.foodClassTX.push(this.setFoodClassObject(topping.data()));
       });
     });
   }
@@ -102,33 +119,17 @@ export class PreorderdataService {
   }
 
   //Um auf die jeweilige Collection zuzugreifen:
-  getPopularDishesRef() {
-    return collection(this.firestore, 'popularDishes');
+  getFoodTypeRef(foodType: string) {
+    const dishCollection = collection(this.firestore, foodType);
+    const dishQuery = query(dishCollection, orderBy('order'));
+    return dishQuery;
   }
 
-  getSaladsRef() {
-    return collection(this.firestore, 'salads');
+  getFoodClassRef(foodClass: string) {
+    const foodClassCollection = collection(this.firestore, foodClass);
+    const foodClassQuery = query(foodClassCollection, orderBy('order'));
+    return foodClassQuery;
   }
-
-  getSidesRef() {
-    return collection(this.firestore, 'sides');
-  }
-
-  getAppetizersRef() {
-    return collection(this.firestore, 'appetizers');
-  }
-
-  getFastDishesRef() {
-    return collection(this.firestore, 'fastDishes');
-  }
-
-  getKinderRef() {
-    return collection(this.firestore, 'kinder');
-  }
-
-  /*  getSingleDocRef(collId: string, docId: string) {
-    return doc(collection(this.firestore, collId), docId);
-  } */
 
   setDishObject(obj: any, id: string): Dish {
     return {
@@ -137,6 +138,14 @@ export class PreorderdataService {
       description: obj.description || '',
       price: obj.price,
       background: obj.background || '',
+      foodClass: obj.foodClass || '',
+    };
+  }
+
+  setFoodClassObject(obj: any): FoodClass {
+    return {
+      title: obj.title || '',
+      price: obj.price || '',
     };
   }
 }

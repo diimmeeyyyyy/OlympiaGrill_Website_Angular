@@ -23,6 +23,14 @@ $main-color: rgb(63, 80, 181);
   gap: $g;
 }
 
+@mixin dflexColumn($ai: center, $jc: center, $g: 0px, $fd: column) {
+  display: flex;
+  align-items: $ai;
+  justify-content: $jc;
+  gap: $g;
+  flex-direction: $fd;
+}
+
 .d-none {
   display: none;
 }

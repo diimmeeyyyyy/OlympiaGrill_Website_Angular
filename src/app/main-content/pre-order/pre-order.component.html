@@ -3,8 +3,11 @@
   (foodTypeString)="renderFoodTypeSection($event)"
 ></app-food-menu-nav>
 <section class="meal-section">
-  <app-food-container
-    *ngFor="let dish of getFoodTypeList()"
-    [dish]="dish"
-  ></app-food-container>
+  <div
+    *ngFor="let dish of getFoodTypeList(); let i = index"
+    class="arrange-food-container"
+  >
+    <app-food-container [dish]="dish"></app-food-container>
+    <app-food-container-child [dish]="dish"></app-food-container-child>
+  </div>
 </section>

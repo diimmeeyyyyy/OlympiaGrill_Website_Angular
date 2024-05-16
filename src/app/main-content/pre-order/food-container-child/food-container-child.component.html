@@ -1,0 +1,29 @@
+<div class="food-container-child">
+  <h3>Bitte wählen:</h3>
+
+  <section>
+    <div
+      class="topping"
+      *ngFor="let topping of getFoodClassContent(); let i = index"
+    >
+      <div class="topping-left">
+        <label for="">
+          <input type="checkbox" />
+        </label>
+        <p>{{ topping.title }}</p>
+      </div>
+      <div>
+        <p>{{ getToppingPrice(topping.price) }}</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="increase-decrease-amount">
+    <img src="../../../../assets/img/icons8-minus-48.png" />
+    <img src="./../../../../assets/img/icons8-plus-48.png" />
+    <div class="current-amount">
+      <p>Aktuelle Anzahl:</p>
+      <p>1</p>
+    </div>
+  </div>
+</div>

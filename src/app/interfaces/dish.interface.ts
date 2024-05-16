@@ -4,4 +4,6 @@ export interface Dish {
   description: string;
   price: number;
   background?: string;
+  foodClass?: string;
+  order?: number;
 }

@@ -6,6 +6,7 @@ import { FoodMenuNavComponent } from './food-menu-nav/food-menu-nav.component';
 import { PreorderdataService } from '../../shared/firebase-services/preorderdata.service';
 import { FoodContainerComponent } from './food-container/food-container.component';
 import { Dish } from '../../interfaces/dish.interface';
+import { FoodContainerChildComponent } from './food-container-child/food-container-child.component';
 
 @Component({
   selector: 'app-pre-order',
@@ -16,6 +17,7 @@ import { Dish } from '../../interfaces/dish.interface';
     FooterComponent,
     FoodMenuNavComponent,
     FoodContainerComponent,
+    FoodContainerChildComponent,
   ],
   templateUrl: './pre-order.component.html',
   styleUrl: './pre-order.component.scss',
