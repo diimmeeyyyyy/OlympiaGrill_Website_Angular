@@ -9,6 +9,7 @@
   @include dflexColumn($jc: unset);
   background-color: aliceblue;
   width: 97svw;
+  animation: scaleInAnimation 0.5s ease-in-out forwards;
   > h3 {
     padding: 10px;
     border-radius: 10px;
@@ -18,10 +19,21 @@
   }
 }
 
+@keyframes scaleInAnimation {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
 .close-button {
   position: absolute;
   right: 0;
   top: 0;
+  background: lightskyblue;
+  border-radius: 0px 20px 0 0;
 }
 
 .all-toppings {

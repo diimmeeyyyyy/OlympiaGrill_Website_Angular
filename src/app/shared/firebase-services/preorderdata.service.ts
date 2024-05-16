@@ -28,8 +28,10 @@ export class PreorderdataService {
 
   foodClassTX: FoodClass[] = [];
   foodClassS: FoodClass[] = [];
+  foodClassGR: FoodClass[] = [];
   unsubFoodClassTX;
   unsubFoodClassS;
+  unsubFoodClassGR;
 
   unsubPopularDishes;
   unsubSalads;
@@ -55,6 +57,8 @@ export class PreorderdataService {
     this.unsubFoodClassTX = this.subFoodClass('TX');
     //FOOD-CLASS-S
     this.unsubFoodClassS = this.subFoodClass('foodClassS');
+    //FOOD-CLASS GR
+    this.unsubFoodClassGR = this.subFoodClass('foodClassGR');
   }
 
   subPopularDishesList() {
@@ -113,6 +117,8 @@ export class PreorderdataService {
           this.foodClassTX.push(this.setFoodClassObject(topping.data()));
         } else if (foodClass === 'foodClassS') {
           this.foodClassS.push(this.setFoodClassObject(topping.data()));
+        } else if (foodClass === 'foodClassGR') {
+          this.foodClassGR.push(this.setFoodClassObject(topping.data()));
         }
       });
     });
@@ -154,6 +160,7 @@ export class PreorderdataService {
     return {
       title: obj.title || '',
       price: obj.price || '',
+      background: obj.background || '',
     };
   }
 }

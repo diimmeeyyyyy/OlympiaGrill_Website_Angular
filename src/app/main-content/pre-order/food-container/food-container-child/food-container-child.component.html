@@ -1,6 +1,19 @@
-<main class="food-container-child">
+<main
+  class="food-container-child"
+  [style.backgroundImage]="'url(' + getFoodClassBackground() + ')'"
+>
   <h3>Bitte wählen:</h3>
-  <img (click)="closeChildContainer()" class="close-button" src="./../../../../assets/img/icons8-close-50.png">
+  <img
+    (click)="closeChildContainer()"
+    class="close-button"
+    src="./../../../../assets/img/icons8-close-50.png"
+  />
+
+  <app-salad-selection
+    *ngIf="dish.foodClass === 'GR'"
+    [dish]="dish"
+    [index]="index"
+  ></app-salad-selection>
 
   <section class="all-toppings">
     <div

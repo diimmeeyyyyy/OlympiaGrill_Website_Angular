@@ -6,7 +6,7 @@ import { FoodContainerChildComponent } from './food-container-child/food-contain
 @Component({
   selector: 'app-food-container',
   standalone: true,
-  imports: [CommonModule, FoodContainerChildComponent],
+  imports: [CommonModule, FoodContainerChildComponent,],
   templateUrl: './food-container.component.html',
   styleUrl: './food-container.component.scss',
 })
