@@ -6,7 +6,7 @@ import { FoodMenuNavComponent } from './food-menu-nav/food-menu-nav.component';
 import { PreorderdataService } from '../../shared/firebase-services/preorderdata.service';
 import { FoodContainerComponent } from './food-container/food-container.component';
 import { Dish } from '../../interfaces/dish.interface';
-import { FoodContainerChildComponent } from './food-container-child/food-container-child.component';
+import { FoodContainerChildComponent } from './food-container/food-container-child/food-container-child.component';
 
 @Component({
   selector: 'app-pre-order',
@@ -24,6 +24,7 @@ import { FoodContainerChildComponent } from './food-container-child/food-contain
 })
 export class PreOrderComponent {
   preorderdata = inject(PreorderdataService);
+  showChildContainer = false;
   selectedFoodType: string = '';
 
   foodList: Dish[] = [];

@@ -27,7 +27,9 @@ export class PreorderdataService {
   kids: Dish[] = [];
 
   foodClassTX: FoodClass[] = [];
+  foodClassS: FoodClass[] = [];
   unsubFoodClassTX;
+  unsubFoodClassS;
 
   unsubPopularDishes;
   unsubSalads;
@@ -50,7 +52,9 @@ export class PreorderdataService {
     //CHILDS
     this.unsubChildren = this.subChildren();
     //FOOD-CLASS-TX
-    this.unsubFoodClassTX = this.subFoodClassTX();
+    this.unsubFoodClassTX = this.subFoodClass('TX');
+    //FOOD-CLASS-S
+    this.unsubFoodClassS = this.subFoodClass('foodClassS');
   }
 
   subPopularDishesList() {
@@ -102,10 +106,14 @@ export class PreorderdataService {
   }
 
   //FOOD-CLASSES
-  subFoodClassTX() {
-    return onSnapshot(this.getFoodClassRef('TX'), (list) => {
+  subFoodClass(foodClass: string) {
+    return onSnapshot(this.getFoodClassRef(foodClass), (list) => {
       list.forEach((topping) => {
-        this.foodClassTX.push(this.setFoodClassObject(topping.data()));
+        if (foodClass === 'TX') {
+          this.foodClassTX.push(this.setFoodClassObject(topping.data()));
+        } else if (foodClass === 'foodClassS') {
+          this.foodClassS.push(this.setFoodClassObject(topping.data()));
+        }
       });
     });
   }
