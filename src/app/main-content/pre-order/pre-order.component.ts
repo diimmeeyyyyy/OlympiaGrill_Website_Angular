@@ -48,10 +48,16 @@ export class PreOrderComponent {
       return this.preOrderService.fastDishes;
     } else if (this.selectedFoodType === 'Kinder') {
       return this.preOrderService.kids;
+    } else if (this.selectedFoodType === 'Schnitzel') {
+      return this.preOrderService.schnitzel;
+    } else if (this.selectedFoodType === 'Vom Grill') {
+      return this.preOrderService.grilledDishes;
+    } else if (this.selectedFoodType === 'Gyros Gerichte') {
+      return this.preOrderService.gyrosDishes;
+    } else if (this.selectedFoodType === 'Pita') {
+      return this.preOrderService.pita;
     } else {
       return this.preOrderService.popularDishes;
     }
   }
-
-
 }

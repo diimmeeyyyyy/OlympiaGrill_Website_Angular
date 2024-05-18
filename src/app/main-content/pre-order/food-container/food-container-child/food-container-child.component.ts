@@ -22,8 +22,12 @@ export class FoodContainerChildComponent {
       return this.preOrderService.foodClassTX;
     } else if (this.dish.foodClass === 'S') {
       return this.preOrderService.foodClassS;
-    } else if (this.dish.foodClass === 'GR') {
+    } else if (this.dish.foodClass === 'GR' || this.dish.foodClass === 'GP') {
       return this.preOrderService.foodClassGR;
+    } else if (this.dish.foodClass === 'PITA') {
+      return this.preOrderService.foodClassPITA;
+    } else if (this.dish.foodClass === 'GY') {
+      return this.preOrderService.foodClassGY;
     } else {
       return undefined;
     }
@@ -31,11 +35,13 @@ export class FoodContainerChildComponent {
 
   getFoodClassBackground() {
     if (this.dish.foodClass === 'TX') {
-      return '/assets/img/backgroundTX.jpg';
+      return 'backgroundFoodClassTX';
     } else if (this.dish.foodClass === 'GR') {
-      return '/assets/img/santorini.jpg';
+      return 'backgroundFoodClassGR';
+    } else if (this.dish.foodClass === 'PITA') {
+      return 'backgroundFoodClassPITA';
     } else {
-      return '/assets/img/background07.jpg';
+      return 'backgroundFoodClassGR';
     }
   }
 

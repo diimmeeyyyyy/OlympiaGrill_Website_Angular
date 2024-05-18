@@ -19,92 +19,81 @@ import { FoodClass } from '../../interfaces/food-class.interface';
 export class PreorderdataService {
   firestore: Firestore = inject(Firestore);
 
-  popularDishes: Dish[] = [];
-  salads: Dish[] = [];
-  sides: Dish[] = [];
-  appetizers: Dish[] = [];
-  fastDishes: Dish[] = [];
-  kids: Dish[] = [];
-
-  foodClassTX: FoodClass[] = [];
-  foodClassS: FoodClass[] = [];
-  foodClassGR: FoodClass[] = [];
-  unsubFoodClassTX;
-  unsubFoodClassS;
-  unsubFoodClassGR;
-
   unsubPopularDishes;
   unsubSalads;
   unsubSides;
   unsubAppetizers;
   unsubFastDishes;
   unsubChildren;
+  unsubSchnitzel;
+  unsubGrilledDishes;
+  unsubGyrosDishes;
+  unsubPita;
+
+  popularDishes: Dish[] = [];
+  salads: Dish[] = [];
+  sides: Dish[] = [];
+  appetizers: Dish[] = [];
+  fastDishes: Dish[] = [];
+  kids: Dish[] = [];
+  schnitzel: Dish[] = [];
+  grilledDishes: Dish[] = [];
+  gyrosDishes: Dish[] = [];
+  pita: Dish[] = [];
+
+  unsubFoodClassTX;
+  unsubFoodClassS;
+  unsubFoodClassGR;
+  unsubFoodClassPITA;
+  unsubFoodClassGY;
+
+  foodClassTX: FoodClass[] = [];
+  foodClassS: FoodClass[] = [];
+  foodClassGR: FoodClass[] = [];
+  foodClassPITA: FoodClass[] = [];
+  foodClassGY: FoodClass[] = [];
 
   constructor() {
     //POPULAR DISHES
-    this.unsubPopularDishes = this.subPopularDishesList();
+    this.unsubPopularDishes = this.subFoodType(
+      'popularDishes',
+      this.popularDishes
+    );
     //SALADS
-    this.unsubSalads = this.subSaladList();
+    this.unsubSalads = this.subFoodType('salads', this.salads);
     //SIDES
-    this.unsubSides = this.subSidesList();
+    this.unsubSides = this.subFoodType('sides', this.sides);
     //APPETIZERS
-    this.unsubAppetizers = this.subAppetizersList();
+    this.unsubAppetizers = this.subFoodType('appetizers', this.appetizers);
     //FAST DISHES
-    this.unsubFastDishes = this.subFastDishes();
+    this.unsubFastDishes = this.subFoodType('fastDishes', this.fastDishes);
     //CHILDS
-    this.unsubChildren = this.subChildren();
+    this.unsubChildren = this.subFoodType('kinder', this.kids);
+    //SCHNITZEL
+    this.unsubSchnitzel = this.subFoodType('schnitzel', this.schnitzel);
+    //GRILL
+    this.unsubGrilledDishes = this.subFoodType('grill', this.grilledDishes);
+    //GYROS-DISHES
+    this.unsubGyrosDishes = this.subFoodType('gyrosDishes', this.gyrosDishes);
+    //PITA
+    this.unsubPita = this.subFoodType('pita', this.pita);
     //FOOD-CLASS-TX
     this.unsubFoodClassTX = this.subFoodClass('TX');
     //FOOD-CLASS-S
     this.unsubFoodClassS = this.subFoodClass('foodClassS');
     //FOOD-CLASS GR
     this.unsubFoodClassGR = this.subFoodClass('foodClassGR');
+    //FOOD-CLASS PITA
+    this.unsubFoodClassPITA = this.subFoodClass('foodClassPITA');
+    //FOOD-CLASS GY(JUST GYROS)
+    this.unsubFoodClassGY = this.subFoodClass('foodClassGY');
+    console.log(this.foodClassGY);
   }
 
-  subPopularDishesList() {
-    return onSnapshot(this.getFoodTypeRef('popularDishes'), (list) => {
+  subFoodType(foodType: string, array: any[]) {
+    return onSnapshot(this.getFoodTypeRef(foodType), (list) => {
       list.forEach((dish) => {
-        this.popularDishes.push(this.setDishObject(dish.data(), dish.id));
-      });
-    });
-  }
-
-  subSaladList() {
-    return onSnapshot(this.getFoodTypeRef('salads'), (list) => {
-      list.forEach((dish) => {
-        this.salads.push(this.setDishObject(dish.data(), dish.id));
-      });
-    });
-  }
-
-  subSidesList() {
-    return onSnapshot(this.getFoodTypeRef('sides'), (list) => {
-      list.forEach((dish) => {
-        this.sides.push(this.setDishObject(dish.data(), dish.id));
-      });
-    });
-  }
-
-  subAppetizersList() {
-    return onSnapshot(this.getFoodTypeRef('appetizers'), (list) => {
-      list.forEach((dish) => {
-        this.appetizers.push(this.setDishObject(dish.data(), dish.id));
-      });
-    });
-  }
-
-  subFastDishes() {
-    return onSnapshot(this.getFoodTypeRef('fastDishes'), (list) => {
-      list.forEach((dish) => {
-        this.fastDishes.push(this.setDishObject(dish.data(), dish.id));
-      });
-    });
-  }
-
-  subChildren() {
-    return onSnapshot(this.getFoodTypeRef('kinder'), (list) => {
-      list.forEach((dish) => {
-        this.kids.push(this.setDishObject(dish.data(), dish.id));
+        array.push(this.setDishObject(dish.data(), dish.id));
       });
     });
   }
@@ -119,6 +108,10 @@ export class PreorderdataService {
           this.foodClassS.push(this.setFoodClassObject(topping.data()));
         } else if (foodClass === 'foodClassGR') {
           this.foodClassGR.push(this.setFoodClassObject(topping.data()));
+        } else if (foodClass === 'foodClassPITA') {
+          this.foodClassPITA.push(this.setFoodClassObject(topping.data()));
+        } else if (foodClass === 'foodClassGY') {
+          this.foodClassGY.push(this.setFoodClassObject(topping.data()));
         }
       });
     });
@@ -130,6 +123,9 @@ export class PreorderdataService {
     this.unsubSides();
     this.unsubAppetizers();
     this.unsubFastDishes();
+    this.unsubChildren();
+    this.unsubSchnitzel();
+    this.unsubGrilledDishes();
   }
 
   //Um auf die jeweilige Collection zuzugreifen:

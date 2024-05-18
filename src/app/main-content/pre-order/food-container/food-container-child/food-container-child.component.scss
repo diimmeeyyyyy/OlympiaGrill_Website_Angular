@@ -4,7 +4,7 @@
   display: none;
   position: relative;
   border: 2px solid black;
-  margin-top: 3px;
+  margin-top: 1px;
   border-radius: 20px;
   @include dflexColumn($jc: unset);
   background-color: aliceblue;
@@ -101,4 +101,17 @@
     background-color: lightgreen;
     cursor: pointer;
   }
+}
+
+.backgroundFoodClassTX {
+  background-image: url("/assets/img/backgroundTX.jpg");
+}
+
+.backgroundFoodClassGR {
+  background-image: url("/assets/img/santorini.jpg");
+}
+
+.backgroundFoodClassPITA {
+  background-image: url("/assets/img/catBackground.jpg");
+  background-position-x: center;
 }
