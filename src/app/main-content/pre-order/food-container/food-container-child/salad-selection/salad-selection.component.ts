@@ -9,5 +9,5 @@ import { Component, Input } from '@angular/core';
 })
 export class SaladSelectionComponent {
   @Input() dish: any;
-  @Input() index!: number;
+  @Input() foodContainerindex!: number;
 }

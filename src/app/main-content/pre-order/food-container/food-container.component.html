@@ -1,4 +1,4 @@
-<main>
+<main #mainContainer>
   <div
     class="dish-container"
     style="background-image: url('{{ dish.background }}')"
@@ -12,12 +12,16 @@
       <h3>{{ dish.price.toFixed(2).replace(".", ",") }} €</h3>
     </div>
     <div class="right">
-      <img (click)="toggleChild()" src="/assets/img/icons8-plus-40.png" />
+      <img
+        (click)="toggleChild()"
+        (click)="scrollToTop()"
+        src="/assets/img/icons8-plus-40.png"
+      />
     </div>
   </div>
   <app-food-container-child
     [dish]="dish"
-    [index]="index"
+    [foodContainerindex]="index"
     [style.display]="showChild ? 'flex' : 'none'"
     (close)="showChild = false"
   ></app-food-container-child>

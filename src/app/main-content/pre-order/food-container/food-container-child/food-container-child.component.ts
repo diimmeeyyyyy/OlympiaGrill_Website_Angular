@@ -13,7 +13,7 @@ import { SaladSelectionComponent } from './salad-selection/salad-selection.compo
 })
 export class FoodContainerChildComponent {
   @Input() dish: any;
-  @Input() index!: number;
+  @Input() foodContainerindex!: number;
 
   constructor(private preOrderService: PreorderdataService) {}
 
@@ -32,6 +32,8 @@ export class FoodContainerChildComponent {
   getFoodClassBackground() {
     if (this.dish.foodClass === 'TX') {
       return '/assets/img/backgroundTX.jpg';
+    } else if (this.dish.foodClass === 'GR') {
+      return '/assets/img/santorini.jpg';
     } else {
       return '/assets/img/background07.jpg';
     }

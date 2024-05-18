@@ -7,6 +7,9 @@
     *ngFor="let dish of getFoodTypeList(); let i = index"
     class="arrange-food-container"
   >
-    <app-food-container [dish]="dish" [index]="i"></app-food-container>
+    <app-food-container
+      [dish]="dish"
+      [index]="i"
+    ></app-food-container>
   </div>
 </section>

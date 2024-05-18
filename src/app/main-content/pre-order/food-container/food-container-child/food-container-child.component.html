@@ -12,7 +12,7 @@
   <app-salad-selection
     *ngIf="dish.foodClass === 'GR'"
     [dish]="dish"
-    [index]="index"
+    [foodContainerindex]="foodContainerindex"
   ></app-salad-selection>
 
   <section class="all-toppings">
@@ -21,8 +21,8 @@
       *ngFor="let topping of getFoodClassContent(); let i = index"
     >
       <div class="topping-left">
-        <label for="">
-          <input type="checkbox" />
+        <label for="Topping_{{ foodContainerindex }}{{ i }}">
+          <input type="checkbox" id="Topping_{{ foodContainerindex }}{{ i }}" />
         </label>
         <p>{{ topping.title }}</p>
       </div>
