@@ -26,11 +26,8 @@ export class FoodContainerComponent {
 
   scrollToTop() {
     let clickedContainer = this.mainContainer.nativeElement as HTMLElement;
-    console.log(clickedContainer);
     let clickedContainerPosition = clickedContainer.getBoundingClientRect().top;
-    console.log('clickedContainerPosition is' + clickedContainerPosition);
     let targetPosition = window.scrollY + clickedContainerPosition - 10;
-    console.log('TargetPosition is' + targetPosition);
 
     window.scrollTo({
       top: targetPosition,

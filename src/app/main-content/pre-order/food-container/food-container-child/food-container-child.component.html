@@ -1,7 +1,4 @@
-<main
-  class="food-container-child"
-  [ngClass]="getFoodClassBackground()"
->
+<main class="food-container-child" [ngClass]="getFoodClassBackground()">
   <h3>Bitte wählen:</h3>
   <img
     (click)="closeChildContainer()"
@@ -10,10 +7,23 @@
   />
 
   <app-salad-selection
-    *ngIf="dish.foodClass === 'GR'"
+    *ngIf="dish.foodClass === 'GR' || dish.foodClass === 'GYSA'"
     [dish]="dish"
     [foodContainerindex]="foodContainerindex"
   ></app-salad-selection>
+
+  <app-gyros-special-selection
+    *ngIf="dish.foodClass === 'GYSP'"
+    [dish]="dish"
+    [foodContainerindex]="foodContainerindex"
+  ></app-gyros-special-selection>
+
+  <app-sides-selection
+    *ngIf="dish.foodClass === 'S'"
+    [dish]="dish"
+    [foodContainerindex]="foodContainerindex"
+    (selectedValueChange)="handleSelectedValueChange($event)"
+  ></app-sides-selection>
 
   <section class="all-toppings">
     <div
@@ -43,7 +53,7 @@
 
   <section class="show-dish-price">
     <p>In den Warenkorb</p>
-    <p>{{ dish.price.toFixed(2).replace(".", ",") }} €</p>
+    <p>{{ itemPrice() }} €</p>
     <img src="./../../../../assets/img/icons8-plus-40.png" />
   </section>
 </main>

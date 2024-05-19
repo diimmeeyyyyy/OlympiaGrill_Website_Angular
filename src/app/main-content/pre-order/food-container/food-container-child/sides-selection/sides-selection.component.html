@@ -1,0 +1,11 @@
+<div>
+  <label for="Side{{ foodContainerindex }}">Beilage wählen:</label>
+  <select
+    (change)="emitSelectedValue($event)"
+    name=""
+    id="Side{{ foodContainerindex }}"
+  >
+    <option value="Without">Ohne Beilage</option>
+    <option value="WithFries">Mit Pommes +1,90€</option>
+  </select>
+</div>
