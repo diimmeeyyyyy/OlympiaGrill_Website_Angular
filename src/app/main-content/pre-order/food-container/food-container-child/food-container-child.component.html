@@ -19,7 +19,7 @@
   ></app-gyros-special-selection>
 
   <app-sides-selection
-    *ngIf="dish.foodClass === 'S'"
+    *ngIf="dish.foodClass === 'S' || dish.foodClass === 'GYSP'"
     [dish]="dish"
     [foodContainerindex]="foodContainerindex"
     (selectedValueChange)="handleSelectedValueChange($event)"
@@ -47,11 +47,21 @@
   </section>
 
   <section class="increase-decrease-amount">
-    <img src="../../../../assets/img/icons8-minus-48.png" />
-    <img src="./../../../../assets/img/icons8-plus-48.png" />
+    <img
+      src="../../../../assets/img/icons8-minus-48.png"
+      (click)="decreaseAmount()"
+      (touchstart)="scaleUp($event)"
+      (touchend)="scaleDown($event)"
+    />
+    <img
+      src="./../../../../assets/img/icons8-plus-48.png"
+      (click)="increaseAmount()"
+      (touchstart)="scaleUp($event)"
+      (touchend)="scaleDown($event)"
+    />
     <div class="current-amount">
-      <p>Aktuelle Anzahl:</p>
-      <p>1</p>
+      <p>Menge:</p>
+      <p class="current-amount-number">{{ amount }}</p>
     </div>
   </section>
 

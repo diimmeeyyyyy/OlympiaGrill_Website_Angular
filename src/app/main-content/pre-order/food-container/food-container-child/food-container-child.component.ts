@@ -23,9 +23,15 @@ import { SidesSelectionComponent } from './sides-selection/sides-selection.compo
 export class FoodContainerChildComponent {
   @Input() dish: any;
   @Input() foodContainerindex!: number;
+  @Output() close = new EventEmitter<void>();
+  closeChildContainer() {
+    this.close.emit();
+  }
+
   selectedValueFoodClassS?: string;
   totalPrice: number = 0;
   toppingPrice: number = 0;
+  amount: number = 1;
 
   constructor(private preOrderService: PreorderdataService) {}
 
@@ -74,16 +80,15 @@ export class FoodContainerChildComponent {
 
   itemPrice() {
     if (this.selectedValueFoodClassS === 'WithFries') {
-      this.totalPrice = this.dish.price + 2.2 + this.toppingPrice;
+      this.totalPrice =
+        (this.dish.price + 2.2 + this.toppingPrice) * this.amount;
+    } else if (this.selectedValueFoodClassS === 'Without') {
+      this.toppingPrice = 0;
+      this.totalPrice = this.dish.price * this.amount;
     } else {
-      this.totalPrice = this.dish.price + this.toppingPrice;
+      this.totalPrice = (this.dish.price + this.toppingPrice) * this.amount;
     }
     return this.totalPrice.toFixed(2).replace('.', ',');
-  }
-
-  @Output() close = new EventEmitter<void>();
-  closeChildContainer() {
-    this.close.emit();
   }
 
   onCheckboxChange(event: Event, topping: FoodClass) {
@@ -95,5 +100,29 @@ export class FoodContainerChildComponent {
       this.toppingPrice -= price;
     }
     this.itemPrice();
+  }
+
+  increaseAmount() {
+    this.amount++;
+
+    this.itemPrice();
+  }
+
+  decreaseAmount() {
+    if (this.amount > 1) {
+      this.amount--;
+    }
+
+    this.itemPrice();
+  }
+
+  scaleUp(event: TouchEvent) {
+    (event.target as HTMLElement).classList.add('scale-up');
+    (event.target as HTMLElement).classList.remove('scale-down');
+  }
+
+  scaleDown(event: TouchEvent) {
+    (event.target as HTMLElement).classList.add('scale-down');
+    (event.target as HTMLElement).classList.remove('scale-up');
   }
 }
