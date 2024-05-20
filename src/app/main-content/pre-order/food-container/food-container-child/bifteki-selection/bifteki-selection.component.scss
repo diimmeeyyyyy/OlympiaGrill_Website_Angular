@@ -1,0 +1,16 @@
+@import "./../food-container-child.component.scss";
+
+div {
+  @include surroundingDiv();
+  margin-bottom: 12px;
+}
+
+div label {
+  @include surroundingDivLabel();
+}
+
+div select {
+  height: 70%;
+  border-radius: 0px 0px 10px 10px;
+  font-size: 18px;
+}

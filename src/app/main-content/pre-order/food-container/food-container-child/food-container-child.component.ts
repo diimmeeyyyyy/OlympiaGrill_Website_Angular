@@ -1,5 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ElementRef,
+  ViewChild,
+} from '@angular/core';
 import { PreorderdataService } from '../../../../shared/firebase-services/preorderdata.service';
 import { FoodClass } from '../../../../interfaces/food-class.interface';
 import { SaladSelectionComponent } from './salad-selection/salad-selection.component';
@@ -28,6 +35,12 @@ export class FoodContainerChildComponent {
     this.close.emit();
   }
 
+  @ViewChild('Child_Container') childContainer!: ElementRef;
+  @Output() childContainerReady = new EventEmitter<ElementRef>();
+  ngAfterViewInit() {
+    this.childContainerReady.emit(this.childContainer);
+  }
+
   selectedValueFoodClassS?: string;
   totalPrice: number = 0;
   toppingPrice: number = 0;
@@ -49,12 +62,22 @@ export class FoodContainerChildComponent {
       return undefined;
     } else if (this.dish.foodClass === 'CP') {
       return this.preOrderService.foodClassS;
-    } else if (this.dish.foodClass === 'GR' || this.dish.foodClass === 'GP') {
+    } else if (
+      this.dish.foodClass === 'GR' ||
+      this.dish.foodClass === 'GP' ||
+      this.dish.foodClass === 'BIF'
+    ) {
       return this.preOrderService.foodClassGR;
     } else if (this.dish.foodClass === 'PITA') {
       return this.preOrderService.foodClassPITA;
     } else if (this.dish.foodClass === 'GY' || this.dish.foodClass === 'GYSA') {
       return this.preOrderService.foodClassGY;
+    } else if (this.dish.foodClass === 'PITAVEG') {
+      return this.preOrderService.foodClassPITAVEG;
+    } else if (this.dish.foodClass === 'BUR') {
+      return this.preOrderService.foodClassBUR;
+    } else if (this.dish.foodClass === 'K') {
+      return this.preOrderService.foodClassK;
     } else {
       return undefined;
     }
@@ -69,6 +92,10 @@ export class FoodContainerChildComponent {
       return 'backgroundFoodClassPITA';
     } else if (this.dish.foodClass === 'S') {
       return 'backgroundFoodClassS';
+    } else if (this.dish.foodClass === 'GY') {
+      return 'backgroundFoodClassGY';
+    } else if (this.dish.foodClass === 'K') {
+      return 'backgroundFoodClassK';
     } else {
       return 'backgroundFoodClassGR';
     }
@@ -104,7 +131,6 @@ export class FoodContainerChildComponent {
 
   increaseAmount() {
     this.amount++;
-
     this.itemPrice();
   }
 

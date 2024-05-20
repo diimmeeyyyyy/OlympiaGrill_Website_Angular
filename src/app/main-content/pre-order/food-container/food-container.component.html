@@ -1,7 +1,7 @@
 <main #mainContainer>
   <div
     class="dish-container"
-    style="background-image: url('{{ dish.background }}');background-size: cover; background-position-y: center;"
+    style="background-image: url('{{ dish.background }}')"
   >
     <div
       class="left"
@@ -22,7 +22,8 @@
   <app-food-container-child
     [dish]="dish"
     [foodContainerindex]="index"
-    [style.display]="showChild ? 'flex' : 'none'"
-    (close)="showChild = false"
+    *ngIf="showChild"
+    (close)="closeChildContainer()"
+    (childContainerReady)="onChildContainerReady($event)"
   ></app-food-container-child>
 </main>

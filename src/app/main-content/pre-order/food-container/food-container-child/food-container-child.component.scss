@@ -9,7 +9,7 @@
   @include dflexColumn($jc: unset);
   background-color: aliceblue;
   width: 97svw;
-  animation: scaleInAnimation 0.5s ease-in-out forwards;
+  animation: scaleInAnimation 0.25s ease-in-out forwards;
   > h3 {
     padding: 10px;
     border-radius: 10px;
@@ -135,6 +135,17 @@
   background-position-x: -300px;
 }
 
+.backgroundFoodClassGY {
+  background-image: url("/assets/img/Zakynthos.jpg");
+  background-size: cover;
+}
+
+.backgroundFoodClassK {
+  background-image: url("/assets/img/backgroundFoodClassK.jpg");
+  background-size: cover;
+  background-position-x: -15px;
+}
+
 @mixin surroundingDiv($fd: column) {
   display: flex;
   flex-direction: $fd;
@@ -153,4 +164,5 @@
   border-radius: 10px 10px 0 0;
   display: flex;
   justify-content: center;
+  padding: 2px;
 }

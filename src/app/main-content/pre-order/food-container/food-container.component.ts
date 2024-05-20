@@ -16,6 +16,10 @@ export class FoodContainerComponent {
   showChild = false;
 
   @ViewChild('mainContainer') mainContainer!: ElementRef;
+  childContainer!: ElementRef;
+  onChildContainerReady(childContainer: ElementRef) {
+    this.childContainer = childContainer;
+  }
 
   toggleChild() {
     this.showChild = !this.showChild;
@@ -33,5 +37,27 @@ export class FoodContainerComponent {
       top: targetPosition,
       behavior: 'smooth',
     });
+  }
+
+  closeChildContainer() {
+    const element = this.childContainer.nativeElement;
+
+    element.animate(
+      [
+        // keyframes
+        { transform: 'scale(1)' },
+        { transform: 'scale(0)' },
+      ],
+      {
+        // timing options
+        duration: 250,
+        easing: 'ease-in-out',
+        fill: 'forwards',
+      }
+    );
+
+    setTimeout(() => {
+      this.showChild = false;
+    }, 251);
   }
 }

@@ -46,48 +46,42 @@ export class PreorderdataService {
   unsubFoodClassGR;
   unsubFoodClassPITA;
   unsubFoodClassGY;
+  unsubFoodClassPITAVEG;
+  unsubFoodClassBUR;
+  unsubFoodClassK;
 
   foodClassTX: FoodClass[] = [];
   foodClassS: FoodClass[] = [];
   foodClassGR: FoodClass[] = [];
   foodClassPITA: FoodClass[] = [];
   foodClassGY: FoodClass[] = [];
+  foodClassPITAVEG: FoodClass[] = [];
+  foodClassBUR: FoodClass[] = [];
+  foodClassK: FoodClass[] = [];
 
   constructor() {
-    //POPULAR DISHES
     this.unsubPopularDishes = this.subFoodType(
       'popularDishes',
       this.popularDishes
     );
-    //SALADS
     this.unsubSalads = this.subFoodType('salads', this.salads);
-    //SIDES
     this.unsubSides = this.subFoodType('sides', this.sides);
-    //APPETIZERS
     this.unsubAppetizers = this.subFoodType('appetizers', this.appetizers);
-    //FAST DISHES
     this.unsubFastDishes = this.subFoodType('fastDishes', this.fastDishes);
-    //CHILDS
     this.unsubChildren = this.subFoodType('kinder', this.kids);
-    //SCHNITZEL
     this.unsubSchnitzel = this.subFoodType('schnitzel', this.schnitzel);
-    //GRILL
     this.unsubGrilledDishes = this.subFoodType('grill', this.grilledDishes);
-    //GYROS-DISHES
     this.unsubGyrosDishes = this.subFoodType('gyrosDishes', this.gyrosDishes);
-    //PITA
     this.unsubPita = this.subFoodType('pita', this.pita);
-    //FOOD-CLASS-TX
+    //FOOD-CLASSES
     this.unsubFoodClassTX = this.subFoodClass('TX');
-    //FOOD-CLASS-S
     this.unsubFoodClassS = this.subFoodClass('foodClassS');
-    //FOOD-CLASS GR
     this.unsubFoodClassGR = this.subFoodClass('foodClassGR');
-    //FOOD-CLASS PITA
     this.unsubFoodClassPITA = this.subFoodClass('foodClassPITA');
-    //FOOD-CLASS GY(JUST GYROS)
     this.unsubFoodClassGY = this.subFoodClass('foodClassGY');
-    console.log(this.foodClassGY);
+    this.unsubFoodClassPITAVEG = this.subFoodClass('foodClassPITAVEG');
+    this.unsubFoodClassBUR = this.subFoodClass('foodClassBUR');
+    this.unsubFoodClassK = this.subFoodClass('foodClassK');
   }
 
   subFoodType(foodType: string, array: any[]) {
@@ -112,6 +106,12 @@ export class PreorderdataService {
           this.foodClassPITA.push(this.setFoodClassObject(topping.data()));
         } else if (foodClass === 'foodClassGY') {
           this.foodClassGY.push(this.setFoodClassObject(topping.data()));
+        } else if (foodClass === 'foodClassPITAVEG') {
+          this.foodClassPITAVEG.push(this.setFoodClassObject(topping.data()));
+        } else if (foodClass === 'foodClassBUR') {
+          this.foodClassBUR.push(this.setFoodClassObject(topping.data()));
+        } else if (foodClass === 'foodClassK') {
+          this.foodClassK.push(this.setFoodClassObject(topping.data()));
         }
       });
     });

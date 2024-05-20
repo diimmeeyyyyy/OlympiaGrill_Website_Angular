@@ -1,4 +1,8 @@
-<main class="food-container-child" [ngClass]="getFoodClassBackground()">
+<main
+  #Child_Container
+  class="food-container-child"
+  [ngClass]="getFoodClassBackground()"
+>
   <h3>Bitte wählen:</h3>
   <img
     (click)="closeChildContainer()"
@@ -6,8 +10,18 @@
     src="./../../../../assets/img/icons8-close-50.png"
   />
 
+  <app-bifteki-selection
+    *ngIf="dish.foodClass === 'BIF'"
+    [dish]="dish"
+    [foodContainerindex]="foodContainerindex"
+  ></app-bifteki-selection>
+
   <app-salad-selection
-    *ngIf="dish.foodClass === 'GR' || dish.foodClass === 'GYSA'"
+    *ngIf="
+      dish.foodClass === 'GR' ||
+      dish.foodClass === 'GYSA' ||
+      dish.foodClass === 'BIF'
+    "
     [dish]="dish"
     [foodContainerindex]="foodContainerindex"
   ></app-salad-selection>
