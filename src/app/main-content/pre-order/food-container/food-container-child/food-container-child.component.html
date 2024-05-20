@@ -32,7 +32,11 @@
     >
       <div class="topping-left">
         <label for="Topping_{{ foodContainerindex }}{{ i }}">
-          <input type="checkbox" id="Topping_{{ foodContainerindex }}{{ i }}" />
+          <input
+            type="checkbox"
+            id="Topping_{{ foodContainerindex }}{{ i }}"
+            (change)="onCheckboxChange($event, topping)"
+          />
         </label>
         <p>{{ topping.title }}</p>
       </div>

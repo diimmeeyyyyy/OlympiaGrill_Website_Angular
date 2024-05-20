@@ -24,6 +24,8 @@ export class FoodContainerChildComponent {
   @Input() dish: any;
   @Input() foodContainerindex!: number;
   selectedValueFoodClassS?: string;
+  totalPrice: number = 0;
+  toppingPrice: number = 0;
 
   constructor(private preOrderService: PreorderdataService) {}
 
@@ -39,6 +41,8 @@ export class FoodContainerChildComponent {
       return this.preOrderService.foodClassS;
     } else if (this.selectedValueFoodClassS === 'Without') {
       return undefined;
+    } else if (this.dish.foodClass === 'CP') {
+      return this.preOrderService.foodClassS;
     } else if (this.dish.foodClass === 'GR' || this.dish.foodClass === 'GP') {
       return this.preOrderService.foodClassGR;
     } else if (this.dish.foodClass === 'PITA') {
@@ -57,6 +61,8 @@ export class FoodContainerChildComponent {
       return 'backgroundFoodClassGR';
     } else if (this.dish.foodClass === 'PITA') {
       return 'backgroundFoodClassPITA';
+    } else if (this.dish.foodClass === 'S') {
+      return 'backgroundFoodClassS';
     } else {
       return 'backgroundFoodClassGR';
     }
@@ -68,15 +74,26 @@ export class FoodContainerChildComponent {
 
   itemPrice() {
     if (this.selectedValueFoodClassS === 'WithFries') {
-      let updatedPrice = this.dish.price + 1.9;
-      return updatedPrice.toFixed(2).replace('.', ',');
+      this.totalPrice = this.dish.price + 2.2 + this.toppingPrice;
     } else {
-      return this.dish.price.toFixed(2).replace('.', ',');
+      this.totalPrice = this.dish.price + this.toppingPrice;
     }
+    return this.totalPrice.toFixed(2).replace('.', ',');
   }
 
   @Output() close = new EventEmitter<void>();
   closeChildContainer() {
     this.close.emit();
+  }
+
+  onCheckboxChange(event: Event, topping: FoodClass) {
+    const checkbox = event.target as HTMLInputElement;
+    let price = typeof topping.price === 'number' ? topping.price : 0;
+    if (checkbox.checked) {
+      this.toppingPrice += price;
+    } else {
+      this.toppingPrice -= price;
+    }
+    this.itemPrice();
   }
 }

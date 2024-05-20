@@ -1,5 +1,5 @@
 export interface FoodClass {
-  title?: string;
-  price?: number;
+  title: string;
+  price: number;
   background?: string;
 }

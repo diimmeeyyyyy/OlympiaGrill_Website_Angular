@@ -67,7 +67,7 @@
   margin-block: 10px;
   border: 1px solid lightslategray;
   border-radius: 50px;
-  padding-inline: 10px;
+  padding-right: 10px;
   background-color: #e3c296;
   filter: drop-shadow(2px 4px 6px black);
   > img {
@@ -114,4 +114,9 @@
 .backgroundFoodClassPITA {
   background-image: url("/assets/img/catBackground.jpg");
   background-position-x: center;
+}
+
+.backgroundFoodClassS {
+  background-image: url("/assets/img/Akropolis.jpg");
+  background-position-x: -300px;
 }

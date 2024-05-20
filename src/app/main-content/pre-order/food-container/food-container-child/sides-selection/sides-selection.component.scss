@@ -13,6 +13,9 @@ div {
 
 div label {
   background-color: aliceblue;
+  border-radius: 10px 10px 0 0;
+  display: flex;
+  justify-content: center;
 }
 
 div select {
