@@ -14,6 +14,7 @@
     *ngIf="dish.foodClass === 'BIF'"
     [dish]="dish"
     [foodContainerindex]="foodContainerindex"
+    (biftekiSelected)="handleBiftekiSelection($event)"
   ></app-bifteki-selection>
 
   <app-salad-selection
@@ -24,6 +25,7 @@
     "
     [dish]="dish"
     [foodContainerindex]="foodContainerindex"
+    (saladSelected)="handleSaladSelection($event)"
   ></app-salad-selection>
 
   <app-gyros-special-selection
@@ -82,6 +84,9 @@
   <section class="show-dish-price">
     <p>In den Warenkorb</p>
     <p>{{ itemPrice() }} €</p>
-    <img src="./../../../../assets/img/icons8-plus-40.png" />
+    <img
+      src="./../../../../assets/img/icons8-plus-40.png"
+      (click)="addToShoppingBasket()"
+    />
   </section>
 </main>

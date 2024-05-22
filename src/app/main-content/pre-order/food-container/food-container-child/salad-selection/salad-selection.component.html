@@ -1,6 +1,11 @@
 <div>
   <label for="Salad_Selection{{ foodContainerindex }}">Salat auswählen:</label>
-  <select name="" id="Salad_Selection{{ foodContainerindex }}">
+  <select
+    name=""
+    id="Salad_Selection{{ foodContainerindex }}"
+    (change)="onSaladChange()"
+    [(ngModel)]="selectedSalad"
+  >
     <option value="Krautsalat">Krautsalat</option>
     <option value="Bauernsalat">Bauernsalat</option>
     <option value="Gurkensalat">Gurkensalat</option>

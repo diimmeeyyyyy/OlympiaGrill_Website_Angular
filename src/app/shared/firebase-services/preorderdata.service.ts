@@ -7,11 +7,13 @@ import {
   onSnapshot,
   query,
   orderBy,
+  addDoc,
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Dish } from '../../interfaces/dish.interface';
 import { subscriptionLogsToBeFn } from 'rxjs/internal/testing/TestScheduler';
 import { FoodClass } from '../../interfaces/food-class.interface';
+import { ShoppingBasketItem } from '../../interfaces/shopping-basket-item.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -158,5 +160,14 @@ export class PreorderdataService {
       price: obj.price || '',
       background: obj.background || '',
     };
+  }
+
+  async addToShoppingBasket(item: ShoppingBasketItem) {
+    await addDoc(this.getShoppingBasketRef(), item);
+    //CATCH & THEN
+  }
+
+  getShoppingBasketRef() {
+    return collection(this.firestore, 'shoppingBasket');
   }
 }

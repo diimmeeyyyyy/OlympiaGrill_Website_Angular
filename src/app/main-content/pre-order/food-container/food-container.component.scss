@@ -7,7 +7,9 @@ main {
 }
 
 .dish-container {
-  background-color: pink;
+  background-color: lightblue;
+  /* background-color: rgb(63, 80, 181); */
+ /*  color: white; */
   width: 320px;
   border-radius: 10px;
   @include dflex($jc: space-between, $ai: unset);

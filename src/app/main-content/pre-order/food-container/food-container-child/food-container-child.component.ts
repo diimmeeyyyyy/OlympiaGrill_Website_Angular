@@ -13,6 +13,8 @@ import { SaladSelectionComponent } from './salad-selection/salad-selection.compo
 import { GyrosSpecialSelectionComponent } from './gyros-special-selection/gyros-special-selection.component';
 import { BiftekiSelectionComponent } from './bifteki-selection/bifteki-selection.component';
 import { SidesSelectionComponent } from './sides-selection/sides-selection.component';
+import { ShoppingBasketItem } from '../../../../interfaces/shopping-basket-item.interface';
+/* import { ShoppingBasket } from '../../../../interfaces/shopping-basket.interface'; */
 
 @Component({
   selector: 'app-food-container-child',
@@ -45,6 +47,7 @@ export class FoodContainerChildComponent {
   totalPrice: number = 0;
   toppingPrice: number = 0;
   amount: number = 1;
+  selectedToppings: string[] = [];
 
   constructor(private preOrderService: PreorderdataService) {}
 
@@ -123,8 +126,13 @@ export class FoodContainerChildComponent {
     let price = typeof topping.price === 'number' ? topping.price : 0;
     if (checkbox.checked) {
       this.toppingPrice += price;
+      this.selectedToppings.push(topping.title);
     } else {
       this.toppingPrice -= price;
+      const index = this.selectedToppings.indexOf(topping.title);
+      if (index > -1) {
+        this.selectedToppings.splice(index, 1);
+      }
     }
     this.itemPrice();
   }
@@ -150,5 +158,57 @@ export class FoodContainerChildComponent {
   scaleDown(event: TouchEvent) {
     (event.target as HTMLElement).classList.add('scale-down');
     (event.target as HTMLElement).classList.remove('scale-up');
+  }
+
+  addToShoppingBasket() {
+    console.log('Dish is ' + this.dish.title);
+    console.log('Amount is ' + this.amount);
+    console.log('Price is ' + this.totalPrice);
+    console.log('Toppings are: ' + this.selectedToppings);
+    console.log('Choosed Salad is ' + this.getSalad());
+    console.log('Choosed Bifteki is' + this.getBifteki());
+
+    let item: ShoppingBasketItem = {
+      title: this.dish.title,
+      price: this.totalPrice,
+      amount: this.amount,
+      toppings: this.selectedToppings,
+      salad: this.getSalad(),
+      bifteki: this.getBifteki(),
+      /* gyrosSpecial?: string; */
+    };
+    /* this.preOrderService.addToShoppingBasket(item); */
+  }
+
+  saladSelected: string | undefined = ''; //Default
+  handleSaladSelection(selectedSalad?: string) {
+    this.saladSelected = selectedSalad;
+  }
+
+  getSalad() {
+    if (
+      this.dish.foodClass === 'GR' ||
+      this.dish.foodClass === 'GYSA' ||
+      this.dish.foodClass === 'BIF'
+    ) {
+      return this.saladSelected === '' ? 'Krautsalat' : this.saladSelected;
+    } else {
+      return '';
+    }
+  }
+
+  biftekiSelected: string | undefined = '';
+  handleBiftekiSelection(selectedBifteki?: string) {
+    this.biftekiSelected = selectedBifteki;
+  }
+
+  getBifteki() {
+    if (this.dish.foodClass === 'BIF') {
+      return this.biftekiSelected === ''
+        ? 'Mit Gouda-Käse'
+        : this.biftekiSelected;
+    } else {
+      return '';
+    }
   }
 }
