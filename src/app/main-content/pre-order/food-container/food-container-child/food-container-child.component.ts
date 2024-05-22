@@ -166,7 +166,7 @@ export class FoodContainerChildComponent {
     console.log('Price is ' + this.totalPrice);
     console.log('Toppings are: ' + this.selectedToppings);
     console.log('Choosed Salad is ' + this.getSalad());
-    console.log('Choosed Bifteki is' + this.getBifteki());
+    console.log('Choosed Bifteki is ' + this.getBifteki());
 
     let item: ShoppingBasketItem = {
       title: this.dish.title,
@@ -207,6 +207,21 @@ export class FoodContainerChildComponent {
       return this.biftekiSelected === ''
         ? 'Mit Gouda-Käse'
         : this.biftekiSelected;
+    } else {
+      return '';
+    }
+  }
+
+  gyrosSpecialSelected: string | undefined = '';
+  handleGyrosSpecialSelection(selectedGyrosSpecial?: string) {
+    this.gyrosSpecialSelected = selectedGyrosSpecial;
+  }
+
+  getGyrosSpecial() {
+    if (this.dish.foodClass === 'GYSP') {
+      return this.gyrosSpecialSelected === ''
+        ? 'Mit Gouda-Käse & Metaxa-Sauce'
+        : this.gyrosSpecialSelected;
     } else {
       return '';
     }

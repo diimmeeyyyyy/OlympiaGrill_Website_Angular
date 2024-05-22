@@ -32,6 +32,7 @@
     *ngIf="dish.foodClass === 'GYSP'"
     [dish]="dish"
     [foodContainerindex]="foodContainerindex"
+    (gyrosSpecialSelected)="handleGyrosSpecialSelection($event)"
   ></app-gyros-special-selection>
 
   <app-sides-selection

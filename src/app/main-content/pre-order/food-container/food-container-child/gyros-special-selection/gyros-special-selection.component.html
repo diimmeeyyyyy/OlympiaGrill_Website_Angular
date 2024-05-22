@@ -2,9 +2,18 @@
   <label for="Gyros_Special{{ foodContainerindex }}"
     >Gyros-Spezial auswählen:</label
   >
-  <select name="" id="Gyros_Special{{ foodContainerindex }}">
-    <option value="Gouda">Mit Gouda-Käse & Metaxa-Sauce</option>
-    <option value="Schafskäse">Mit Schafskäse & Metaxa-Sauce</option>
-    <option value="Sauce-Hollandaise">Mit Sauce-Hollandaise</option>
+  <select
+    name=""
+    id="Gyros_Special{{ foodContainerindex }}"
+    (change)="onGyrosSpecialChange()"
+    [(ngModel)]="selectedGyrosSpecial"
+  >
+    <option value="Mit Gouda-Käse & Metaxa-Sauce">
+      Mit Gouda-Käse & Metaxa-Sauce
+    </option>
+    <option value="Mit Schafskäse & Metaxa-Sauce">
+      Mit Schafskäse & Metaxa-Sauce
+    </option>
+    <option value="Mit Sauce-Hollandaise">Mit Sauce-Hollandaise</option>
   </select>
 </div>
