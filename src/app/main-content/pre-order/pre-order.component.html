@@ -12,7 +12,7 @@
 </section>
 <app-shopping-basket
   *ngIf="showShoppingBasket"
-  (shoppingBasketReady)="onShoppingBasketReady($event)"
+  (close)="toggleShoppingBasket()"
 ></app-shopping-basket>
 
 <div
@@ -24,3 +24,5 @@
   <img src="./../../../../assets/img/shopping-basket.png" />
   <p class="total-item-amount">{{ preorderdata.totalItemAmount }}</p>
 </div>
+
+<!-- (shoppingBasketReady)="onShoppingBasketReady($event)" -->

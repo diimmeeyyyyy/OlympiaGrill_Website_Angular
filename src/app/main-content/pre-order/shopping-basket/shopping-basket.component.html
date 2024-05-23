@@ -1,4 +1,14 @@
-<div #Shopping_Basket>
-  <h1>AUSGEWÄHLTE GERICHTE</h1>
-  <img src="./../../../../assets/img/icons8-close-50.png" />
-</div>
+<main #Shopping_Basket>
+  <h1>Bestellung</h1>
+  <img
+    src="./../../../../assets/img/icons8-close-50.png"
+    (click)="closeShoppingBasket()"
+  />
+
+  <section class="order-overview">
+    <app-shopping-basket-item
+      *ngFor="let dish of getShoppingBasket(); let i = index"
+      [dish]="dish"
+    ></app-shopping-basket-item>
+  </section>
+</main>

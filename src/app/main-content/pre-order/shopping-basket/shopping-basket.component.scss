@@ -1,4 +1,4 @@
-div {
+main {
   z-index: 5;
   background-color: aqua;
   height: 100vh;
@@ -10,6 +10,13 @@ div {
   left: 0;
   overflow: hidden;
   animation: scaleInAnimation 0.25s ease-in-out forwards;
+  h1 {
+    position: absolute;
+    top: 75px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
   > img {
     position: absolute;
     right: 0;
@@ -17,6 +24,19 @@ div {
     background: lightcoral;
     border-radius: 0 0 0 18px;
     width: 75px;
+  }
+  > .order-overview {
+    height: 50%;
+    width: 100%;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: antiquewhite;
+    padding-block: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
   }
 }
 
