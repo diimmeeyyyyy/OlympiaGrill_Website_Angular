@@ -6,3 +6,36 @@
   padding-block: 20px;
   background-color: floralwhite;
 }
+
+.redirect-to-shopping-basket-button {
+  position: fixed;
+  bottom: 5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: chocolate;
+  border-radius: 10px;
+  padding: 10px;
+  filter: drop-shadow(2px 4px 6px black);
+  > p {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  > :last-child {
+    border: 1px solid black;
+  }
+}
+
+.total-item-amount {
+  position: absolute;
+  right: -15px;
+  bottom: 25px;
+  background: wheat;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+}

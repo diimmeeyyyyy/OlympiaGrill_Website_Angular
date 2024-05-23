@@ -7,9 +7,20 @@
     *ngFor="let dish of getFoodTypeList(); let i = index"
     class="arrange-food-container"
   >
-    <app-food-container
-      [dish]="dish"
-      [index]="i"
-    ></app-food-container>
+    <app-food-container [dish]="dish" [index]="i"></app-food-container>
   </div>
 </section>
+<app-shopping-basket
+  *ngIf="showShoppingBasket"
+  (shoppingBasketReady)="onShoppingBasketReady($event)"
+></app-shopping-basket>
+
+<div
+  *ngIf="preorderdata.totalItemAmount > 0"
+  class="redirect-to-shopping-basket-button"
+  (click)="toggleShoppingBasket()"
+>
+  <p>Bestellung</p>
+  <img src="./../../../../assets/img/shopping-basket.png" />
+  <p class="total-item-amount">{{ preorderdata.totalItemAmount }}</p>
+</div>

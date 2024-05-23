@@ -14,7 +14,7 @@ import { GyrosSpecialSelectionComponent } from './gyros-special-selection/gyros-
 import { BiftekiSelectionComponent } from './bifteki-selection/bifteki-selection.component';
 import { SidesSelectionComponent } from './sides-selection/sides-selection.component';
 import { ShoppingBasketItem } from '../../../../interfaces/shopping-basket-item.interface';
-/* import { ShoppingBasket } from '../../../../interfaces/shopping-basket.interface'; */
+import { ShoppingBasketComponent } from '../../shopping-basket/shopping-basket.component';
 
 @Component({
   selector: 'app-food-container-child',
@@ -25,6 +25,7 @@ import { ShoppingBasketItem } from '../../../../interfaces/shopping-basket-item.
     GyrosSpecialSelectionComponent,
     BiftekiSelectionComponent,
     SidesSelectionComponent,
+    ShoppingBasketComponent,
   ],
   templateUrl: './food-container-child.component.html',
   styleUrl: './food-container-child.component.scss',
@@ -167,6 +168,8 @@ export class FoodContainerChildComponent {
     console.log('Toppings are: ' + this.selectedToppings);
     console.log('Choosed Salad is ' + this.getSalad());
     console.log('Choosed Bifteki is ' + this.getBifteki());
+    console.log('Choosed GyrosSpecial is ' + this.getGyrosSpecial());
+    console.log('Beilage ist ' + this.getSides());
 
     let item: ShoppingBasketItem = {
       title: this.dish.title,
@@ -175,9 +178,13 @@ export class FoodContainerChildComponent {
       toppings: this.selectedToppings,
       salad: this.getSalad(),
       bifteki: this.getBifteki(),
-      /* gyrosSpecial?: string; */
+      gyrosSpecial: this.getGyrosSpecial(),
+      sides: this.getSides(),
     };
-    /* this.preOrderService.addToShoppingBasket(item); */
+    this.preOrderService.addToShoppingBasket(item);
+    this.preOrderService.totalItemAmount += item.amount;
+    this.closeChildContainer();
+    console.log(this.preOrderService.totalItemAmount);
   }
 
   saladSelected: string | undefined = ''; //Default
@@ -222,6 +229,22 @@ export class FoodContainerChildComponent {
       return this.gyrosSpecialSelected === ''
         ? 'Mit Gouda-Käse & Metaxa-Sauce'
         : this.gyrosSpecialSelected;
+    } else {
+      return '';
+    }
+  }
+
+  getSides() {
+    if (
+      this.selectedValueFoodClassS === undefined &&
+      (this.dish.foodClass === 'S' || this.dish.foodClass === 'GYSP')
+    ) {
+      return 'Ohne Beilage';
+    } else if (
+      this.selectedValueFoodClassS === 'WithFries' &&
+      (this.dish.foodClass === 'S' || this.dish.foodClass === 'GYSP')
+    ) {
+      return 'Mit Pommes';
     } else {
       return '';
     }

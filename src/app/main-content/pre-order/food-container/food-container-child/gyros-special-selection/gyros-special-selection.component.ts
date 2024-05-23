@@ -14,7 +14,7 @@ export class GyrosSpecialSelectionComponent {
   @Input() foodContainerindex!: number;
 
   @Output() gyrosSpecialSelected = new EventEmitter<string>();
-  selectedGyrosSpecial: string = 'Mit Gouda-Käse'; // Default-Value
+  selectedGyrosSpecial: string = 'Mit Gouda-Käse & Metaxa-Sauce'; // Default-Value
 
   onGyrosSpecialChange() {
     this.gyrosSpecialSelected.emit(this.selectedGyrosSpecial);

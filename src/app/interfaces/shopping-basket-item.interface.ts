@@ -6,4 +6,5 @@ export interface ShoppingBasketItem {
   salad?: string;
   bifteki?: string;
   gyrosSpecial?: string;
+  sides?: string;
 }

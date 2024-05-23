@@ -1,4 +1,10 @@
-import { Component, ViewChild, inject } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  ViewChild,
+  inject,
+  Renderer2,
+} from '@angular/core';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { FooterComponent } from '../../shared/footer/footer.component';
 import { CommonModule } from '@angular/common';
@@ -7,6 +13,7 @@ import { PreorderdataService } from '../../shared/firebase-services/preorderdata
 import { FoodContainerComponent } from './food-container/food-container.component';
 import { Dish } from '../../interfaces/dish.interface';
 import { FoodContainerChildComponent } from './food-container/food-container-child/food-container-child.component';
+import { ShoppingBasketComponent } from './shopping-basket/shopping-basket.component';
 
 @Component({
   selector: 'app-pre-order',
@@ -18,6 +25,7 @@ import { FoodContainerChildComponent } from './food-container/food-container-chi
     FoodMenuNavComponent,
     FoodContainerComponent,
     FoodContainerChildComponent,
+    ShoppingBasketComponent,
   ],
   templateUrl: './pre-order.component.html',
   styleUrl: './pre-order.component.scss',
@@ -29,7 +37,10 @@ export class PreOrderComponent {
 
   foodList: Dish[] = [];
 
-  constructor(private preOrderService: PreorderdataService) {}
+  constructor(
+    private preOrderService: PreorderdataService,
+    private renderer: Renderer2
+  ) {}
 
   renderFoodTypeSection(name: string) {
     this.selectedFoodType = name;
@@ -58,6 +69,21 @@ export class PreOrderComponent {
       return this.preOrderService.pita;
     } else {
       return this.preOrderService.popularDishes;
+    }
+  }
+
+  shoppingBasket!: ElementRef;
+  onShoppingBasketReady(shoppingBasket: ElementRef) {
+    this.shoppingBasket = shoppingBasket;
+  }
+
+  showShoppingBasket: boolean = false;
+  toggleShoppingBasket() {
+    this.showShoppingBasket = !this.showShoppingBasket;
+    if (this.showShoppingBasket) {
+      this.renderer.setStyle(document.body, 'overflow', 'hidden');
+    } else {
+      this.renderer.setStyle(document.body, 'overflow', 'auto');
     }
   }
 }

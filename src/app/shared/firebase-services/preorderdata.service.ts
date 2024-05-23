@@ -21,6 +21,9 @@ import { ShoppingBasketItem } from '../../interfaces/shopping-basket-item.interf
 export class PreorderdataService {
   firestore: Firestore = inject(Firestore);
 
+  shoppingBasket: ShoppingBasketItem[] = [];
+  totalItemAmount: number = 0;
+
   unsubPopularDishes;
   unsubSalads;
   unsubSides;
@@ -164,6 +167,8 @@ export class PreorderdataService {
 
   async addToShoppingBasket(item: ShoppingBasketItem) {
     await addDoc(this.getShoppingBasketRef(), item);
+    this.shoppingBasket.push(item);
+    console.log(this.shoppingBasket);
     //CATCH & THEN
   }
 

@@ -9,7 +9,7 @@ main {
 .dish-container {
   background-color: lightblue;
   /* background-color: rgb(63, 80, 181); */
- /*  color: white; */
+  /*  color: white; */
   width: 320px;
   border-radius: 10px;
   @include dflex($jc: space-between, $ai: unset);
@@ -24,7 +24,7 @@ main {
   align-items: flex-start;
   > img {
     width: 55px;
-    background-color: whitesmoke;
+    background-color: aliceblue;
     border-bottom: 1px solid black;
     border-left: 1px solid black;
     cursor: pointer;
