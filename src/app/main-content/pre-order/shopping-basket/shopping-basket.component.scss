@@ -1,6 +1,6 @@
 main {
   z-index: 5;
-  background-color: aqua;
+  background-color: darkgray;
   height: 100vh;
   width: 100vw;
   position: fixed;
@@ -16,6 +16,8 @@ main {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+    color: chartreuse;
+    filter: drop-shadow(2px 4px 6px black);
   }
   > img {
     position: absolute;
@@ -26,17 +28,48 @@ main {
     width: 75px;
   }
   > .order-overview {
-    height: 50%;
+    height: 40%;
     width: 100%;
     position: absolute;
-    top: 40%;
+    top: 33%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: antiquewhite;
-    padding-block: 20px;
+    border-radius: 31px;
     display: flex;
     flex-direction: column;
     gap: 2px;
+    overflow: auto;
+  }
+  > .total-price-div {
+    position: absolute;
+    bottom: 40%;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 20px;
+    background: aliceblue;
+    background-image: url("/assets/img/totalPrice-background.png");
+    background-position: center;
+    border-radius: 25px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 25px;
+    }
+    > p {
+      color: aliceblue;
+      font-weight: bold;
+      z-index: 5;
+    }
   }
 }
 

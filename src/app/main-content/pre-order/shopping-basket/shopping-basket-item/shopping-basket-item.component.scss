@@ -3,14 +3,46 @@ main {
   flex-direction: column;
   padding: 5px;
   border: 1px solid black;
-  border-radius: 20px;
+  border-radius: 40px;
   background-color: aliceblue;
   > section {
     display: flex;
     justify-content: space-between;
-    > div {
-      display: flex;
-      gap: 5px;
-    }
   }
+}
+
+.main-dish-information {
+  font-size: 18px;
+  font-weight: bold;
+  padding-inline: 5px;
+}
+
+.topping-information {
+  padding-left: 32px;
+  font-size: 15px;
+  color: darkslategray;
+}
+
+.amount-and-name {
+  display: flex;
+  gap: 5px;
+}
+
+.increase-and-decrease-amount {
+  display: flex;
+  gap: 5px;
+  > img {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.change-amount-and-item-price {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.toppings {
+  border-top: 1px solid black;
 }

@@ -162,19 +162,12 @@ export class FoodContainerChildComponent {
   }
 
   addToShoppingBasket() {
-    console.log('Dish is ' + this.dish.title);
-    console.log('Amount is ' + this.amount);
-    console.log('Price is ' + this.totalPrice);
-    console.log('Toppings are: ' + this.selectedToppings);
-    console.log('Choosed Salad is ' + this.getSalad());
-    console.log('Choosed Bifteki is ' + this.getBifteki());
-    console.log('Choosed GyrosSpecial is ' + this.getGyrosSpecial());
-    console.log('Beilage ist ' + this.getSides());
-
     let item: ShoppingBasketItem = {
+      id: this.preOrderService.nextId++,
       title: this.dish.title,
-      price: this.totalPrice,
+      price: this.totalPrice / this.amount,
       amount: this.amount,
+      foodClass: this.dish.foodClass,
       toppings: this.selectedToppings,
       salad: this.getSalad(),
       bifteki: this.getBifteki(),
@@ -184,7 +177,7 @@ export class FoodContainerChildComponent {
     this.preOrderService.addToShoppingBasket(item);
     this.preOrderService.totalItemAmount += item.amount;
     this.closeChildContainer();
-    console.log(this.preOrderService.totalItemAmount);
+    console.log(this.preOrderService.shoppingBasket);
   }
 
   saladSelected: string | undefined = ''; //Default

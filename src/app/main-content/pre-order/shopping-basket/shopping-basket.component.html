@@ -9,6 +9,14 @@
     <app-shopping-basket-item
       *ngFor="let dish of getShoppingBasket(); let i = index"
       [dish]="dish"
+      [index]="i"
+      (changedItemAmount)="onChangedItemPrice($event)"
+      (removeItem)="onRemoveItem($event)"
     ></app-shopping-basket-item>
   </section>
+
+  <div class="total-price-div">
+    <p>Gesamtpreis:</p>
+    <p>{{ getTotalPrice() }} €</p>
+  </div>
 </main>

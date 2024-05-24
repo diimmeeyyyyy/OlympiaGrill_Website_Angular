@@ -22,7 +22,11 @@ export class PreorderdataService {
   firestore: Firestore = inject(Firestore);
 
   shoppingBasket: ShoppingBasketItem[] = [];
-  totalItemAmount: number = 0;
+  totalItemAmount = this.shoppingBasket.reduce(
+    (total, item) => total + item.amount,
+    0
+  );
+  nextId: number = 0;
 
   unsubPopularDishes;
   unsubSalads;
@@ -166,7 +170,7 @@ export class PreorderdataService {
   }
 
   async addToShoppingBasket(item: ShoppingBasketItem) {
-    await addDoc(this.getShoppingBasketRef(), item);
+    /* await addDoc(this.getShoppingBasketRef(), item); */
     this.shoppingBasket.push(item);
     console.log(this.shoppingBasket);
     //CATCH & THEN

@@ -8,7 +8,10 @@
 }
 
 .redirect-to-shopping-basket-button {
+  /* transition: transform 0.2s ease-out; */
+
   position: fixed;
+  border: none;
   bottom: 5%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -23,8 +26,28 @@
     font-size: 20px;
     font-weight: bold;
   }
+  > :first-child {
+    color: chartreuse;
+  }
   > :last-child {
     border: 1px solid black;
+  }
+}
+
+.redirect-to-shopping-basket-button:active {
+  animation-name: buttonActive;
+  animation-duration: 0.5s;
+}
+
+@keyframes buttonActive {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
   }
 }
 
@@ -37,5 +60,6 @@
   height: 30px;
   width: 30px;
   display: flex;
+  align-items: center;
   justify-content: center;
 }
