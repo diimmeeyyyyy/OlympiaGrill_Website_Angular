@@ -8,8 +8,6 @@ main {
 
 .dish-container {
   background-color: lightblue;
-  /* background-color: rgb(63, 80, 181); */
-  /*  color: white; */
   width: 320px;
   border-radius: 10px;
   @include dflex($jc: space-between, $ai: unset);
@@ -20,8 +18,7 @@ main {
 }
 
 .right {
-  display: flex;
-  align-items: flex-start;
+  @include dflex($jc: unset, $ai: flex-start);
   > img {
     width: 55px;
     background-color: aliceblue;
@@ -43,7 +40,6 @@ main {
 }
 
 .withoutDescription {
-  display: flex;
+  @include dflex($jc: space-between, $ai: unset);
   flex-direction: column;
-  justify-content: space-between;
 }

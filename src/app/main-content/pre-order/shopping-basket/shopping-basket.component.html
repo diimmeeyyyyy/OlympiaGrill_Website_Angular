@@ -5,18 +5,20 @@
     (click)="closeShoppingBasket()"
   />
 
-  <section class="order-overview">
-    <app-shopping-basket-item
-      *ngFor="let dish of getShoppingBasket(); let i = index"
-      [dish]="dish"
-      [index]="i"
-      (changedItemAmount)="onChangedItemPrice($event)"
-      (removeItem)="onRemoveItem($event)"
-    ></app-shopping-basket-item>
-  </section>
+  <section>
+    <div class="order-overview">
+      <app-shopping-basket-item
+        *ngFor="let dish of getShoppingBasket(); let i = index"
+        [dish]="dish"
+        [index]="i"
+        (changedItemAmount)="onChangedItemPrice($event)"
+        (removeItem)="onRemoveItem($event)"
+      ></app-shopping-basket-item>
+    </div>
 
-  <div class="total-price-div">
-    <p>Gesamtpreis:</p>
-    <p>{{ getTotalPrice() }} €</p>
-  </div>
+    <div class="total-price-div">
+      <p>Zum Bezahlvorgang</p>
+      <p>{{ getTotalPrice() }} €</p>
+    </div>
+  </section>
 </main>

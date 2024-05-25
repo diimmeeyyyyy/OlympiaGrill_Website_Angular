@@ -60,4 +60,22 @@ export class FoodContainerComponent {
       this.showChild = false;
     }, 251);
   }
+
+/*   animateClickedButton() {
+    const element = this.childContainer.nativeElement;
+
+    element.animate(
+      [
+        // keyframes
+        { transform: 'scale(1)' },
+        { transform: 'scale(0)' },
+      ],
+      {
+        // timing options
+        duration: 250,
+        easing: 'ease-in-out',
+        fill: 'forwards',
+      }
+    );
+  } */
 }

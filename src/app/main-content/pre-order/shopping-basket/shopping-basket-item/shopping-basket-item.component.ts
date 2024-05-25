@@ -45,12 +45,20 @@ export class ShoppingBasketItemComponent {
     return dishPrice.toFixed(2).replace('.', ',');
   }
 
+  isSpecialDish(): boolean {
+    return (
+      this.dish.title === 'Champignon-Schnitzel' ||
+      this.dish.title === 'Mailänder - Schnitzel' ||
+      this.dish.title === 'Currywurst-Pommes'
+    );
+  }
+
   getToppings() {
     if (this.dish.foodClass === 'GR') {
       return this.checkToppingsGR();
     } else if (this.dish.foodClass === 'S') {
       return this.checkToppingsS();
-    } else if (this.dish.foodClass === 'TX') {
+    } else if (this.dish.foodClass === 'TX' || this.dish.foodClass === 'CP') {
       if (this.dish.toppings.length === 0) {
         return 'Nichts drauf';
       } else {

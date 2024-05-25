@@ -1,6 +1,8 @@
+@import "./../../../../styles.scss";
+
 main {
   z-index: 5;
-  background-color: darkgray;
+  background-color: chocolate;
   height: 100vh;
   width: 100vw;
   position: fixed;
@@ -10,13 +12,18 @@ main {
   left: 0;
   overflow: hidden;
   animation: scaleInAnimation 0.25s ease-in-out forwards;
+  background-image: url("/assets/img/shoppingBasketBackground.jpg");
+  background-size: cover;
   h1 {
     position: absolute;
     top: 75px;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    color: chartreuse;
+    color: rgb(55, 103, 189);
+    background-color: whitesmoke;
+    padding: 5px;
+    border-radius: 20px;
     filter: drop-shadow(2px 4px 6px black);
   }
   > img {
@@ -27,49 +34,48 @@ main {
     border-radius: 0 0 0 18px;
     width: 75px;
   }
-  > .order-overview {
-    height: 40%;
-    width: 100%;
+  section {
     position: absolute;
-    top: 33%;
+    top: 115px;
+    bottom: 0;
     left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: antiquewhite;
-    border-radius: 31px;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    overflow: auto;
-  }
-  > .total-price-div {
-    position: absolute;
-    bottom: 40%;
+    transform: translateX(-50%);
     width: 100%;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    font-size: 20px;
-    background: aliceblue;
-    background-image: url("/assets/img/totalPrice-background.png");
-    background-position: center;
-    border-radius: 25px;
+    @include dflex($jc: space-between, $g: 30px);
+    flex-direction: column;
+  }
+}
+.order-overview {
+  width: 100%;
+  max-height: 250px;
+  background-color: antiquewhite;
+  border-radius: 10px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.2);
+  padding-block: 20px;
+  position: relative;
+}
 
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      background: rgba(0, 0, 0, 0.6);
-      border-radius: 25px;
-    }
-    > p {
-      color: aliceblue;
-      font-weight: bold;
-      z-index: 5;
-    }
+.total-price-div {
+  width: 100%;
+  height: 70px;
+  @include dflex($jc: space-evenly);
+  font-size: 20px;
+  background: rgb(55, 103, 189);
+  /*   background-image: url("/assets/img/totalPrice-background.png");
+  background-position: center;
+  background-size: cover; */
+  &:active {
+    background: rgba(0, 0, 0, 0.7);
+  }
+  > p {
+    color: aliceblue;
+    font-weight: bold;
+    z-index: 5;
   }
 }
 
@@ -80,4 +86,8 @@ main {
   to {
     transform: scale(1);
   }
+}
+
+app-shopping-basket-item {
+  z-index: 5;
 }

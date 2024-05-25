@@ -8,7 +8,7 @@
   border-radius: 20px;
   @include dflexColumn($jc: unset);
   background-color: aliceblue;
-  width: 97svw;
+  width: 97vw;
   animation: scaleInAnimation 0.25s ease-in-out forwards;
   > h3 {
     padding: 10px;
@@ -165,4 +165,13 @@
   display: flex;
   justify-content: center;
   padding: 2px;
+}
+
+/* ============
+MEDIA-QUERIES
+===============*/
+@media (min-width: 415px) {
+  .food-container-child {
+    width: 415px;
+  }
 }

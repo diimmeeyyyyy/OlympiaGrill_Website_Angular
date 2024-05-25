@@ -4,21 +4,24 @@
       <p>{{ dish.amount }}x</p>
       <p>{{ dish.title }}</p>
     </div>
-    <div class="change-amount-and-item-price">
+    <div
+      class="change-amount-and-item-price"
+      [ngClass]="{ 'decrease-gap': isSpecialDish() }"
+    >
       <div class="increase-and-decrease-amount">
         <img
           (click)="deleteItem()"
           *ngIf="dish.amount === 1; else minusBlock"
-          src="./../../../../../assets/img/icons8-trash-26.png"
+          src="/assets/img/icons8-trash-26.png"
         />
         <ng-template #minusBlock>
           <img
-            src="./../../../../../assets/img/icons8-minus-48.png"
+            src="/assets/img/icons8-minus-48.png"
             (click)="decreaseItemAmount()"
           />
         </ng-template>
         <img
-          src="./../../../../../assets/img/icons8-plus-48.png"
+          src="/assets/img/icons8-plus-48.png"
           (click)="increaseItemAmount()"
         />
       </div>
