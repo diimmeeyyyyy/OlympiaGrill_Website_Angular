@@ -246,39 +246,39 @@ export class FoodContainerChildComponent {
   =====================================================*/
   checkIfDishAlreadyExistsInBasket(item: ShoppingBasketItem) {
     if (this.dishAlreadyExistsInBasket(item)) {
-      let index = this.findDishInBasket(item);
+      let index = this.getDishIndex(item);
       this.increaseDishAmount(index);
     } else {
       this.preOrderService.addToShoppingBasket(item);
     }
   }
-  
+
   increaseDishAmount(index: number) {
     this.preOrderService.totalItemAmount++;
     this.preOrderService.shoppingBasket[index].amount++;
   }
 
-  findDishInBasket(dish: ShoppingBasketItem) {
-    const index = this.preOrderService.shoppingBasket.findIndex(
-      (item) =>
-        item.title === dish.title &&
-        item.toppings &&
-        dish.toppings &&
-        this.compareToppings(item.toppings, dish.toppings)
-    );
-
-    return index;
+  dishAlreadyExistsInBasket(dish: ShoppingBasketItem) {
+    const index = this.getDishIndex(dish);
+    return index !== -1;
   }
 
-  dishAlreadyExistsInBasket(dish: ShoppingBasketItem) {
+  getDishIndex(dish: ShoppingBasketItem) {
     const index = this.preOrderService.shoppingBasket.findIndex(
-      (item) =>
-        item.title === dish.title &&
-        item.toppings &&
+      (basketItem) =>
+        basketItem.title === dish.title &&
+        basketItem.price === dish.price &&
+        basketItem.amount === dish.amount &&
+        basketItem.foodClass === dish.foodClass &&
+        basketItem.salad === dish.salad &&
+        basketItem.bifteki === dish.bifteki &&
+        basketItem.gyrosSpecial === dish.gyrosSpecial &&
+        basketItem.sides === dish.sides &&
+        basketItem.toppings &&
         dish.toppings &&
-        this.compareToppings(item.toppings, dish.toppings)
+        this.compareToppings(basketItem.toppings, dish.toppings)
     );
-    return index !== -1;
+    return index;
   }
 
   compareToppings(toppings1: string[], toppings2: string[]) {
