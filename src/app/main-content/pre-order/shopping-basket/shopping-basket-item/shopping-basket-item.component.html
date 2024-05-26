@@ -4,10 +4,17 @@
       <p>{{ dish.amount }}x</p>
       <p>{{ dish.title }}</p>
     </div>
-    <div
-      class="change-amount-and-item-price"
-      [ngClass]="{ 'decrease-gap': isSpecialDish() }"
-    >
+    <div class="topping-information">
+      <p>{{ getToppings() }}</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="change-amount-and-item-price">
+      <div>
+        <p class="item-price">{{ itemPrice() }} €</p>
+      </div>
+
       <div class="increase-and-decrease-amount">
         <img
           (click)="deleteItem()"
@@ -25,13 +32,6 @@
           (click)="increaseItemAmount()"
         />
       </div>
-
-      <div>
-        <p>{{ itemPrice() }} €</p>
-      </div>
     </div>
-  </section>
-  <section class="topping-information">
-    <p>{{ getToppings() }}</p>
   </section>
 </main>
