@@ -172,6 +172,7 @@ export class PreorderdataService {
   async addToShoppingBasket(item: ShoppingBasketItem) {
     /* await addDoc(this.getShoppingBasketRef(), item); */
     this.shoppingBasket.push(item);
+    this.totalItemAmount += item.amount;
     console.log(this.shoppingBasket);
     //CATCH & THEN
   }

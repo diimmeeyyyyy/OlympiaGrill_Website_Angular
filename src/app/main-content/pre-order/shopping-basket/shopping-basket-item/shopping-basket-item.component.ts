@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { PreorderdataService } from '../../../../shared/firebase-services/preorderdata.service';
 
 @Component({
   selector: 'app-shopping-basket-item',
@@ -18,8 +19,11 @@ export class ShoppingBasketItemComponent {
   }>();
   @Output() removeItem = new EventEmitter<number>();
 
+  constructor(private preOrderService: PreorderdataService) {}
+
   increaseItemAmount() {
     this.dish.amount++;
+    this.preOrderService.totalItemAmount++;
     this.itemPrice();
     this.changedItemAmount.emit({
       amount: this.dish.amount,
@@ -29,6 +33,7 @@ export class ShoppingBasketItemComponent {
 
   decreaseItemAmount() {
     this.dish.amount--;
+    this.preOrderService.totalItemAmount--;
     this.itemPrice();
     this.changedItemAmount.emit({
       amount: this.dish.amount,
@@ -53,23 +58,23 @@ export class ShoppingBasketItemComponent {
     );
   }
 
-  getToppings() {
+  getToppingsString() {
     if (this.dish.foodClass === 'GR') {
-      return this.checkToppingsGR();
+      return this.toppingsStringGR();
     } else if (this.dish.foodClass === 'S') {
-      return this.checkToppingsS();
+      return this.toppingsStringS();
     } else if (this.dish.foodClass === 'TX' || this.dish.foodClass === 'CP') {
       if (this.dish.toppings.length === 0) {
         return 'Nichts drauf';
       } else {
-        return 'Mit ' + this.dish.toppings.join(', ');
+        return this.dish.toppings.join(', ');
       }
     } else {
       return this.dish.toppings;
     }
   }
 
-  checkToppingsGR() {
+  toppingsStringGR() {
     if (this.dish.toppings.length === 0) {
       return 'Mit ' + this.dish.salad;
     } else {
@@ -77,7 +82,7 @@ export class ShoppingBasketItemComponent {
     }
   }
 
-  checkToppingsS() {
+  toppingsStringS() {
     if (this.dish.sides === 'Ohne Beilage') {
       return 'Ohne Beilage';
     } else if (

@@ -2,20 +2,20 @@ main {
   display: flex;
   justify-content: space-between;
   padding: 5px;
-  border: 1px solid black;
+  border: 2px solid black;
   border-radius: 40px;
   background-color: aliceblue;
   min-height: 50px;
   > section {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
   }
 }
 
 .main-dish-information {
   display: flex;
   flex-direction: column;
-  padding-left: 5px;
+  padding-left: 10px;
   > :first-child {
     font-weight: bold;
     font-size: 18px;

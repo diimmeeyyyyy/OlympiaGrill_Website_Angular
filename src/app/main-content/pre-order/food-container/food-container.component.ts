@@ -2,6 +2,8 @@ import { CommonModule, ViewportScroller } from '@angular/common';
 import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 import { PreOrderComponent } from '../pre-order.component';
 import { FoodContainerChildComponent } from './food-container-child/food-container-child.component';
+import { PreorderdataService } from '../../../shared/firebase-services/preorderdata.service';
+import { ShoppingBasketItem } from '../../../interfaces/shopping-basket-item.interface';
 
 @Component({
   selector: 'app-food-container',
@@ -21,10 +23,28 @@ export class FoodContainerComponent {
     this.childContainer = childContainer;
   }
 
+  constructor(private preOrderService: PreorderdataService) {}
+
   toggleChild() {
-    this.showChild = !this.showChild;
-    if (this.showChild) {
-      this.scrollToTop();
+    if (this.dish.foodClass === 'C') {
+      let item: ShoppingBasketItem = {
+        id: this.preOrderService.nextId++,
+        title: this.dish.title,
+        price: this.dish.price,
+        amount: 1,
+        foodClass: this.dish.foodClass,
+        toppings: [],
+        salad: undefined,
+        bifteki: undefined,
+        gyrosSpecial: undefined,
+        sides: undefined,
+      };
+      this.preOrderService.addToShoppingBasket(item);
+    } else {
+      this.showChild = !this.showChild;
+      if (this.showChild) {
+        this.scrollToTop();
+      }
     }
   }
 
@@ -60,22 +80,4 @@ export class FoodContainerComponent {
       this.showChild = false;
     }, 251);
   }
-
-/*   animateClickedButton() {
-    const element = this.childContainer.nativeElement;
-
-    element.animate(
-      [
-        // keyframes
-        { transform: 'scale(1)' },
-        { transform: 'scale(0)' },
-      ],
-      {
-        // timing options
-        duration: 250,
-        easing: 'ease-in-out',
-        fill: 'forwards',
-      }
-    );
-  } */
 }

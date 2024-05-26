@@ -10,7 +10,9 @@ import { PreorderdataService } from '../firebase-services/preorderdata.service';
   styleUrl: './footer.component.scss',
 })
 export class FooterComponent {
-  /* constructor(private preOrderService: PreorderdataService) {}
+  constructor(private preOrderService: PreorderdataService) {}
 
-  totalAmount = this.preOrderService.totalItemAmount; */
+  checkMarginBottom() {
+    return this.preOrderService.totalItemAmount > 0;
+  }
 }

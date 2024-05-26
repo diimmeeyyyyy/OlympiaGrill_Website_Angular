@@ -174,10 +174,8 @@ export class FoodContainerChildComponent {
       gyrosSpecial: this.getGyrosSpecial(),
       sides: this.getSides(),
     };
-    this.preOrderService.addToShoppingBasket(item);
-    this.preOrderService.totalItemAmount += item.amount;
+    this.checkIfDishAlreadyExistsInBasket(item);
     this.closeChildContainer();
-    console.log(this.preOrderService.shoppingBasket);
   }
 
   saladSelected: string | undefined = ''; //Default
@@ -241,5 +239,57 @@ export class FoodContainerChildComponent {
     } else {
       return '';
     }
+  }
+
+  /* =================================================
+  TO CHECK IF ITEM ALREADY EXISTS IN SHOPPING-BASKET
+  =====================================================*/
+  checkIfDishAlreadyExistsInBasket(item: ShoppingBasketItem) {
+    if (this.dishAlreadyExistsInBasket(item)) {
+      let index = this.findDishInBasket(item);
+      this.increaseDishAmount(index);
+    } else {
+      this.preOrderService.addToShoppingBasket(item);
+    }
+  }
+  
+  increaseDishAmount(index: number) {
+    this.preOrderService.totalItemAmount++;
+    this.preOrderService.shoppingBasket[index].amount++;
+  }
+
+  findDishInBasket(dish: ShoppingBasketItem) {
+    const index = this.preOrderService.shoppingBasket.findIndex(
+      (item) =>
+        item.title === dish.title &&
+        item.toppings &&
+        dish.toppings &&
+        this.compareToppings(item.toppings, dish.toppings)
+    );
+
+    return index;
+  }
+
+  dishAlreadyExistsInBasket(dish: ShoppingBasketItem) {
+    const index = this.preOrderService.shoppingBasket.findIndex(
+      (item) =>
+        item.title === dish.title &&
+        item.toppings &&
+        dish.toppings &&
+        this.compareToppings(item.toppings, dish.toppings)
+    );
+    return index !== -1;
+  }
+
+  compareToppings(toppings1: string[], toppings2: string[]) {
+    if (toppings1.length !== toppings2.length) {
+      return false;
+    }
+    for (let i = 0; i < toppings1.length; i++) {
+      if (toppings1[i] !== toppings2[i]) {
+        return false;
+      }
+    }
+    return true;
   }
 }
