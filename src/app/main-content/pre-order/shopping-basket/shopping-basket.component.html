@@ -1,11 +1,26 @@
 <main #Shopping_Basket>
-  <h1>Bestellung</h1>
-  <img
-    src="./../../../../assets/img/icons8-close-50.png"
-    (click)="closeShoppingBasket()"
-  />
+  <section class="headline-and-closing-button">
+    <h1>Bestellung:</h1>
+    <img
+      src="./../../../../assets/img/icons8-close-50.png"
+      (click)="closeShoppingBasket()"
+    />
+  </section>
 
-  <section>
+  <section class="pick-up-time">
+    <img src="/assets/img/pick-up-food-shopping-basket.png" />
+    <div class="pick-up-text">
+      <h3>Abholung in:</h3>
+      <p>15 Minuten</p>
+      <div class="loading-dots-div">
+        <p class="loading-dot"></p>
+        <p class="loading-dot"></p>
+        <p class="loading-dot"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="order-overview-section">
     <div class="order-overview">
       <app-shopping-basket-item
         *ngFor="let dish of getShoppingBasket(); let i = index"
@@ -15,10 +30,10 @@
         (removeItem)="onRemoveItem($event)"
       ></app-shopping-basket-item>
     </div>
-
-    <div class="total-price-div">
-      <p>Zum Bezahlvorgang</p>
-      <p>{{ getTotalPrice() }} €</p>
-    </div>
   </section>
+
+  <div class="total-price-div">
+    <p>Zum Bezahlvorgang</p>
+    <p>{{ getTotalPrice() }} €</p>
+  </div>
 </main>

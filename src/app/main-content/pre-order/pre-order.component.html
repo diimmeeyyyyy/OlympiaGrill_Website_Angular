@@ -12,7 +12,8 @@
 </section>
 <app-shopping-basket
   *ngIf="showShoppingBasket"
-  (close)="toggleShoppingBasket()"
+  (close)="closeShoppingBasket()"
+  (shoppingBasketReady)="onShoppingBasketReady($event)"
 ></app-shopping-basket>
 
 <button

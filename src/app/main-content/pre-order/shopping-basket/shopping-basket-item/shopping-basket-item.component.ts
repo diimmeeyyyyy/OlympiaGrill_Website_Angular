@@ -89,7 +89,7 @@ export class ShoppingBasketItemComponent {
       this.dish.sides === 'Mit Pommes' &&
       this.dish.toppings.length === 0
     ) {
-      return 'Mit Pommes und da nichts drauf';
+      return 'Mit Pommes';
     } else if (
       this.dish.sides === 'Mit Pommes' &&
       this.dish.toppings.length !== 0

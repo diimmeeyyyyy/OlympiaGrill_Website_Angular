@@ -24,6 +24,12 @@ export class ShoppingBasketComponent {
     this.close.emit();
   }
 
+  @ViewChild('Shopping_Basket') shoppingBasket!: ElementRef;
+  @Output() shoppingBasketReady = new EventEmitter<ElementRef>();
+  ngAfterViewInit() {
+    this.shoppingBasketReady.emit(this.shoppingBasket);
+  }
+
   getShoppingBasket() {
     return this.preOrderService.shoppingBasket;
   }

@@ -82,8 +82,20 @@ export class PreOrderComponent {
     this.showShoppingBasket = !this.showShoppingBasket;
     if (this.showShoppingBasket) {
       this.renderer.setStyle(document.body, 'overflow', 'hidden');
-    } else {
-      this.renderer.setStyle(document.body, 'overflow', 'auto');
     }
+  }
+
+  closeShoppingBasket() {
+    const element = this.shoppingBasket.nativeElement;
+    this.renderer.setStyle(document.body, 'overflow', 'auto');
+    element.animate([{ transform: 'scale(1)' }, { transform: 'scale(0)' }], {
+      duration: 250,
+      easing: 'ease-in-out',
+      fill: 'forwards',
+    });
+
+    setTimeout(() => {
+      this.showShoppingBasket = false;
+    }, 251);
   }
 }
