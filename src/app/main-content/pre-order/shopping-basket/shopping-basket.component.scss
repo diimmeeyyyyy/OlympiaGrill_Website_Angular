@@ -15,7 +15,7 @@ main {
   background-image: url("/assets/img/shoppingBasketBackground.jpg");
   background-size: cover;
 }
-main::before {
+/* main::before {
   content: "";
   position: absolute;
   top: 0;
@@ -24,7 +24,7 @@ main::before {
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.2);
   z-index: -1;
-}
+} */
 
 .headline-and-closing-button {
   display: flex;
@@ -108,11 +108,11 @@ main::before {
   }
 }
 
-.order-overview-section {
+/* .order-overview-section {
   width: 100%;
   @include dflex($jc: space-between, $g: 30px);
   flex-direction: column;
-}
+} */
 .order-overview {
   width: 100%;
   height: 300px;

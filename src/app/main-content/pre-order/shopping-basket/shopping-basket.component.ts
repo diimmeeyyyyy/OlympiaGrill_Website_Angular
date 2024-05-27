@@ -74,6 +74,10 @@ export class ShoppingBasketComponent {
     }
     this.preOrderService.totalItemAmount--;
     this.getBorderRadius();
+    // IDs neu zuweisen
+    this.preOrderService.shoppingBasket.forEach((item, index) => {
+      item.id = index;
+    });
   }
 
   getBorderRadius(): string {

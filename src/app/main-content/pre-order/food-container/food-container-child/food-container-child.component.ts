@@ -163,7 +163,7 @@ export class FoodContainerChildComponent {
 
   addToShoppingBasket() {
     let item: ShoppingBasketItem = {
-      id: this.preOrderService.nextId++,
+      id: -1,
       title: this.dish.title,
       price: this.totalPrice / this.amount,
       amount: this.amount,
@@ -249,6 +249,7 @@ export class FoodContainerChildComponent {
       let index = this.getDishIndex(item);
       this.increaseDishAmount(index);
     } else {
+      item.id = this.preOrderService.nextId++;
       this.preOrderService.addToShoppingBasket(item);
     }
   }
@@ -267,8 +268,6 @@ export class FoodContainerChildComponent {
     const index = this.preOrderService.shoppingBasket.findIndex(
       (basketItem) =>
         basketItem.title === dish.title &&
-        basketItem.price === dish.price &&
-        basketItem.amount === dish.amount &&
         basketItem.foodClass === dish.foodClass &&
         basketItem.salad === dish.salad &&
         basketItem.bifteki === dish.bifteki &&
