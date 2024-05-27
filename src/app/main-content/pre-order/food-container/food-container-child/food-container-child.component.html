@@ -4,11 +4,12 @@
   [ngClass]="getFoodClassBackground()"
 >
   <h3>Bitte wählen:</h3>
-  <img
-    (click)="closeChildContainer()"
-    class="close-button"
-    src="./../../../../assets/img/icons8-close-50.png"
-  />
+  <button class="close-button">
+    <img
+      (click)="closeChildContainer()"
+      src="./../../../../assets/img/icons8-close-50.png"
+    />
+  </button>
 
   <app-bifteki-selection
     *ngIf="dish.foodClass === 'BIF'"
