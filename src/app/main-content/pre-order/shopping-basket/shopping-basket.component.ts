@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { PreorderdataService } from '../../../shared/firebase-services/preorderdata.service';
 import { ShoppingBasketItemComponent } from './shopping-basket-item/shopping-basket-item.component';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-shopping-basket',
@@ -17,8 +18,13 @@ import { ShoppingBasketItemComponent } from './shopping-basket-item/shopping-bas
   styleUrl: './shopping-basket.component.scss',
 })
 export class ShoppingBasketComponent {
-  constructor(private preOrderService: PreorderdataService) {}
+  constructor(
+    private preOrderService: PreorderdataService,
+    private cdref: ChangeDetectorRef
+  ) {}
 
+  @ViewChild(ShoppingBasketItemComponent, { read: ElementRef })
+  item!: ElementRef;
   @Output() close = new EventEmitter<void>();
   closeShoppingBasket() {
     this.close.emit();
@@ -26,8 +32,14 @@ export class ShoppingBasketComponent {
 
   @ViewChild('Shopping_Basket') shoppingBasket!: ElementRef;
   @Output() shoppingBasketReady = new EventEmitter<ElementRef>();
+
   ngAfterViewInit() {
     this.shoppingBasketReady.emit(this.shoppingBasket);
+    this.cdref.detectChanges();
+  }
+
+  ngAfterContentChecked() {
+    this.cdref.detectChanges();
   }
 
   getShoppingBasket() {
@@ -60,5 +72,12 @@ export class ShoppingBasketComponent {
       this.preOrderService.totalItemAmount = 0;
       this.closeShoppingBasket();
     }
+    this.preOrderService.totalItemAmount--;
+    this.getBorderRadius();
+  }
+
+  getBorderRadius(): string {
+    const height = this.item ? this.item.nativeElement.offsetHeight : 0;
+    return height < 72 ? '31px' : '38px';
   }
 }

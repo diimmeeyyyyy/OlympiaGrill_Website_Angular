@@ -7,21 +7,8 @@
     />
   </section>
 
-  <section class="pick-up-time">
-    <img src="/assets/img/pick-up-food-shopping-basket.png" />
-    <div class="pick-up-text">
-      <h3>Abholung in:</h3>
-      <p>15 Minuten</p>
-      <div class="loading-dots-div">
-        <p class="loading-dot"></p>
-        <p class="loading-dot"></p>
-        <p class="loading-dot"></p>
-      </div>
-    </div>
-  </section>
-
   <section class="order-overview-section">
-    <div class="order-overview">
+    <div class="order-overview" [style.border-radius]="getBorderRadius()">
       <app-shopping-basket-item
         *ngFor="let dish of getShoppingBasket(); let i = index"
         [dish]="dish"
@@ -31,6 +18,31 @@
       ></app-shopping-basket-item>
     </div>
   </section>
+
+  <section class="pick-up-time">
+    <img src="/assets/img/pick-up-food-shopping-basket.png" />
+    <div class="pick-up-text">
+      <h3>Abholung:</h3>
+      <p>15 Minuten</p>
+      <div class="loading-dots-div">
+        <p class="loading-dot"></p>
+        <p class="loading-dot"></p>
+        <p class="loading-dot"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- <section class="order-overview-section">
+    <div class="order-overview">
+      <app-shopping-basket-item
+        *ngFor="let dish of getShoppingBasket(); let i = index"
+        [dish]="dish"
+        [index]="i"
+        (changedItemAmount)="onChangedItemPrice($event)"
+        (removeItem)="onRemoveItem($event)"
+      ></app-shopping-basket-item>
+    </div>
+  </section> -->
 
   <div class="total-price-div">
     <p>Zum Bezahlvorgang</p>
