@@ -85,6 +85,14 @@ export class PreOrderComponent {
     }
   }
 
+  shoppingBasketVisibity() {
+    if (window.innerWidth <= 1024) {
+      return this.showShoppingBasket;
+    } else {
+      return (this.showShoppingBasket = true);
+    }
+  }
+
   closeShoppingBasket() {
     const element = this.shoppingBasket.nativeElement;
     this.renderer.setStyle(document.body, 'overflow', 'auto');
@@ -97,5 +105,13 @@ export class PreOrderComponent {
     setTimeout(() => {
       this.showShoppingBasket = false;
     }, 251);
+  }
+
+  redirectionButtonToShoppingBasket() {
+    if (window.innerWidth <= 1024) {
+      return this.preorderdata.totalItemAmount > 0;
+    } else {
+      return false;
+    }
   }
 }

@@ -1,23 +1,28 @@
-<app-food-menu-nav
-  
-  (foodTypeString)="renderFoodTypeSection($event)"
-></app-food-menu-nav>
-<section class="meal-section">
-  <div
-    *ngFor="let dish of getFoodTypeList(); let i = index"
-    class="arrange-food-container"
-  >
-    <app-food-container [dish]="dish" [index]="i"></app-food-container>
-  </div>
-</section>
-<app-shopping-basket
-  *ngIf="showShoppingBasket"
-  (close)="closeShoppingBasket()"
-  (shoppingBasketReady)="onShoppingBasketReady($event)"
-></app-shopping-basket>
+<div class="pre-order-left-side-large-screen" style="flex-grow: 1">
+  <app-food-menu-nav
+    (foodTypeString)="renderFoodTypeSection($event)"
+  ></app-food-menu-nav>
+  <section class="meal-section">
+    <div
+      *ngFor="let dish of getFoodTypeList(); let i = index"
+      class="arrange-food-container"
+    >
+      <app-food-container [dish]="dish" [index]="i"></app-food-container>
+    </div>
+  </section>
+</div>
+
+<div class="pre-order-right-side-large-screen">
+  <app-shopping-basket
+    *ngIf="shoppingBasketVisibity()"
+    (close)="closeShoppingBasket()"
+    (shoppingBasketReady)="onShoppingBasketReady($event)"
+  ></app-shopping-basket>
+</div>
+
 
 <button
-  *ngIf="preorderdata.totalItemAmount > 0"
+  *ngIf="redirectionButtonToShoppingBasket()"
   class="redirect-to-shopping-basket-button"
   (click)="toggleShoppingBasket()"
 >

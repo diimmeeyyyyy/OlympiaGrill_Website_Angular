@@ -67,7 +67,7 @@ MEDIA - QUERIES
     gap: 4vw;
     flex-grow: 1;
   }
-  
+
   app-food-menu-nav {
     flex-grow: unset;
   }
@@ -76,5 +76,19 @@ MEDIA - QUERIES
     top: 0;
     bottom: unset;
     border-radius: 0 0 20px 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  app-pre-order {
+    flex-direction: unset;
+  }
+  .pre-order-left-side-large-screen {
+    width: 70%;
+  }
+  .pre-order-right-side-large-screen {
+    width: 30%;
+    position: sticky;
+    top: 0;
   }
 }

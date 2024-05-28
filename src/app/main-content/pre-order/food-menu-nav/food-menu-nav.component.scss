@@ -44,3 +44,16 @@ nav {
   font-size: clamp(21px, 5vw, 24px);
   padding-block: 3px;
 }
+
+/* ===========
+MEDIA - QUERIES
+=============*/
+@media (min-width: 1024px) {
+  .arrow-right {
+    right: 30% !important;
+  }
+
+  nav {
+    width: 100%;
+  }
+}

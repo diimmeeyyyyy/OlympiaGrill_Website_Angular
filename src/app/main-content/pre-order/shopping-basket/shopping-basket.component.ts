@@ -80,8 +80,17 @@ export class ShoppingBasketComponent {
     });
   }
 
-  getBorderRadius(): string {
+  /* getBorderRadius(): string {
     const height = this.item ? this.item.nativeElement.offsetHeight : 0;
     return height < 72 ? '31px' : '38px';
+  } */
+
+  getBorderRadius(): string {
+    if (window.innerWidth <= 1024) {
+      const height = this.item ? this.item.nativeElement.offsetHeight : 0;
+      return height < 72 ? '31px' : '38px';
+    } else {
+      return '0';
+    }
   }
 }

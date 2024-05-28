@@ -1,7 +1,7 @@
 @import "./../../../../styles.scss";
 
 main {
-  z-index: 1;
+  z-index: 5;
   background-color: chocolate;
   height: 100vh;
   width: 100vw;
@@ -35,7 +35,7 @@ main {
     font-size: 32px;
     text-align: center;
     color: rgb(55, 103, 189);
-    background-color: whitesmoke;
+    background-color: aliceblue;
     padding: 5px;
     border-radius: 5px;
   }
@@ -146,6 +146,7 @@ main {
   font-size: 20px;
   background: rgb(55, 103, 189);
   border-radius: 20px 20px 0 0;
+  cursor: pointer;
   filter: drop-shadow(2px 4px 6px black);
   &:active {
     background: rgba(0, 0, 0, 0.7);
@@ -189,7 +190,43 @@ MEDIA-QUERIES
     border-radius: 25px;
     z-index: 1001;
     position: unset;
-    border-radius: 30px;
     filter: drop-shadow(2px 4px 6px black);
+  }
+}
+
+@media (min-width: 1024px) {
+  .background-div-large-screen {
+    height: unset;
+    width: unset;
+    position: unset;
+  }
+
+  main {
+    width: 100%;
+    z-index: 0;
+    border-radius: 0;
+    filter: unset;
+    background-image: unset;
+    background-color: antiquewhite;
+    border-left: 2px solid black;
+    border-top: 2px solid black;
+    > .headline-and-closing-button {
+      padding-left: 0;
+      justify-content: center;
+      > button {
+        display: none;
+      }
+    }
+  }
+  .order-overview {
+    border-radius: 0;
+  }
+  .pick-up-time {
+    border-radius: 0;
+    justify-content: center;
+  }
+
+  .total-price-div {
+    border-radius: 5px 5px 0 0;
   }
 }

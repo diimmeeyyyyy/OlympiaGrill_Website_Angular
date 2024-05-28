@@ -63,3 +63,13 @@ main {
 .toppings {
   border-top: 1px solid black;
 }
+
+/* ===========
+MEDIA - QUERIES
+===============*/
+@media (min-width: 1024px) {
+  main {
+    border-radius: 5px;
+    margin-left: 2px;
+  }
+}

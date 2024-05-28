@@ -13,3 +13,9 @@ main {
     flex-direction: column;
   }
 }
+
+@media (min-width: 1024px) {
+  app-pre-order {
+    flex-direction: unset;
+  }
+}
