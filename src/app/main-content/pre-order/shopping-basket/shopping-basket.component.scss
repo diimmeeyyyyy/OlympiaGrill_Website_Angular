@@ -37,7 +37,7 @@ main {
     color: rgb(55, 103, 189);
     background-color: whitesmoke;
     padding: 5px;
-    border-radius: 20px;
+    border-radius: 5px;
   }
 
   > button {
@@ -169,7 +169,7 @@ main {
 /* =============
 MEDIA-QUERIES
 ================*/
-@media (min-width: 670px) {
+@media (min-width: 680px) {
   .background-div-large-screen {
     height: 100vh;
     width: 100vw;

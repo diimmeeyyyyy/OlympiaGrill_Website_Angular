@@ -1,29 +1,32 @@
-<main #mainContainer>
-  <div
-    class="dish-container"
-    style="background-image: url('{{ dish.background }}')"
-  >
+<div #Background_Large_Screen>
+  <main #mainContainer>
     <div
-      class="left"
-      [ngClass]="{ withoutDescription: dish.description == '' }"
+      class="dish-container"
+      style="background-image: url('{{ dish.background }}')"
     >
-      <h1>{{ dish.title }}</h1>
-      <p>{{ dish.description }}</p>
-      <h3>{{ dish.price.toFixed(2).replace(".", ",") }} €</h3>
+      <div
+        class="left"
+        [ngClass]="{ withoutDescription: dish.description == '' }"
+      >
+        <h1>{{ dish.title }}</h1>
+        <p>{{ dish.description }}</p>
+        <h3>{{ dish.price.toFixed(2).replace(".", ",") }} €</h3>
+      </div>
+      <div class="right">
+        <img
+          class="showToppingsButton"
+          (click)="toggleChild()"
+          (click)="scrollToTop()"
+          src="/assets/img/icons8-plus-40.png"
+        />
+      </div>
     </div>
-    <div class="right">
-      <img class="showToppingsButton"
-        (click)="toggleChild()"
-        (click)="scrollToTop()"
-        src="/assets/img/icons8-plus-40.png"
-      />
-    </div>
-  </div>
-  <app-food-container-child
-    [dish]="dish"
-    [foodContainerindex]="index"
-    *ngIf="showChild"
-    (close)="closeChildContainer()"
-    (childContainerReady)="onChildContainerReady($event)"
-  ></app-food-container-child>
-</main>
+    <app-food-container-child
+      [dish]="dish"
+      [foodContainerindex]="index"
+      *ngIf="showChild"
+      (close)="closeChildContainer()"
+      (childContainerReady)="onChildContainerReady($event)"
+    ></app-food-container-child>
+  </main>
+</div>

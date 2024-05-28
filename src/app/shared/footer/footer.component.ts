@@ -13,6 +13,6 @@ export class FooterComponent {
   constructor(private preOrderService: PreorderdataService) {}
 
   checkMarginBottom() {
-    return this.preOrderService.totalItemAmount > 0;
+    return this.preOrderService.totalItemAmount > 0 && window.innerWidth < 690;
   }
 }

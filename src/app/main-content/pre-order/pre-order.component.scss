@@ -60,14 +60,21 @@ MEDIA - QUERIES
   }
 }
 
-@media (min-width: 670px) {
+@media (min-width: 680px) {
   .meal-section {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, auto));
     gap: 4vw;
     flex-grow: 1;
   }
+  
   app-food-menu-nav {
     flex-grow: unset;
+  }
+
+  .redirect-to-shopping-basket-button {
+    top: 0;
+    bottom: unset;
+    border-radius: 0 0 20px 20px;
   }
 }

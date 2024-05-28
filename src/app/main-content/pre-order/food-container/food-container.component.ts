@@ -18,13 +18,15 @@ export class FoodContainerComponent {
   showChild = false;
 
   @ViewChild('mainContainer') mainContainer!: ElementRef;
+  @ViewChild('Background_Large_Screen') background!: ElementRef;
+
   childContainer!: ElementRef;
   onChildContainerReady(childContainer: ElementRef) {
     this.childContainer = childContainer;
   }
 
   constructor(private preOrderService: PreorderdataService) {}
-
+  showBackgroundLargeScreen = false;
   toggleChild() {
     if (this.dish.foodClass === 'C') {
       let item: ShoppingBasketItem = {
@@ -41,6 +43,16 @@ export class FoodContainerComponent {
       };
       this.preOrderService.addToShoppingBasket(item);
     } else {
+      if (window.innerWidth > 690) {
+        if (this.background) {
+          this.background.nativeElement.classList.add(
+            'background-div-large-screen'
+          );
+        }
+        if (this.mainContainer) {
+          this.mainContainer.nativeElement.classList.add('center-screen');
+        }
+      }
       this.showChild = !this.showChild;
       if (this.showChild) {
         this.scrollToTop();
@@ -79,5 +91,9 @@ export class FoodContainerComponent {
     setTimeout(() => {
       this.showChild = false;
     }, 251);
+    this.background.nativeElement.classList.remove(
+      'background-div-large-screen'
+    );
+    this.mainContainer.nativeElement.classList.remove('center-screen');
   }
 }

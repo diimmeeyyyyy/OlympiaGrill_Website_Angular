@@ -35,18 +35,6 @@
       </div>
     </section>
 
-    <!-- <section class="order-overview-section">
-    <div class="order-overview">
-      <app-shopping-basket-item
-        *ngFor="let dish of getShoppingBasket(); let i = index"
-        [dish]="dish"
-        [index]="i"
-        (changedItemAmount)="onChangedItemPrice($event)"
-        (removeItem)="onRemoveItem($event)"
-      ></app-shopping-basket-item>
-    </div>
-  </section> -->
-
     <div class="total-price-div">
       <p>Zum Bezahlvorgang</p>
       <p>{{ getTotalPrice() }} €</p>

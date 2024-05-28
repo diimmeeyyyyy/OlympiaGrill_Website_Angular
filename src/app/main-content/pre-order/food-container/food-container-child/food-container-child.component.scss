@@ -32,7 +32,12 @@ button {
   position: absolute;
   top: 0;
   right: 0;
-  @include closeButtonSettings($br: 18px, $brBottomLeft:18px ,$height: 55px, $width: 55px);
+  @include closeButtonSettings(
+    $br: 18px,
+    $brBottomLeft: 18px,
+    $height: 55px,
+    $width: 55px
+  );
 
   > img {
     width: 100%;
@@ -188,8 +193,8 @@ button {
 /* ============
 MEDIA-QUERIES
 ===============*/
-@media (min-width: 415px) {
+@media (min-width: 420px) {
   .food-container-child {
-    width: 415px;
+    width: 420px;
   }
 }
