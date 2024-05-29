@@ -80,11 +80,6 @@ export class ShoppingBasketComponent {
     });
   }
 
-  /* getBorderRadius(): string {
-    const height = this.item ? this.item.nativeElement.offsetHeight : 0;
-    return height < 72 ? '31px' : '38px';
-  } */
-
   getBorderRadius(): string {
     if (window.innerWidth <= 1024) {
       const height = this.item ? this.item.nativeElement.offsetHeight : 0;
@@ -92,5 +87,9 @@ export class ShoppingBasketComponent {
     } else {
       return '0';
     }
+  }
+
+  conditionToCheckout() {
+    return this.preOrderService.totalItemAmount !== 0;
   }
 }

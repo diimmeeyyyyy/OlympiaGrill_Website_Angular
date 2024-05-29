@@ -32,6 +32,7 @@ main {
   align-items: center;
   padding-left: 50px;
   > h1 {
+    margin-top: 10px;
     font-size: 32px;
     text-align: center;
     color: rgb(55, 103, 189);
@@ -144,15 +145,15 @@ main {
   height: 70px;
   @include dflex($jc: space-evenly);
   font-size: 20px;
-  background: rgb(55, 103, 189);
+  /* background: rgb(55, 103, 189); */
+  background: gray;
   border-radius: 20px 20px 0 0;
-  cursor: pointer;
   filter: drop-shadow(2px 4px 6px black);
   &:active {
     background: rgba(0, 0, 0, 0.7);
   }
   > p {
-    color: aliceblue;
+    color: black;
     font-weight: bold;
     z-index: 5;
   }
@@ -167,6 +168,29 @@ main {
   }
 }
 
+.ready-to-checkout {
+  background-color: green;
+  cursor: pointer;
+  &:hover {
+    background-color: darkgreen;
+  }
+  > p {
+    color: white;
+  }
+}
+
+.message-shoppingBasket-empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 20px;
+  color: black;
+  > img {
+    width: 60px;
+  }
+}
 
 /* =============
 MEDIA-QUERIES
@@ -208,7 +232,7 @@ MEDIA-QUERIES
     border-radius: 0;
     filter: unset;
     background-image: unset;
-    background-color: antiquewhite;
+    background-color: aliceblue;
     border-left: 2px solid black;
     border-top: 2px solid black;
     > .headline-and-closing-button {
@@ -219,6 +243,12 @@ MEDIA-QUERIES
       }
     }
   }
+
+  .headline-and-closing-button h1 {
+    color: white;
+    background-color: rgb(55, 103, 189);
+  }
+
   .order-overview {
     border-radius: 0;
   }

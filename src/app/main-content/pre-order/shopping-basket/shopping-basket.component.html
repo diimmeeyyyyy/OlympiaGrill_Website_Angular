@@ -19,10 +19,14 @@
           (changedItemAmount)="onChangedItemPrice($event)"
           (removeItem)="onRemoveItem($event)"
         ></app-shopping-basket-item>
+        <div class="message-shoppingBasket-empty" *ngIf="!conditionToCheckout()">
+          <img src="./../../../../assets/img/ShoppingBasket.png">
+          <h2>Warenkorb leer</h2>
+        </div>
       </div>
     </section>
 
-    <section class="pick-up-time">
+    <section class="pick-up-time" *ngIf="conditionToCheckout()">
       <img src="/assets/img/pick-up-food-shopping-basket.png" />
       <div class="pick-up-text">
         <h3>Abholung:</h3>
@@ -35,7 +39,10 @@
       </div>
     </section>
 
-    <div class="total-price-div">
+    <div
+      class="total-price-div"
+      [ngClass]="{ 'ready-to-checkout': conditionToCheckout()}"
+    >
       <p>Zum Bezahlvorgang</p>
       <p>{{ getTotalPrice() }} €</p>
     </div>
