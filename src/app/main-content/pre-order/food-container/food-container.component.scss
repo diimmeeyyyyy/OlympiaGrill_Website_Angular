@@ -49,18 +49,27 @@ main {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  filter: drop-shadow(2px 4px 6px black);
 }
 
+.background-div-large-screen {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .background-div-large-screen {
-    height: 100vh;
-    width: 100vw;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* ============
+  MEDIA - QUERIES
+  ===============*/
+/* @media (min-width: 1024px) {
+  main {
+    filter: drop-shadow(2px 4px 6px black);
   }
+} */

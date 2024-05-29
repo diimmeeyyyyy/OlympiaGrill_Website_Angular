@@ -29,11 +29,19 @@ export class ShoppingBasketComponent {
   closeShoppingBasket() {
     this.close.emit();
   }
-
+  @ViewChild('Arrow_Top') arrowTop!: ElementRef;
+  @ViewChild('Arrow_Bottom', { static: false }) arrowBottom!: ElementRef;
+  @ViewChild('Order_Overview', { static: false }) orderOverview!: ElementRef;
   @ViewChild('Shopping_Basket') shoppingBasket!: ElementRef;
   @Output() shoppingBasketReady = new EventEmitter<ElementRef>();
 
   ngAfterViewInit() {
+    this.orderOverview.nativeElement.addEventListener('scroll', () => {
+      this.appearBottomArrow();
+      this.appearTopArrow();
+    });
+    this.appearBottomArrow();
+    this.appearBottomArrow();
     this.shoppingBasketReady.emit(this.shoppingBasket);
     this.cdref.detectChanges();
   }
@@ -95,4 +103,48 @@ export class ShoppingBasketComponent {
   conditionToCheckout() {
     return this.preOrderService.totalItemAmount !== 0;
   }
+
+  appearBottomArrow() {
+    if (
+      this.orderOverview.nativeElement.scrollHeight -
+        this.orderOverview.nativeElement.scrollTop -
+        this.orderOverview.nativeElement.clientHeight >
+      50
+    ) {
+      this.arrowBottom.nativeElement.classList.remove('d-none');
+    } else {
+      this.arrowBottom.nativeElement.classList.add('d-none');
+    }
+  }
+
+  appearTopArrow() {
+    if (this.orderOverview.nativeElement.scrollTop > 50) {
+      this.arrowTop.nativeElement.classList.remove('d-none');
+    } else {
+      this.arrowTop.nativeElement.classList.add('d-none');
+    }
+  }
+
+  /* ====================
+VISIBILITY ARROW-BOTTOM
+=======================*/
+  /* function appearBottomArrow() {
+  let arrowBottom = document.getElementById("Bottom_Arrow");
+  let shoppingBasket = document.getElementById("Shopping_Basket_Small_Screen");
+
+  if (
+    shoppingBasket.scrollHeight -
+      shoppingBasket.scrollTop -
+      shoppingBasket.clientHeight >
+    50
+  ) {
+    arrowBottom.classList.remove("d-none");
+  } else {
+    arrowBottom.classList.add("d-none");
+  }
+}
+document.addEventListener("DOMContentLoaded", function () {
+  let shoppingBasket = document.getElementById("Shopping_Basket_Small_Screen");
+  shoppingBasket.addEventListener("scroll", appearBottomArrow);
+}); */
 }
