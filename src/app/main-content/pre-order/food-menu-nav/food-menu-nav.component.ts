@@ -66,4 +66,18 @@ export class FoodMenuNavComponent implements AfterViewInit {
   emitFoodTypeText(foodTypeText: string) {
     this.foodTypeString.emit(foodTypeText);
   }
+
+  scrollRight() {
+    this.foodNavigation.nativeElement.scrollTo({
+      left: this.foodNavigation.nativeElement.scrollLeft + 100,
+      behavior: 'smooth',
+    });
+  }
+
+  scrollLeft() {
+    this.foodNavigation.nativeElement.scrollTo({
+      left: this.foodNavigation.nativeElement.scrollLeft - 100,
+      behavior: 'smooth',
+    });
+  }
 }

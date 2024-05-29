@@ -1,7 +1,11 @@
 <section id="Food_Choice" class="food-choice">
   <h2>Unsere Speisekarte</h2>
   <nav #Food_Navigation class="food-navigation">
-    <img src="../../../assets/img/icons8-left-arrow-50.png" #Arrow_Left />
+    <img
+      src="../../../assets/img/icons8-left-arrow-50.png"
+      #Arrow_Left
+      (click)="scrollLeft()"
+    />
     <p #Popular_Dishes (click)="updateSelectedFoodType(0, 'Beliebte Gerichte')">
       Beliebte Gerichte
     </p>
@@ -25,6 +29,7 @@
       src="../../../assets/img/icons8-forward-50.png"
       class="arrow-right"
       #Arrow_Right
+      (click)="scrollRight()"
     />
   </nav>
 </section>

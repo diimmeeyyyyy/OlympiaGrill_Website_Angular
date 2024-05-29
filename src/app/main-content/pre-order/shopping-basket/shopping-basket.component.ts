@@ -68,7 +68,10 @@ export class ShoppingBasketComponent {
   onRemoveItem(index: number) {
     this.preOrderService.shoppingBasket.splice(index, 1);
     this.getTotalPrice();
-    if (this.preOrderService.shoppingBasket.length === 0) {
+    if (
+      this.preOrderService.shoppingBasket.length === 0 &&
+      window.innerWidth <= 1024
+    ) {
       this.preOrderService.totalItemAmount = 0;
       this.closeShoppingBasket();
     }

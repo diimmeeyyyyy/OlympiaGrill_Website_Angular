@@ -31,7 +31,7 @@ $main-color: rgb(63, 80, 181);
   flex-direction: $fd;
 }
 
-@mixin closeButtonSettings($br, $brBottomLeft ,$height, $width) {
+@mixin closeButtonSettings($br, $brBottomLeft, $height, $width) {
   background: lightcoral;
   border-radius: 0 $br 0 $brBottomLeft;
   height: $height;
@@ -39,6 +39,10 @@ $main-color: rgb(63, 80, 181);
   padding: 0;
   border: none;
   box-sizing: border-box;
+  cursor: pointer;
+  &:hover {
+    background: red;
+  }
 }
 
 .d-none {

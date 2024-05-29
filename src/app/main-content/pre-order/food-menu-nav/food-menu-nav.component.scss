@@ -35,6 +35,9 @@ nav {
   > p:first-of-type {
     font-weight: bold;
   }
+  > img {
+    cursor: pointer;
+  }
 }
 
 .selected-food-type {
