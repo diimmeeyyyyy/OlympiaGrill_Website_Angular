@@ -174,7 +174,7 @@ export class FoodContainerChildComponent {
       gyrosSpecial: this.getGyrosSpecial(),
       sides: this.getSides(),
     };
-    this.checkIfDishAlreadyExistsInBasket(item);
+    this.preOrderService.checkIfDishAlreadyExistsInBasket(item);
     this.closeChildContainer();
   }
 
@@ -244,7 +244,7 @@ export class FoodContainerChildComponent {
   /* =================================================
   TO CHECK IF ITEM ALREADY EXISTS IN SHOPPING-BASKET
   =====================================================*/
-  checkIfDishAlreadyExistsInBasket(item: ShoppingBasketItem) {
+  /*   checkIfDishAlreadyExistsInBasket(item: ShoppingBasketItem) {
     if (this.dishAlreadyExistsInBasket(item)) {
       let index = this.getDishIndex(item);
       this.increaseDishAmount(index);
@@ -290,5 +290,5 @@ export class FoodContainerChildComponent {
       }
     }
     return true;
-  }
+  } */
 }

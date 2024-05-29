@@ -26,36 +26,44 @@ export class FoodContainerComponent {
   }
 
   constructor(private preOrderService: PreorderdataService) {}
-  showBackgroundLargeScreen = false;
+
   toggleChild() {
     if (this.dish.foodClass === 'C') {
-      let item: ShoppingBasketItem = {
-        id: this.preOrderService.nextId++,
-        title: this.dish.title,
-        price: this.dish.price,
-        amount: 1,
-        foodClass: this.dish.foodClass,
-        toppings: [],
-        salad: undefined,
-        bifteki: undefined,
-        gyrosSpecial: undefined,
-        sides: undefined,
-      };
-      this.preOrderService.addToShoppingBasket(item);
+      let item: ShoppingBasketItem = this.createShoppingBasketItemFoodClassC();
+      this.preOrderService.checkIfDishAlreadyExistsInBasket(item);
     } else {
-      if (window.innerWidth > 690) {
-        if (this.background) {
-          this.background.nativeElement.classList.add(
-            'background-div-large-screen'
-          );
-        }
-        if (this.mainContainer) {
-          this.mainContainer.nativeElement.classList.add('center-screen');
-        }
-      }
+      this.checkIfWindowIsLargeScreen();
       this.showChild = !this.showChild;
       if (this.showChild) {
         this.scrollToTop();
+      }
+    }
+  }
+
+  createShoppingBasketItemFoodClassC() {
+    return {
+      id: this.preOrderService.nextId++,
+      title: this.dish.title,
+      price: this.dish.price,
+      amount: 1,
+      foodClass: this.dish.foodClass,
+      toppings: [],
+      salad: undefined,
+      bifteki: undefined,
+      gyrosSpecial: undefined,
+      sides: undefined,
+    };
+  }
+
+  checkIfWindowIsLargeScreen() {
+    if (window.innerWidth > 690) {
+      if (this.background) {
+        this.background.nativeElement.classList.add(
+          'background-div-large-screen'
+        );
+      }
+      if (this.mainContainer) {
+        this.mainContainer.nativeElement.classList.add('center-screen');
       }
     }
   }

@@ -1,8 +1,8 @@
-<div class="pre-order-left-side-large-screen" style="flex-grow: 1">
+<div class="pre-order-left-side-large-screen">
   <app-food-menu-nav
     (foodTypeString)="renderFoodTypeSection($event)"
   ></app-food-menu-nav>
-  <section class="meal-section">
+  <section class="meal-section" style="flex-grow: 1">
     <div
       *ngFor="let dish of getFoodTypeList(); let i = index"
       class="arrange-food-container"
@@ -19,7 +19,6 @@
     (shoppingBasketReady)="onShoppingBasketReady($event)"
   ></app-shopping-basket>
 </div>
-
 
 <button
   *ngIf="redirectionButtonToShoppingBasket()"

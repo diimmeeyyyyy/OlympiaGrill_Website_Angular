@@ -68,6 +68,12 @@ MEDIA - QUERIES
     flex-grow: 1;
   }
 
+  .pre-order-left-side-large-screen {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
   app-food-menu-nav {
     flex-grow: unset;
   }
@@ -88,6 +94,11 @@ MEDIA - QUERIES
   }
   .pre-order-right-side-large-screen {
     width: 30%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  app-shopping-basket {
     position: sticky;
     top: 0;
   }
