@@ -32,22 +32,19 @@ export class FoodContainerComponent {
       let item: ShoppingBasketItem = this.createShoppingBasketItemFoodClassC();
       this.preOrderService.checkIfDishAlreadyExistsInBasket(item);
     } else {
-      this.checkIfWindowIsLargeScreen();
+      this.checkIfLargeScreen();
       this.showChild = !this.showChild;
-      if (this.showChild) {
-        this.scrollToTop();
-      }
     }
   }
 
   createShoppingBasketItemFoodClassC() {
     return {
-      id: this.preOrderService.nextId++,
+      id: -1,
       title: this.dish.title,
       price: this.dish.price,
       amount: 1,
       foodClass: this.dish.foodClass,
-      toppings: [],
+      toppings: [this.dish.description],
       salad: undefined,
       bifteki: undefined,
       gyrosSpecial: undefined,
@@ -55,7 +52,7 @@ export class FoodContainerComponent {
     };
   }
 
-  checkIfWindowIsLargeScreen() {
+  checkIfLargeScreen() {
     if (window.innerWidth > 690) {
       if (this.background) {
         this.background.nativeElement.classList.add(
@@ -73,10 +70,12 @@ export class FoodContainerComponent {
     let clickedContainerPosition = clickedContainer.getBoundingClientRect().top;
     let targetPosition = window.scrollY + clickedContainerPosition - 10;
 
-    window.scrollTo({
-      top: targetPosition,
-      behavior: 'smooth',
-    });
+    if (this.showChild && this.dish.foodClass !== 'C') {
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth',
+      });
+    }
   }
 
   closeChildContainer() {
