@@ -77,13 +77,16 @@ export class ShoppingBasketComponent {
     this.getTotalPrice();
     if (this.basketIsEmpty() && this.screenIsSmall()) {
       this.preOrderService.totalItemAmount = 0;
+      this.preOrderService.nextId = 0;
       this.closeShoppingBasket();
+    } else {
+      this.preOrderService.totalItemAmount--;
     }
-    this.preOrderService.totalItemAmount--;
     this.getBorderRadius();
     this.assignNewId();
-    this.appearBottomArrow();
-    console.log(this.preOrderService.shoppingBasket);
+    setTimeout(() => {
+      this.appearBottomArrow();
+    }, 0);
   }
 
   assignNewId() {
@@ -107,10 +110,6 @@ export class ShoppingBasketComponent {
     } else {
       return '0';
     }
-  }
-
-  conditionToCheckout() {
-    return this.preOrderService.totalItemAmount !== 0;
   }
 
   appearBottomArrow() {
