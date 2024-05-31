@@ -16,12 +16,6 @@
         class="order-overview"
         [style.border-radius]="getBorderRadius()"
       >
-        <!--  <img
-          src="/assets/img/ArrowTop.png"
-          #Arrow_Top
-          class="arrow-top d-none"
-        /> -->
-        <!-- <Section class="scrolling-content"> -->
         <app-shopping-basket-item
           *ngFor="let dish of getShoppingBasket(); let i = index"
           [dish]="dish"
@@ -44,7 +38,7 @@
 
     <section
       class="pick-up-time"
-      *ngIf="!basketIsEmpty()"
+      *ngIf="minOrderValue()"
       [style.border-radius]="getBorderRadius()"
     >
       <img src="./assets/img/pick-up-food-shopping-basket.png" />
@@ -59,9 +53,14 @@
       </div>
     </section>
 
+    <div class="minimum-order-value-notification" *ngIf="checkoutConditionsAreMet()">
+      <p>Mindestbestellwert: 20 €</p>
+    </div>
+
     <div
       class="total-price-div"
-      [ngClass]="{ 'ready-to-checkout': !basketIsEmpty() }"
+      *ngIf="!basketIsEmpty()"
+      [ngClass]="{ 'ready-to-checkout': minOrderValue() }"
     >
       <p>Zum Bezahlvorgang</p>
       <p>{{ getTotalPrice() }} €</p>

@@ -22,13 +22,16 @@ main {
   @include dflex($jc: unset, $ai: flex-start);
   > img {
     width: 55px;
-    background-color: aliceblue;
+    background-color: whitesmoke;
     border-bottom: 1px solid black;
     border-left: 1px solid black;
     cursor: pointer;
     border-radius: 0px 10px 0px 10px;
+    &:hover {
+      background-color: white;
+    }
     &:active {
-      background-color: green;
+      background-color: lightgreen;
     }
   }
 }

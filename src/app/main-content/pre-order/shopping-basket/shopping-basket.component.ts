@@ -38,7 +38,6 @@ export class ShoppingBasketComponent {
   ngAfterViewInit() {
     this.orderOverview.nativeElement.addEventListener('scroll', () => {
       this.appearBottomArrow();
-      /* this.appearTopArrow(); */
     });
     this.appearBottomArrow();
     this.shoppingBasketReady.emit(this.shoppingBasket);
@@ -125,11 +124,15 @@ export class ShoppingBasketComponent {
     }
   }
 
-  /* appearTopArrow() {
-    if (this.orderOverview.nativeElement.scrollTop > 50) {
-      this.arrowTop.nativeElement.classList.remove('d-none');
-    } else {
-      this.arrowTop.nativeElement.classList.add('d-none');
-    }
-  } */
+  checkoutConditionsAreMet() {
+    return !this.minOrderValue() && !this.basketIsEmpty();
+  }
+
+  minOrderValue() {
+    let total = this.preOrderService.shoppingBasket.reduce(
+      (sum, item) => sum + item.price * item.amount,
+      0
+    );
+    return total >= 20;
+  }
 }
