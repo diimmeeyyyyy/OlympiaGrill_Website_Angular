@@ -28,12 +28,17 @@ export class FoodContainerComponent {
   constructor(private preOrderService: PreorderdataService) {}
 
   toggleChild() {
-    if (this.dish.foodClass === 'C') {
-      let item: ShoppingBasketItem = this.createShoppingBasketItemFoodClassC();
-      this.preOrderService.checkIfDishAlreadyExistsInBasket(item);
+    if (this.showChild) {
+      this.closeChildContainer();
     } else {
-      this.checkIfLargeScreen();
-      this.showChild = !this.showChild;
+      if (this.dish.foodClass === 'C') {
+        let item: ShoppingBasketItem =
+          this.createShoppingBasketItemFoodClassC();
+        this.preOrderService.checkIfDishAlreadyExistsInBasket(item);
+      } else {
+        this.checkIfLargeScreen();
+        this.showChild = !this.showChild;
+      }
     }
   }
 

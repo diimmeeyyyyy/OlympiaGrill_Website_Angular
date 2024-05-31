@@ -4,7 +4,7 @@
       <h1>Bestellung:</h1>
       <button>
         <img
-          src="./../../../../assets/img/icons8-close-50.png"
+          src="./assets/img/icons8-close-50.png"
           (click)="closeShoppingBasket()"
         />
       </button>
@@ -31,11 +31,11 @@
         ></app-shopping-basket-item>
         <!--  </Section> -->
         <div class="message-shoppingBasket-empty" *ngIf="basketIsEmpty()">
-          <img src="/assets/img/ShoppingBasket.png" />
+          <img src="./assets/img/ShoppingBasket.png" />
           <h2>Warenkorb leer</h2>
         </div>
         <img
-          src="/assets/img/ArrowBottom.png"
+          src="./assets/img/ArrowBottom.png"
           #Arrow_Bottom
           class="arrow-bottom d-none"
         />
@@ -47,7 +47,7 @@
       *ngIf="!basketIsEmpty()"
       [style.border-radius]="getBorderRadius()"
     >
-      <img src="/assets/img/pick-up-food-shopping-basket.png" />
+      <img src="./assets/img/pick-up-food-shopping-basket.png" />
       <div class="pick-up-text">
         <h3>Abholung:</h3>
         <p>15 Minuten</p>

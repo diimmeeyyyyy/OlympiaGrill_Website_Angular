@@ -7,7 +7,7 @@
   <button class="close-button">
     <img
       (click)="closeChildContainer()"
-      src="./../../../../assets/img/icons8-close-50.png"
+      src="./assets/img/icons8-close-50.png"
     />
   </button>
 
@@ -66,13 +66,13 @@
 
   <section class="increase-decrease-amount">
     <img
-      src="../../../../assets/img/icons8-minus-48.png"
+      src="./assets/img/icons8-minus-48.png"
       (click)="decreaseAmount()"
       (touchstart)="scaleUp($event)"
       (touchend)="scaleDown($event)"
     />
     <img
-      src="./../../../../assets/img/icons8-plus-48.png"
+      src="./assets/img/icons8-plus-48.png"
       (click)="increaseAmount()"
       (touchstart)="scaleUp($event)"
       (touchend)="scaleDown($event)"
@@ -87,7 +87,7 @@
     <p>In den Warenkorb</p>
     <p>{{ itemPrice() }} €</p>
     <img
-      src="./../../../../assets/img/icons8-plus-40.png"
+      src="./assets/img/icons8-plus-40.png"
       (click)="addToShoppingBasket()"
     />
   </section>
