@@ -6,7 +6,7 @@ import {
   ViewChild,
   EventEmitter,
 } from '@angular/core';
-import { PreorderdataService } from '../../../shared/firebase-services/preorderdata.service';
+import { PreorderdataService } from '../../shared/firebase-services/preorderdata.service';
 import { ShoppingBasketItemComponent } from './shopping-basket-item/shopping-basket-item.component';
 import { ChangeDetectorRef } from '@angular/core';
 

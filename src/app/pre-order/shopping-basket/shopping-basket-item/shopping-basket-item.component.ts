@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { PreorderdataService } from '../../../../shared/firebase-services/preorderdata.service';
+import { PreorderdataService } from '../../../shared/firebase-services/preorderdata.service';
 
 @Component({
   selector: 'app-shopping-basket-item',

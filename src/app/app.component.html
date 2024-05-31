@@ -1,1 +1,3 @@
-<router-outlet />
+<app-header *ngIf="logInAndRegisterService.loggedIn"></app-header>
+<router-outlet style="flex-grow: 1" />
+<app-footer *ngIf="logInAndRegisterService.loggedIn"></app-footer>

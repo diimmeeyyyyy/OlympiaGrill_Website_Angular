@@ -1,14 +1,7 @@
 <header #Header>
   <img src="./assets/img/papa.png" />
 
-  <!-- <img src="/assets/img/hamburgerMenu.png" class="hamburger-menu-icon" /> -->
-  <!-- <nav>
-      <a href="#">Online vorbestellen</a>
-      <a href="#">Öffnungszeiten</a>
-      <a href="#">Kontakt</a>
-      <a href="#">Anfahrt</a>
-    </nav> -->
-  <nav>
+  <nav *ngIf="!screenIsLarge()">
     <div class="navbar">
       <div class="container nav-container">
         <input
@@ -24,12 +17,19 @@
           <span class="line line3"></span>
         </div>
         <div class="menu-items">
-          <li><a href="#">Startseite</a></li>
           <li><a href="#">Zum Abholen vorbestellen</a></li>
-          <li><a href="#">Über uns</a></li>
           <li><a href="#">Kontakt & Anfahrt</a></li>
+          <li><a href="#">Impressum</a></li>
         </div>
       </div>
+    </div>
+  </nav>
+
+  <nav *ngIf="screenIsLarge()">
+    <div class="menu-large-screen">
+      <a href="">Zum Abholen vorbestellen</a>
+      <a href="">Kontakt & Anfahrt</a>
+      <a href="">Impressum</a>
     </div>
   </nav>
 </header>

@@ -1,4 +1,8 @@
-@import "../../../styles.scss";
+@import "./../../styles.scss";
+
+main {
+  display: flex;
+}
 
 .meal-section {
   @include dflex($g: 20px);

@@ -1,4 +1,4 @@
-@import "./../../../../styles.scss";
+@import "./../../../styles.scss";
 
 main {
   z-index: 5;
@@ -12,7 +12,7 @@ main {
   left: 0;
   overflow: hidden;
   animation: scaleInAnimation 0.25s ease-in-out forwards;
-  background-image: url("./../../../../assets/img/shoppingBasketBackground.jpg");
+  background-image: url("./../../../assets/img/shoppingBasketBackground.jpg");
   background-size: cover;
 }
 /* main::before {
@@ -268,7 +268,7 @@ MEDIA-QUERIES
     width: 100%;
     z-index: 0;
     border-radius: 0 0 0 20px;
-    filter: unset;
+    /* filter: unse; */
     background-image: unset;
     background-color: aliceblue;
     border-left: 1px solid black;

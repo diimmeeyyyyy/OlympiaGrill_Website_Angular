@@ -5,15 +5,16 @@ import {
   inject,
   Renderer2,
 } from '@angular/core';
-import { HeaderComponent } from '../../shared/header/header.component';
-import { FooterComponent } from '../../shared/footer/footer.component';
+import { HeaderComponent } from '../shared/header/header.component';
+import { FooterComponent } from '../shared/footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { FoodMenuNavComponent } from './food-menu-nav/food-menu-nav.component';
-import { PreorderdataService } from '../../shared/firebase-services/preorderdata.service';
+import { PreorderdataService } from '../shared/firebase-services/preorderdata.service';
 import { FoodContainerComponent } from './food-container/food-container.component';
-import { Dish } from '../../interfaces/dish.interface';
+import { Dish } from '../interfaces/dish.interface';
 import { FoodContainerChildComponent } from './food-container/food-container-child/food-container-child.component';
 import { ShoppingBasketComponent } from './shopping-basket/shopping-basket.component';
+import { LogInAndRegisterService } from '../shared/firebase-services/log-in-and-register.service';
 
 @Component({
   selector: 'app-pre-order',
@@ -39,8 +40,11 @@ export class PreOrderComponent {
 
   constructor(
     private preOrderService: PreorderdataService,
-    private renderer: Renderer2
-  ) {}
+    private renderer: Renderer2,
+    public logInAndRegisterService: LogInAndRegisterService
+  ) {
+    this.logInAndRegisterService.loggedIn = true;
+  }
 
   renderFoodTypeSection(name: string) {
     this.selectedFoodType = name;

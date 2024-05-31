@@ -161,3 +161,20 @@ HAMBURGER - MENU
 .nav-container input[type="checkbox"]:checked ~ .logo {
   display: none;
 }
+
+/* ==============
+MENU-LARGE-SCREEN
+=================*/
+.menu-large-screen {
+  @include dflex($g: 20px);
+  > a {
+    text-decoration: none;
+    background-color: rgb(55, 103, 189);
+    color: white;
+    padding: 10px;
+    border-radius: 0 0 10px 10px;
+    &:hover {
+      background-color: darkblue;
+    }
+  }
+}

@@ -14,6 +14,6 @@ import { Router } from '@angular/router';
 export class LogInComponent {
   constructor(private router: Router) {}
   navigateToPreOrder() {
-    this.router.navigateByUrl('/main-content');
+    this.router.navigateByUrl('/preOrder');
   }
 }

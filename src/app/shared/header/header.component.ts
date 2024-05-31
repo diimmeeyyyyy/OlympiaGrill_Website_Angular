@@ -18,4 +18,13 @@ export class HeaderComponent {
       document.body.style.overflow = 'auto';
     }
   }
+
+
+  screenIsLarge(){
+    return window.innerWidth >= 1024;
+  }
+
+
+
+
 }

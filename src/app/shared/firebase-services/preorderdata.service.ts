@@ -15,6 +15,7 @@ import { subscriptionLogsToBeFn } from 'rxjs/internal/testing/TestScheduler';
 import { FoodClass } from '../../interfaces/food-class.interface';
 import { ShoppingBasketItem } from '../../interfaces/shopping-basket-item.interface';
 
+
 @Injectable({
   providedIn: 'root',
 })
@@ -231,12 +232,4 @@ export class PreorderdataService {
     }
     return true;
   }
-
-
-
-
-
-
-
-  
 }
