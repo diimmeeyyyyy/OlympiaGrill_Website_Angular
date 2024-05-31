@@ -49,6 +49,17 @@ $main-color: rgb(63, 80, 181);
   display: none;
 }
 
+/* .scale-up {
+  transform: scale(1.5);
+  transition: transform 0.2s ease-in-out;
+}
+
+.scale-down {
+  transform: scale(1);
+  transition: transform 0.1s ease-in-out;
+} */
+
+
 /* open-sans-300 - latin */
 @font-face {
   font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */

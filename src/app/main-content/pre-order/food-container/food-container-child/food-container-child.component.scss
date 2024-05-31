@@ -100,14 +100,20 @@ button {
   }
 }
 
-.scale-up {
-  transform: scale(1.5);
-  transition: transform 0.1s ease-in-out;
+.pulse {
+  animation: pulse 0.2s ease-in-out;
 }
 
-.scale-down {
-  transform: scale(1);
-  transition: transform 0.1s ease-in-out;
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .current-amount {

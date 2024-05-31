@@ -68,14 +68,12 @@
     <img
       src="./assets/img/icons8-minus-48.png"
       (click)="decreaseAmount()"
-      (touchstart)="scaleUp($event)"
-      (touchend)="scaleDown($event)"
+      (click)="pulse($event)"
     />
     <img
       src="./assets/img/icons8-plus-48.png"
       (click)="increaseAmount()"
-      (touchstart)="scaleUp($event)"
-      (touchend)="scaleDown($event)"
+      (click)="pulse($event)"
     />
     <div class="current-amount">
       <p>Menge:</p>

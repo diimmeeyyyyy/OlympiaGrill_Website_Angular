@@ -151,14 +151,13 @@ export class FoodContainerChildComponent {
     this.itemPrice();
   }
 
-  scaleUp(event: TouchEvent) {
-    (event.target as HTMLElement).classList.add('scale-up');
-    (event.target as HTMLElement).classList.remove('scale-down');
-  }
-
-  scaleDown(event: TouchEvent) {
-    (event.target as HTMLElement).classList.add('scale-down');
-    (event.target as HTMLElement).classList.remove('scale-up');
+  pulse(event: MouseEvent) {
+    const element = event.target as HTMLElement;
+    element.classList.add('pulse');
+  
+    setTimeout(() => {
+      element.classList.remove('pulse');
+    }, 200); // 200ms matches the animation duration
   }
 
   addToShoppingBasket() {
@@ -240,55 +239,4 @@ export class FoodContainerChildComponent {
       return '';
     }
   }
-
-  /* =================================================
-  TO CHECK IF ITEM ALREADY EXISTS IN SHOPPING-BASKET
-  =====================================================*/
-  /*   checkIfDishAlreadyExistsInBasket(item: ShoppingBasketItem) {
-    if (this.dishAlreadyExistsInBasket(item)) {
-      let index = this.getDishIndex(item);
-      this.increaseDishAmount(index);
-    } else {
-      item.id = this.preOrderService.nextId++;
-      this.preOrderService.addToShoppingBasket(item);
-    }
-  }
-
-  increaseDishAmount(index: number) {
-    this.preOrderService.totalItemAmount++;
-    this.preOrderService.shoppingBasket[index].amount++;
-  }
-
-  dishAlreadyExistsInBasket(dish: ShoppingBasketItem) {
-    const index = this.getDishIndex(dish);
-    return index !== -1;
-  }
-
-  getDishIndex(dish: ShoppingBasketItem) {
-    const index = this.preOrderService.shoppingBasket.findIndex(
-      (basketItem) =>
-        basketItem.title === dish.title &&
-        basketItem.foodClass === dish.foodClass &&
-        basketItem.salad === dish.salad &&
-        basketItem.bifteki === dish.bifteki &&
-        basketItem.gyrosSpecial === dish.gyrosSpecial &&
-        basketItem.sides === dish.sides &&
-        basketItem.toppings &&
-        dish.toppings &&
-        this.compareToppings(basketItem.toppings, dish.toppings)
-    );
-    return index;
-  }
-
-  compareToppings(toppings1: string[], toppings2: string[]) {
-    if (toppings1.length !== toppings2.length) {
-      return false;
-    }
-    for (let i = 0; i < toppings1.length; i++) {
-      if (toppings1[i] !== toppings2[i]) {
-        return false;
-      }
-    }
-    return true;
-  } */
 }
