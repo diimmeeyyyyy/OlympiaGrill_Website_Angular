@@ -27,9 +27,9 @@
 
   <nav *ngIf="screenIsLarge()">
     <div class="menu-large-screen">
-      <a href="">Zum Abholen vorbestellen</a>
-      <a href="">Kontakt & Anfahrt</a>
-      <a href="">Impressum</a>
+      <p (click)="navigateToPreOrder()">Zum Abholen vorbestellen</p>
+      <p href="">Kontakt & Anfahrt</p>
+      <p (click)="navigateToImprint()">Impressum</p>
     </div>
   </nav>
 </header>

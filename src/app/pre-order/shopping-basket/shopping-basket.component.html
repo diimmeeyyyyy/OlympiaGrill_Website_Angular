@@ -45,6 +45,7 @@
       <div class="pick-up-text">
         <h3>Abholung:</h3>
         <p>15 Minuten</p>
+        <p>{{ pickupTime }}</p>
         <div class="loading-dots-div">
           <p class="loading-dot"></p>
           <p class="loading-dot"></p>
@@ -53,7 +54,10 @@
       </div>
     </section>
 
-    <div class="minimum-order-value-notification" *ngIf="checkoutConditionsAreMet()">
+    <div
+      class="minimum-order-value-notification"
+      *ngIf="checkoutConditionsAreMet()"
+    >
       <p>Mindestbestellwert: 20 €</p>
     </div>
 

@@ -6,6 +6,16 @@ body {
   font-family: "Open Sans";
 }
 
+app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+app-imprint {
+  flex-grow: 1;
+}
+
 h1,
 h2,
 h3,
@@ -58,7 +68,6 @@ $main-color: rgb(63, 80, 181);
   transform: scale(1);
   transition: transform 0.1s ease-in-out;
 } */
-
 
 /* open-sans-300 - latin */
 @font-face {

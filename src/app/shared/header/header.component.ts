@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -10,6 +11,16 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  constructor(public router: Router) {}
+
+  navigateToImprint() {
+    this.router.navigateByUrl('/imprint');
+  }
+
+  navigateToPreOrder() {
+    this.router.navigateByUrl('/preOrder');
+  }
+
   onCheckboxChange(event: Event) {
     const checkbox = event.target as HTMLInputElement;
     if (checkbox.checked) {
@@ -19,12 +30,7 @@ export class HeaderComponent {
     }
   }
 
-
-  screenIsLarge(){
+  screenIsLarge() {
     return window.innerWidth >= 1024;
   }
-
-
-
-
 }

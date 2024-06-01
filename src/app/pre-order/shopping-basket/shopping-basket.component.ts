@@ -23,6 +23,8 @@ export class ShoppingBasketComponent {
     private cdref: ChangeDetectorRef
   ) {}
 
+  pickupTime!: string;
+  private timerId: any;
   @ViewChild(ShoppingBasketItemComponent, { read: ElementRef })
   item!: ElementRef;
   @Output() close = new EventEmitter<void>();
@@ -35,6 +37,15 @@ export class ShoppingBasketComponent {
   @ViewChild('Shopping_Basket') shoppingBasket!: ElementRef;
   @Output() shoppingBasketReady = new EventEmitter<ElementRef>();
 
+  ngOnInit() {
+    this.updateTime();
+    const secondsUntilNextMinute = 60 - new Date().getSeconds();
+    setTimeout(() => {
+      this.updateTime();
+      this.timerId = setInterval(() => this.updateTime(), 60000);
+    }, secondsUntilNextMinute * 1000);
+  }
+
   ngAfterViewInit() {
     this.orderOverview.nativeElement.addEventListener('scroll', () => {
       this.appearBottomArrow();
@@ -46,6 +57,12 @@ export class ShoppingBasketComponent {
 
   ngAfterContentChecked() {
     this.cdref.detectChanges();
+  }
+
+  ngOnDestroy() {
+    if (this.timerId) {
+      clearInterval(this.timerId);
+    }
   }
 
   getShoppingBasket() {
@@ -134,5 +151,15 @@ export class ShoppingBasketComponent {
       0
     );
     return total >= 20;
+  }
+
+  updateTime() {
+    const date = new Date();
+    date.setSeconds(0); //Um immer auf die nächsten vollen Minuten zu rechnen
+    date.setMinutes(date.getMinutes() + 15);
+    this.pickupTime = date.toLocaleTimeString('de-DE', {
+      hour: '2-digit',
+      minute: '2-digit',
+    });
   }
 }
