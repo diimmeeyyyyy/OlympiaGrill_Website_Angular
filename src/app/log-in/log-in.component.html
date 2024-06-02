@@ -9,7 +9,7 @@
 
     <form onsubmit="logInUser(); return false" class="form">
       <input type="email" placeholder="E-Mail" />
-      <input type="password" placeholder="Passwort"/>
+      <input type="password" placeholder="Passwort" />
       <div class="log-in-button">
         <button
           mat-fab
@@ -30,7 +30,7 @@
     </form>
     <div class="not-registered-yet-div">
       <p>Noch nicht registriert?</p>
-      <a href="register">Registrieren</a>
+      <a (click)="navigateToRegister()">Registrieren</a>
     </div>
   </main>
 </div>

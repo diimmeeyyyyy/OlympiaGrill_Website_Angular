@@ -64,7 +64,7 @@ form {
 
 .not-registered-yet-div {
   position: absolute;
-  bottom: 100px;
+  bottom: 40px;
   flex-direction: column;
   @include dflex($g: 10px);
   background-color: antiquewhite;
@@ -75,6 +75,7 @@ form {
     text-decoration: none;
     color: whitesmoke;
     background-color: $main-color;
+    cursor: pointer;
     padding: 5px;
     border-radius: 0 10px 0 10px;
     &:hover {

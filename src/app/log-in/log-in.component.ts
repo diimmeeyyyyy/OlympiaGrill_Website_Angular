@@ -16,4 +16,13 @@ export class LogInComponent {
   navigateToPreOrder() {
     this.router.navigateByUrl('/preOrder');
   }
+
+  navigateToRegister() {
+    this.router.navigateByUrl('/register').then(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    });
+  }
 }
