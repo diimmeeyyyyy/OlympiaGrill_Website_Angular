@@ -28,4 +28,13 @@ export class FooterComponent {
       });
     });
   }
+
+  navigateToPrivacyPolicy() {
+    this.router.navigateByUrl('/privacyPolicy').then(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    });
+  }
 }

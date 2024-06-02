@@ -16,6 +16,7 @@ export class HeaderComponent {
 
   closeMenu() {
     this.menuOpen = false;
+    document.body.style.overflow = 'auto';
   }
 
   navigateToPreOrder() {
