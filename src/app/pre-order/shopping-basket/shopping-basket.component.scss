@@ -64,7 +64,7 @@ main {
 .pick-up-time {
   display: flex;
   align-items: center;
-  background: rgba(55, 103, 189, 0.3);
+  /*  background: rgba(55, 103, 189, 0.3); */
   border-radius: 20px;
   > img {
     filter: drop-shadow(2px 4px 6px black);
@@ -78,14 +78,25 @@ main {
 }
 
 .pick-up-text {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   background: aliceblue;
   padding: 5px;
+  color: black;
   border-radius: 10px;
   filter: drop-shadow(2px 4px 6px black);
   border: 5px solid green;
+  span {
+    @include dflex();
+    > img {
+      width: 30px;
+    }
+    > p {
+      font-weight: bold;
+    }
+  }
 }
 
 .loading-dots-div {

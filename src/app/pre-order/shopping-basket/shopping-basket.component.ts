@@ -38,11 +38,11 @@ export class ShoppingBasketComponent {
   @Output() shoppingBasketReady = new EventEmitter<ElementRef>();
 
   ngOnInit() {
-    this.updateTime();
+    this.updatePickUpTime();
     const secondsUntilNextMinute = 60 - new Date().getSeconds();
     setTimeout(() => {
-      this.updateTime();
-      this.timerId = setInterval(() => this.updateTime(), 60000);
+      this.updatePickUpTime();
+      this.timerId = setInterval(() => this.updatePickUpTime(), 60000);
     }, secondsUntilNextMinute * 1000);
   }
 
@@ -153,7 +153,7 @@ export class ShoppingBasketComponent {
     return total >= 20;
   }
 
-  updateTime() {
+  updatePickUpTime() {
     const date = new Date();
     date.setSeconds(0); //Um immer auf die nächsten vollen Minuten zu rechnen
     date.setMinutes(date.getMinutes() + 15);

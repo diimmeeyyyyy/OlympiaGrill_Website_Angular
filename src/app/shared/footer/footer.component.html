@@ -1,12 +1,6 @@
-<footer [ngClass]="{'margin-bottom-40': checkMarginBottom()}">
-  <div class="arrangeFooterContent">
-    <span>
-      <p>programmed by Dimitrios Kapetanis</p>
-    </span>
-    <!-- <span class="impressumDiv">
-        <a href="#">Impressum</a>
-        <a href="#">Allgemeine Geschäftsbedingungen</a>
-        <a href="#">Datenschutz</a>
-      </span> -->
-  </div>
+<footer [ngClass]="{ 'margin-bottom-40': checkMarginBottom() }">
+  <!-- <div class="arrangeFooterContent"> -->
+    <a (click)="navigateToImprint()">Impressum</a>
+    <p>programmed by Dimitrios Kapetanis</p>
+  <!-- </div> -->
 </footer>

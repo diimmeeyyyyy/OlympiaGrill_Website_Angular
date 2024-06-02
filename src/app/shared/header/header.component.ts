@@ -1,20 +1,21 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
+  constructor(private router: Router) {}
+  menuOpen = false;
 
-  constructor(public router: Router) {}
-
-  navigateToImprint() {
-    this.router.navigateByUrl('/imprint');
+  closeMenu() {
+    this.menuOpen = false;
   }
 
   navigateToPreOrder() {

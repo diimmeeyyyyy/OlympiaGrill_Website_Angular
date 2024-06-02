@@ -8,6 +8,7 @@
           class="checkbox"
           type="checkbox"
           (change)="onCheckboxChange($event)"
+          [(ngModel)]="menuOpen"
           name=""
           id=""
         />
@@ -17,9 +18,13 @@
           <span class="line line3"></span>
         </div>
         <div class="menu-items">
-          <li><a href="#">Zum Abholen vorbestellen</a></li>
-          <li><a href="#">Kontakt & Anfahrt</a></li>
-          <li><a href="#">Impressum</a></li>
+          <li>
+            <a (click)="navigateToPreOrder(); closeMenu()"
+              >Zum Abholen vorbestellen</a
+            >
+          </li>
+          <li><a (click)="closeMenu()">Kontakt & Anfahrt</a></li>
+          <li><a (click)="closeMenu()">Impressum</a></li>
         </div>
       </div>
     </div>
@@ -29,7 +34,7 @@
     <div class="menu-large-screen">
       <p (click)="navigateToPreOrder()">Zum Abholen vorbestellen</p>
       <p href="">Kontakt & Anfahrt</p>
-      <p (click)="navigateToImprint()">Impressum</p>
+      <p>Impressum</p>
     </div>
   </nav>
 </header>
