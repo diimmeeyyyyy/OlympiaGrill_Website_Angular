@@ -2,16 +2,64 @@
   <main>
     <h2>Registrierung</h2>
 
-    <form onsubmit="registerUser();return false" class="register-form">
-      <input type="text" placeholder="Name" />
-      <input type="email" placeholder="E-Mail" />
-      <input type="password" placeholder="Passwort" />
-      <input type="password" placeholder="Passwort wiederholen" />
+    <section class="register-form">
+      <input [(ngModel)]="name" type="text" placeholder="Name" />
+      <input [(ngModel)]="email" type="email" placeholder="E-Mail" />
+      <input
+        [(ngModel)]="password"
+        (focus)="onFocusPassword()"
+        (blur)="onBlurPassword()"
+        type="password"
+        placeholder="Passwort"
+      />
+      <input
+        [(ngModel)]="confirmPassword"
+        type="password"
+        placeholder="Passwort wiederholen"
+      />
       <span>
-        <input type="checkbox" name="" id="" />
+        <input [(ngModel)]="acceptTerms" type="checkbox" name="" id="" />
         <p>Ich akzeptiere die AGB</p>
       </span>
-      <button>Registrieren</button>
-    </form>
+      <button
+        [disabled]="!checkRegisterRequirements()"
+        [ngClass]="{ 'enable-register-button': checkRegisterRequirements() }"
+      >
+        Registrieren
+      </button>
+    </section>
   </main>
+
+  <section class="password-requirements" *ngIf="showPasswordRequirements">
+    <span>
+      <img
+        [src]="
+          passwordIsLongEnough()
+            ? './../../assets/img/fulfilledRequirements.png'
+            : './../../assets/img/unfulfilledRequirements.png'
+        "
+      />
+      <p>Passwort muss min. 10 Zeichen lang sein</p>
+    </span>
+    <span>
+      <img
+        [src]="
+          passwordHasCapitalLetter()
+            ? './../../assets/img/fulfilledRequirements.png'
+            : './../../assets/img/unfulfilledRequirements.png'
+        "
+      />
+      <p>Passwort muss Großbuchstaben enthalten</p>
+    </span>
+    <span>
+      <img
+        [src]="
+          passwordContainsNumber()
+            ? './../../assets/img/fulfilledRequirements.png'
+            : './../../assets/img/unfulfilledRequirements.png'
+        "
+      />
+      <p>Passwort muss min. eine Zahl enthalten</p>
+    </span>
+  </section>
 </div>
