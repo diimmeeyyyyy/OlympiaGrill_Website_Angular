@@ -60,6 +60,7 @@
       <button
         [disabled]="!checkRegisterRequirements()"
         [ngClass]="{ 'enable-register-button': checkRegisterRequirements() }"
+        (click)="addUser()"
       >
         Registrieren
       </button>

@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { LogInAndRegisterService } from '../shared/firebase-services/log-in-and-register.service';
+import { User } from '../interfaces/user.interface';
 
 @Component({
   selector: 'app-register',
@@ -10,12 +12,24 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './register.component.scss',
 })
 export class RegisterComponent {
+  constructor(private registerService: LogInAndRegisterService) {}
+
   name!: string;
   email!: string;
   password!: string;
   confirmPassword!: string;
   acceptTerms = false;
-  showPasswordRequirements = true;
+  showPasswordRequirements = false;
+
+  addUser() {
+    debugger;
+    let user: User = {
+      name: this.name,
+      email: this.email,
+      password: this.password,
+    };
+    this.registerService.addUser(user);
+  }
 
   checkRegisterRequirements() {
     if (!this.allInputfieldsHaveValue()) {
@@ -55,9 +69,6 @@ export class RegisterComponent {
 
   onFocusPassword() {
     this.showPasswordRequirements = true;
-    setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 1000);
   }
 
   onBlurPassword() {
