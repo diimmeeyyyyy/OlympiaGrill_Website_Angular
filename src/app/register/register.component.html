@@ -5,13 +5,49 @@
     <section class="register-form">
       <input [(ngModel)]="name" type="text" placeholder="Name" />
       <input [(ngModel)]="email" type="email" placeholder="E-Mail" />
-      <input
-        [(ngModel)]="password"
-        (focus)="onFocusPassword()"
-        (blur)="onBlurPassword()"
-        type="password"
-        placeholder="Passwort"
-      />
+
+      <aside class="position-password-requirements">
+        <section class="password-requirements" *ngIf="showPasswordRequirements">
+          <span>
+            <img
+              [src]="
+                passwordIsLongEnough()
+                  ? './assets/img/fulfilledRequirements.png'
+                  : './assets/img/unfulfilledRequirements.png'
+              "
+            />
+            <p>Passwort muss min. 10 Zeichen lang sein</p>
+          </span>
+          <span>
+            <img
+              [src]="
+                passwordHasCapitalLetter()
+                  ? './assets/img/fulfilledRequirements.png'
+                  : './assets/img/unfulfilledRequirements.png'
+              "
+            />
+            <p>Passwort muss min. einen Großbuchstaben enthalten</p>
+          </span>
+          <span>
+            <img
+              [src]="
+                passwordContainsNumber()
+                  ? './assets/img/fulfilledRequirements.png'
+                  : './assets/img/unfulfilledRequirements.png'
+              "
+            />
+            <p>Passwort muss min. eine Zahl enthalten</p>
+          </span>
+        </section>
+        <input
+          [(ngModel)]="password"
+          (focus)="onFocusPassword()"
+          (blur)="onBlurPassword()"
+          type="password"
+          placeholder="Passwort"
+        />
+      </aside>
+
       <input
         [(ngModel)]="confirmPassword"
         type="password"
@@ -29,37 +65,4 @@
       </button>
     </section>
   </main>
-
-  <section class="password-requirements" *ngIf="showPasswordRequirements">
-    <span>
-      <img
-        [src]="
-          passwordIsLongEnough()
-            ? './../../assets/img/fulfilledRequirements.png'
-            : './../../assets/img/unfulfilledRequirements.png'
-        "
-      />
-      <p>Passwort muss min. 10 Zeichen lang sein</p>
-    </span>
-    <span>
-      <img
-        [src]="
-          passwordHasCapitalLetter()
-            ? './../../assets/img/fulfilledRequirements.png'
-            : './../../assets/img/unfulfilledRequirements.png'
-        "
-      />
-      <p>Passwort muss Großbuchstaben enthalten</p>
-    </span>
-    <span>
-      <img
-        [src]="
-          passwordContainsNumber()
-            ? './../../assets/img/fulfilledRequirements.png'
-            : './../../assets/img/unfulfilledRequirements.png'
-        "
-      />
-      <p>Passwort muss min. eine Zahl enthalten</p>
-    </span>
-  </section>
 </div>

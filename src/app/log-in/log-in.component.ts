@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
+import { LogInAndRegisterService } from '../shared/firebase-services/log-in-and-register.service';
 
 @Component({
   selector: 'app-log-in',
@@ -12,7 +13,15 @@ import { Router } from '@angular/router';
   styleUrl: './log-in.component.scss',
 })
 export class LogInComponent {
-  constructor(private router: Router) {}
+  /* constructor(private router: Router) {} */
+
+  constructor(
+    public logInAndRegisterService: LogInAndRegisterService,
+    private router: Router
+  ) {
+    this.logInAndRegisterService.loggedIn = false;
+  }
+
   navigateToPreOrder() {
     this.router.navigateByUrl('/preOrder');
   }

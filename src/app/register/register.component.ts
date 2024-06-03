@@ -15,7 +15,7 @@ export class RegisterComponent {
   password!: string;
   confirmPassword!: string;
   acceptTerms = false;
-  showPasswordRequirements = false;
+  showPasswordRequirements = true;
 
   checkRegisterRequirements() {
     if (!this.allInputfieldsHaveValue()) {
@@ -49,12 +49,15 @@ export class RegisterComponent {
     );
   }
 
-  passwordsMatch(){
-    return this.password === this.confirmPassword
+  passwordsMatch() {
+    return this.password === this.confirmPassword;
   }
 
   onFocusPassword() {
     this.showPasswordRequirements = true;
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 1000);
   }
 
   onBlurPassword() {
