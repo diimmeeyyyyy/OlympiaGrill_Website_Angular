@@ -70,51 +70,26 @@ div {
   width: 100%;
 }
 
-.password-requirements {
-  position: absolute;
-  bottom: 40px;
-  height: 150px;
-  background: rgb(63, 80, 181);
-  color: white;
-  width: 110%;
-  border-radius: 20px;
-  padding: 5px;
+.registrationSuccessfully {
+  z-index: 2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   > span {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 10px;
+    color: greenyellow;
+    font-weight: bold;
+    font-size: 35px;
+    text-align: center;
+    position: absolute;
+    top: 100px;
   }
 }
-
-/* .password-inputfield {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border: 1px solid #d1d1d1;
-  border-radius: 20px;
-  background-color: white;
-  cursor: pointer;
-  height: 30px;
-  width: 100%;
-  filter: drop-shadow(2px 4px 6px black);
-  > input {
-    width: 100%;
-    height: 100%;
-    outline: none;
-    border: none;
-    padding: 0;
-    border-radius: 20px;
-    padding-block: 5px;
-    padding-left: 20px;
-    font-size: 20px;
-    &::placeholder {
-      text-align: center;
-      font-weight: 100;
-      font-size: 20px;
-    }
-  }
-} */
 
 /* MEDIA-QUERIES */
 @media (max-width: 800px) {

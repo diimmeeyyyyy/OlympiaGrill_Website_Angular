@@ -16,6 +16,7 @@ export class RegisterComponent {
   constructor(private registerService: LogInAndRegisterService) {}
 
   acceptTerms = false;
+  registrationSuccess = false;
 
   inputfields = [
     {
@@ -41,7 +42,6 @@ export class RegisterComponent {
   ];
 
   addUser() {
-    debugger;
     let user: User = {
       name: this.inputfields[0].value,
       email: this.inputfields[1].value,
@@ -49,6 +49,12 @@ export class RegisterComponent {
     };
     this.registerService.addUser(user);
     this.clearInputfields();
+    debugger;
+    this.successfullyRegistrationMessage();
+  }
+
+  successfullyRegistrationMessage() {
+    this.registrationSuccess = true;
   }
 
   clearInputfields() {
