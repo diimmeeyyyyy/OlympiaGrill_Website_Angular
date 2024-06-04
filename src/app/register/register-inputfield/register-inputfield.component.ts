@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-register-inputfield',
@@ -14,21 +15,54 @@ export class RegisterInputfieldComponent {
   @Input() imgSrc!: string;
   inputValue!: string;
   showPasswordRequirements = false;
+  showPassword = false;
+  comingFromInput = false;
+  @ViewChild('inputfield') inputfield!: ElementRef;
 
   onfocusPassword() {
     if (this.name === 'Passwort') {
       this.showPasswordRequirements = true;
+      this.comingFromInput = true;
+      if (this.showPassword) {
+        this.imgSrc = '/assets/img/visibility.png';
+      } else {
+        this.imgSrc = '/assets/img/visibility_off.png';
+      }
+    } else {
+      this.showPasswordRequirements = false;
     }
   }
 
   onblurPassword() {
     if (this.name === 'Passwort') {
-      this.showPasswordRequirements = false;
+      this.showPassword = false;
+      this.imgSrc = '/assets/img/register-password.png';
+      this.getInputType();
+    }
+    this.showPasswordRequirements = false;
+  }
+
+  passwordVisibility() {
+    debugger;
+    if (this.name === 'Passwort') {
+      this.showPasswordRequirements = true;
+      if (!this.showPassword) {
+        this.showPassword = true;
+        this.imgSrc = '/assets/img/visibility.png';
+      } else {
+        this.showPassword = false;
+        this.imgSrc = '/assets/img/visibility_off.png';
+      }
+      /*  this.inputfield.nativeElement.focus(); */
+      this.getInputType();
     }
   }
 
-  getInputType() {
-    if (this.name === 'Passwort' || this.name === 'Passwort wiederholen') {
+  getInputType(): string {
+    if (
+      (this.name === 'Passwort' || this.name === 'Passwort wiederholen') &&
+      !this.showPassword
+    ) {
       return 'password';
     } else {
       return 'text';

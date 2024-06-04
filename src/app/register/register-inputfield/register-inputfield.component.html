@@ -34,12 +34,17 @@
 
   <section class="inputfield">
     <input
+      #inputfield
       [type]="getInputType()"
       [placeholder]="name"
       [(ngModel)]="inputValue"
       (focus)="onfocusPassword()"
       (blur)="onblurPassword()"
     />
-    <img [src]="imgSrc" />
+    <img
+      [src]="imgSrc"
+      (click)="$event.preventDefault(); passwordVisibility()"
+    />
   </section>
 </main>
+<!-- $event.preventDefault(); -->
