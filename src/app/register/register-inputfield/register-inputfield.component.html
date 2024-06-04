@@ -35,16 +35,18 @@
   <section class="inputfield">
     <input
       #inputfield
+      required
       [type]="getInputType()"
       [placeholder]="name"
-      [(ngModel)]="inputValue"
       (focus)="onfocusPassword()"
       (blur)="onblurPassword()"
+      [(ngModel)]="value"
     />
     <img
       [src]="imgSrc"
-      (click)="$event.preventDefault(); passwordVisibility()"
+      (touchstart)="$event.preventDefault(); passwordVisibility()"
+      (mousedown)="$event.preventDefault(); passwordVisibility()"
     />
   </section>
 </main>
-<!-- $event.preventDefault(); -->
+<!-- [(ngModel)]="inputValue" -->
