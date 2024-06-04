@@ -3,11 +3,12 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { LogInAndRegisterService } from '../shared/firebase-services/log-in-and-register.service';
 import { User } from '../interfaces/user.interface';
+import { RegisterInputfieldComponent } from './register-inputfield/register-inputfield.component';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RegisterInputfieldComponent],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
 })
@@ -21,6 +22,25 @@ export class RegisterComponent {
   acceptTerms = false;
   showPasswordRequirements = false;
 
+  inputfields = [
+    {
+      name: 'Name',
+      imgSrc: '/assets/img/register-name.png',
+    },
+    {
+      name: 'E-Mail',
+      imgSrc: '/assets/img/register-email.png',
+    },
+    {
+      name: 'Passwort',
+      imgSrc: '/assets/img/register-password.png',
+    },
+    {
+      name: 'Passwort wiederholen',
+      imgSrc: '/assets/img/register-password.png',
+    },
+  ];
+
   addUser() {
     debugger;
     let user: User = {
@@ -29,9 +49,17 @@ export class RegisterComponent {
       password: this.password,
     };
     this.registerService.addUser(user);
+    this.clearInputfields();
   }
 
-  checkRegisterRequirements() {
+  clearInputfields() {
+    this.name = '';
+    this.email = '';
+    this.password = '';
+    this.confirmPassword = '';
+  }
+
+ /*  checkRegisterRequirements() {
     if (!this.allInputfieldsHaveValue()) {
       return false;
     }
@@ -45,23 +73,23 @@ export class RegisterComponent {
       return false;
     }
     return true;
-  }
+  } */
 
-  allInputfieldsHaveValue() {
+  /* allInputfieldsHaveValue() {
     return this.name || this.email || this.password || this.confirmPassword;
-  }
+  } */
 
   termsWereAccepted() {
     return this.acceptTerms;
   }
 
-  passwordRequirementsAreFulfilled() {
+ /*  passwordRequirementsAreFulfilled() {
     return (
       this.passwordIsLongEnough() ||
       this.passwordHasCapitalLetter() ||
       this.passwordContainsNumber()
     );
-  }
+  } */
 
   passwordsMatch() {
     return this.password === this.confirmPassword;
@@ -73,19 +101,5 @@ export class RegisterComponent {
 
   onBlurPassword() {
     this.showPasswordRequirements = false;
-  }
-
-  passwordIsLongEnough() {
-    return this.password && this.password.length >= 10;
-  }
-
-  passwordHasCapitalLetter() {
-    const capitalLetter = /[A-Z]/;
-    return this.password && capitalLetter.test(this.password);
-  }
-
-  passwordContainsNumber() {
-    const number = /[0-9]/;
-    return this.password && number.test(this.password);
   }
 }

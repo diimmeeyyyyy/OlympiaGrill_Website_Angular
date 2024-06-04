@@ -20,17 +20,10 @@ div {
   }
   > main {
     z-index: 1;
-    width: 500px;
-    width: 500px;
-    flex-direction: column;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 20px;
-    padding-block: 30px;
+    @include dflex();
     h2 {
       position: absolute;
-      top: 50px;
+      top: 0;
       font-size: 35px;
       padding: 10px;
       border-radius: 10px 0 10px 0;
@@ -41,31 +34,10 @@ div {
 }
 
 .register-form {
-  display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 40px;
-  margin-block: 15px;
-  > input {
-    width: 250px;
-    height: 30px;
-    padding: 5px;
-    padding-left: 20px;
-    border-radius: 20px;
-    border: none;
-    filter: drop-shadow(2px 4px 6px black);
-    /*  font-weight: bold; */
-    font-size: 20px;
-    &::placeholder {
-      text-align: center;
-      font-weight: 100;
-      font-size: 20px;
-    }
-  }
+  @include dflex($g: 32px);
   > span {
-    display: flex;
-    gap: 10px;
+    @include dflex($g: 10px);
     color: white;
     background-color: rgba(0, 0, 0, 0.4);
     border-radius: 20px;
@@ -78,7 +50,6 @@ div {
   > button {
     font-size: 20px;
     padding: 10px;
-    /* background-color: rgb(63, 80, 181); */
     background-color: gray;
     border-radius: 10px;
     color: white;
@@ -93,33 +64,21 @@ div {
 
 .position-password-requirements {
   position: relative;
-  display: flex;
   flex-direction: column;
+  display: flex;
   align-items: center;
-  > input {
-    width: 250px;
-    height: 30px;
-    padding: 5px;
-    padding-left: 20px;
-    border-radius: 20px;
-    border: none;
-    filter: drop-shadow(2px 4px 6px black);
-    font-size: 20px;
-    &::placeholder {
-      text-align: center;
-      font-weight: 100;
-      font-size: 20px;
-    }
-  }
+  width: 100%;
 }
 
 .password-requirements {
   position: absolute;
   bottom: 40px;
   height: 150px;
-  background: antiquewhite;
+  background: rgb(63, 80, 181);
+  color: white;
   width: 110%;
   border-radius: 20px;
+  padding: 5px;
   > span {
     display: flex;
     align-items: center;
@@ -127,6 +86,35 @@ div {
     gap: 10px;
   }
 }
+
+/* .password-inputfield {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #d1d1d1;
+  border-radius: 20px;
+  background-color: white;
+  cursor: pointer;
+  height: 30px;
+  width: 100%;
+  filter: drop-shadow(2px 4px 6px black);
+  > input {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    border: none;
+    padding: 0;
+    border-radius: 20px;
+    padding-block: 5px;
+    padding-left: 20px;
+    font-size: 20px;
+    &::placeholder {
+      text-align: center;
+      font-weight: 100;
+      font-size: 20px;
+    }
+  }
+} */
 
 /* MEDIA-QUERIES */
 @media (max-width: 800px) {

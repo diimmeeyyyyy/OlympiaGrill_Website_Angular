@@ -1,0 +1,43 @@
+@import "./../../../styles.scss";
+
+.inputfield {
+  @include dflex($jc: space-between);
+  background: white;
+  padding: 10px;
+  border-radius: 20px;
+  > input {
+    width: 250px;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    font-size: 20px;
+    padding-left: 10px;
+    &::placeholder {
+      text-align: center;
+      font-size: 20px;
+    }
+  }
+}
+
+main {
+  @include dflex();
+  flex-direction: column;
+}
+
+.password-requirements {
+  position: absolute;
+  bottom: 45px;
+  height: 150px;
+  background: rgb(63, 80, 181);
+  color: white;
+  font-weight: bold;
+  width: 110%;
+  border-radius: 20px;
+  padding: 5px;
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+}

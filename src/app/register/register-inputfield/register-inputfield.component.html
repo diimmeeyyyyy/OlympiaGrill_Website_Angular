@@ -1,0 +1,45 @@
+<main style="position: relative">
+  <section class="password-requirements" *ngIf="showPasswordRequirements">
+    <div>
+      <img
+        [src]="
+          passwordIsLongEnough()
+            ? './assets/img/fulfilledRequirements.png'
+            : './assets/img/unfulfilledRequirements.png'
+        "
+      />
+      <p>Min. 10 Zeichen lang</p>
+    </div>
+    <div>
+      <img
+        [src]="
+          passwordHasCapitalLetter()
+            ? './assets/img/fulfilledRequirements.png'
+            : './assets/img/unfulfilledRequirements.png'
+        "
+      />
+      <p>Min. einen Großbuchstaben</p>
+    </div>
+    <div>
+      <img
+        [src]="
+          passwordContainsNumber()
+            ? './assets/img/fulfilledRequirements.png'
+            : './assets/img/unfulfilledRequirements.png'
+        "
+      />
+      <p>Min. eine Zahl</p>
+    </div>
+  </section>
+
+  <section class="inputfield">
+    <input
+      [type]="getInputType()"
+      [placeholder]="name"
+      [(ngModel)]="inputValue"
+      (focus)="onfocusPassword()"
+      (blur)="onblurPassword()"
+    />
+    <img [src]="imgSrc" />
+  </section>
+</main>

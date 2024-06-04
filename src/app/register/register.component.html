@@ -3,67 +3,22 @@
     <h2>Registrierung</h2>
 
     <section class="register-form">
-      <input [(ngModel)]="name" type="text" placeholder="Name" />
-      <input [(ngModel)]="email" type="email" placeholder="E-Mail" />
+      <app-register-inputfield
+        *ngFor="let field of inputfields"
+        [name]="field.name"
+        [imgSrc]="field.imgSrc"
+      ></app-register-inputfield>
 
-      <aside class="position-password-requirements">
-        <section class="password-requirements" *ngIf="showPasswordRequirements">
-          <span>
-            <img
-              [src]="
-                passwordIsLongEnough()
-                  ? './assets/img/fulfilledRequirements.png'
-                  : './assets/img/unfulfilledRequirements.png'
-              "
-            />
-            <p>Passwort muss min. 10 Zeichen lang sein</p>
-          </span>
-          <span>
-            <img
-              [src]="
-                passwordHasCapitalLetter()
-                  ? './assets/img/fulfilledRequirements.png'
-                  : './assets/img/unfulfilledRequirements.png'
-              "
-            />
-            <p>Passwort muss min. einen Großbuchstaben enthalten</p>
-          </span>
-          <span>
-            <img
-              [src]="
-                passwordContainsNumber()
-                  ? './assets/img/fulfilledRequirements.png'
-                  : './assets/img/unfulfilledRequirements.png'
-              "
-            />
-            <p>Passwort muss min. eine Zahl enthalten</p>
-          </span>
-        </section>
-        <input
-          [(ngModel)]="password"
-          (focus)="onFocusPassword()"
-          (blur)="onBlurPassword()"
-          type="password"
-          placeholder="Passwort"
-        />
-      </aside>
-
-      <input
-        [(ngModel)]="confirmPassword"
-        type="password"
-        placeholder="Passwort wiederholen"
-      />
       <span>
         <input [(ngModel)]="acceptTerms" type="checkbox" name="" id="" />
         <p>Ich akzeptiere die AGB</p>
       </span>
-      <button
-        [disabled]="!checkRegisterRequirements()"
-        [ngClass]="{ 'enable-register-button': checkRegisterRequirements() }"
-        (click)="addUser()"
-      >
-        Registrieren
-      </button>
+      <button (click)="addUser()">Registrieren</button>
     </section>
   </main>
 </div>
+
+<!-- BEIM BUTTON -->
+<!-- 
+[disabled]="!checkRegisterRequirements()" [ngClass]="{ 'enable-register-button':
+checkRegisterRequirements() }" -->
