@@ -13,13 +13,12 @@ import { LogInAndRegisterService } from '../shared/firebase-services/log-in-and-
   styleUrl: './log-in.component.scss',
 })
 export class LogInComponent {
-  /* constructor(private router: Router) {} */
-
   constructor(
-    public logInAndRegisterService: LogInAndRegisterService,
+    public logInService: LogInAndRegisterService,
     private router: Router
   ) {
-    this.logInAndRegisterService.loggedIn = false;
+    this.logInService.loggedIn = false;
+    console.log(logInService.registeredUsers);
   }
 
   navigateToPreOrder() {

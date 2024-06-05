@@ -17,7 +17,7 @@ export class FooterComponent {
   ) {}
 
   checkMarginBottom() {
-    return this.preOrderService.totalItemAmount > 0 && window.innerWidth < 690;
+    return this.preOrderService.totalItemAmount > 0 && window.innerWidth < 450;
   }
 
   navigateToImprint() {

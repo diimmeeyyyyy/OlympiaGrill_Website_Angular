@@ -12,9 +12,6 @@
   > main {
     width: 500px;
     @include dflexColumn($g: 30px);
-    /* border-radius: 20px;
-    padding-block: 30px;
-    background-color: rgba(0, 0, 0, 0.5); */
   }
 }
 
@@ -24,7 +21,7 @@
   @include dflexColumn($g: 5px);
   color: aliceblue;
   background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 20px;
+  border-radius: 5px;
   padding-inline: 10px;
   > h1 {
     font-size: clamp(35px, 4vw, 40px);
@@ -48,17 +45,40 @@
 
 .log-in-button {
   @include dflex($g: 24px);
+  filter: drop-shadow(2px 4px 6px black);
   > img {
     background: $main-color;
     border-radius: 32px;
     cursor: pointer;
+    &:hover {
+      background-color: darkblue;
+    }
+    &:active {
+      background-color: darkblue;
+    }
+  }
+  > button {
+    font-size: 20px;
+    padding: 10px;
+    background-color: $main-color;
+    border-radius: 10px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    filter: drop-shadow(2px 4px 6px black);
+    &:hover {
+      background-color: darkblue;
+    }
+    &:active {
+      background-color: darkblue;
+    }
   }
 }
 
 form {
-  @include dflexColumn($g:20px);
+  @include dflexColumn($g: 20px);
   width: 100%;
-  
+
   > input {
     width: 250px;
     padding: 10px;
@@ -82,9 +102,12 @@ form {
     background-color: $main-color;
     cursor: pointer;
     padding: 5px;
-    border-radius: 0 10px 0 10px;
+    border-radius: 10px;
     &:hover {
       font-weight: bold;
+    }
+    &:active {
+      background-color: rgba(0, 0, 0, 0.5);
     }
   }
   > p {
@@ -92,14 +115,23 @@ form {
   }
 }
 
-/* MEDIA-QUERIES */
+/* ===============
+MEDIA - QUERIES
+==================*/
 @media (max-width: 800px) {
   .position {
     background-size: cover;
     background-position-x: unset;
     background-position-y: unset;
   }
-  /* .headline {
-    top: 100px;
-  } */
+}
+
+@media (min-width: 450px) {
+  .position {
+    > main {
+      border-radius: 20px;
+      padding-block: 30px;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  }
 }
