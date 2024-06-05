@@ -47,9 +47,8 @@
   @include dflex($g: 24px);
   filter: drop-shadow(2px 4px 6px black);
   > img {
-    background: $main-color;
+    background: gray;
     border-radius: 32px;
-    cursor: pointer;
     &:hover {
       background-color: darkblue;
     }
@@ -113,6 +112,11 @@ form {
   > p {
     font-size: 17px;
   }
+}
+
+.enable-logIn-button {
+  background-color: green !important;
+  cursor: pointer;
 }
 
 /* ===============

@@ -12,13 +12,15 @@ import { User } from '../../interfaces/user.interface';
 })
 export class LogInAndRegisterService {
   firestore: Firestore = inject(Firestore);
-  loggedIn: boolean;
+  guestLoggedIn: boolean;
+  userLoggedIn: boolean;
 
   registeredUsers: User[] = [];
   unsubRegisteredUser;
 
   constructor() {
-    this.loggedIn = false;
+    this.guestLoggedIn = false;
+    this.userLoggedIn = false;
     this.unsubRegisteredUser = this.subUser();
   }
 

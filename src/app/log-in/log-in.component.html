@@ -9,16 +9,39 @@
 
       <form onsubmit="logInUser(); return false" class="form">
         <div class="inputfield">
-          <input type="email" placeholder="E-Mail" />
-          <img src="./../../assets/img/register-email.png" />
+          <input
+            type="email"
+            placeholder="E-Mail"
+            #emailInput
+            (input)="
+              emailImage = checkEmail(emailInput.value)
+            "
+          />
+          <img [src]="emailImage" />
         </div>
         <div class="inputfield">
-          <input type="password" placeholder="Passwort" />
-          <img src="./../../assets/img/register-password.png" />
+          <input
+            type="password"
+            placeholder="Passwort"
+            #passwordInput
+            (input)="
+              passwordImage = checkPassword(
+                emailInput.value,
+                passwordInput.value
+              )
+            "
+          />
+          <img [src]="passwordImage" />
         </div>
 
         <div class="log-in-button">
-          <img src="./../../assets/img/log-in.png" />
+          <img
+            src="./../../assets/img/log-in.png"
+            [ngClass]="{
+              'enable-logIn-button': checkLogInData()
+            }"
+            (click)="logInUser()"
+          />
           <button (click)="navigateToPreOrder()">Als Gast anmelden</button>
         </div>
       </form>
@@ -29,3 +52,7 @@
     </div>
   </main>
 </div>
+
+<!-- [ngClass]="{
+  'enable-logIn-button': checkLogInData()
+}" -->

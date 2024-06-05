@@ -17,7 +17,7 @@ export class LogInComponent {
     public logInService: LogInAndRegisterService,
     private router: Router
   ) {
-    this.logInService.loggedIn = false;
+    this.logInService.guestLoggedIn = false;
     console.log(logInService.registeredUsers);
   }
 
@@ -32,5 +32,43 @@ export class LogInComponent {
         behavior: 'smooth',
       });
     });
+  }
+
+  emailImage = '/assets/img/register-email.png';
+  passwordImage = '/assets/img/register-password.png';
+
+  checkEmail(email: string) {
+    const userEmail = this.logInService.registeredUsers.find(
+      (user) => user.email === email
+    );
+
+    if (userEmail) {
+      return '/assets/img/dataExist.png';
+    } else {
+      return '/assets/img/register-email.png';
+    }
+  }
+
+  checkPassword(email: string, password: string) {
+    const userData = this.logInService.registeredUsers.find(
+      (user) => user.email === email && user.password === password
+    );
+
+    if (userData) {
+      return '/assets/img/dataExist.png';
+    } else {
+      return '/assets/img/register-password.png';
+    }
+  }
+
+  checkLogInData() {
+    return this.emailImage === this.passwordImage;
+  }
+
+  logInUser() {
+    if (this.checkLogInData()) {
+      this.navigateToPreOrder();
+      this.logInService.userLoggedIn = true;
+    }
   }
 }
