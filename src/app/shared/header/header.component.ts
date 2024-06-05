@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { LogInAndRegisterService } from '../firebase-services/log-in-and-register.service';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,10 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    public logInService: LogInAndRegisterService
+  ) {}
   menuOpen = false;
 
   closeMenu() {
@@ -34,5 +38,17 @@ export class HeaderComponent {
 
   screenIsLarge() {
     return window.innerWidth >= 1024;
+  }
+
+  getGreetingName() {
+    if (!this.logInService.loggedInUser) {
+      return 'Gast';
+    } else {
+      return this.logInService.loggedInUser.name;
+    }
+  }
+
+  logOut() {
+    this.router.navigateByUrl('/');
   }
 }

@@ -7,7 +7,6 @@ import { CommonModule } from '@angular/common';
 import { filter, map } from 'rxjs/operators';
 import { LogInAndRegisterService } from './shared/firebase-services/log-in-and-register.service';
 
-
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -22,9 +21,15 @@ import { LogInAndRegisterService } from './shared/firebase-services/log-in-and-r
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  /*  logInAndRegisterService = inject(LogInComponent); */
   title = 'olympiaGrill';
-  
 
   constructor(public logInAndRegisterService: LogInAndRegisterService) {}
+
+  checkIfLoggedIn() {
+    if (this.logInAndRegisterService.loggedIn) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

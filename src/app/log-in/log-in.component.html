@@ -13,9 +13,7 @@
             type="email"
             placeholder="E-Mail"
             #emailInput
-            (input)="
-              emailImage = checkEmail(emailInput.value)
-            "
+            (input)="emailImage = checkEmail(emailInput.value)"
           />
           <img [src]="emailImage" />
         </div>
@@ -38,9 +36,12 @@
           <img
             src="./../../assets/img/log-in.png"
             [ngClass]="{
-              'enable-logIn-button': checkLogInData()
+              'enable-logIn-button': userExists(
+                emailInput.value,
+                passwordInput.value
+              )
             }"
-            (click)="logInUser()"
+            (click)="logInUser(emailInput.value, passwordInput.value)"
           />
           <button (click)="navigateToPreOrder()">Als Gast anmelden</button>
         </div>

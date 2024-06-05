@@ -14,6 +14,8 @@ export class LogInAndRegisterService {
   firestore: Firestore = inject(Firestore);
   guestLoggedIn: boolean;
   userLoggedIn: boolean;
+  loggedIn: boolean;
+  loggedInUser!: User;
 
   registeredUsers: User[] = [];
   unsubRegisteredUser;
@@ -21,7 +23,12 @@ export class LogInAndRegisterService {
   constructor() {
     this.guestLoggedIn = false;
     this.userLoggedIn = false;
+    this.loggedIn = false;
     this.unsubRegisteredUser = this.subUser();
+  }
+
+  setLoggedInUser(user: User) {
+    this.loggedInUser = user;
   }
 
   ngonDestroy() {

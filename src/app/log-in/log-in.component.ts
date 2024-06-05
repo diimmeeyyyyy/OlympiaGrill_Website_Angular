@@ -17,11 +17,16 @@ export class LogInComponent {
     public logInService: LogInAndRegisterService,
     private router: Router
   ) {
+    logInService.loggedIn = false;
     this.logInService.guestLoggedIn = false;
+    logInService.userLoggedIn = false;
     console.log(logInService.registeredUsers);
   }
 
   navigateToPreOrder() {
+    if (!this.logInService.userLoggedIn) {
+      this.logInService.guestLoggedIn = true;
+    }
     this.router.navigateByUrl('/preOrder');
   }
 
@@ -50,9 +55,7 @@ export class LogInComponent {
   }
 
   checkPassword(email: string, password: string) {
-    const userData = this.logInService.registeredUsers.find(
-      (user) => user.email === email && user.password === password
-    );
+    const userData = this.userExists(email, password);
 
     if (userData) {
       return '/assets/img/dataExist.png';
@@ -61,14 +64,18 @@ export class LogInComponent {
     }
   }
 
-  checkLogInData() {
-    return this.emailImage === this.passwordImage;
+  logInUser(email: string, password: string) {
+    const user = this.userExists(email, password);
+    if (user) {
+      this.logInService.setLoggedInUser(user);
+      this.logInService.userLoggedIn = true;
+      this.navigateToPreOrder();
+    }
   }
 
-  logInUser() {
-    if (this.checkLogInData()) {
-      this.navigateToPreOrder();
-      this.logInService.userLoggedIn = true;
-    }
+  userExists(email: string, password: string) {
+    return this.logInService.registeredUsers.find(
+      (user) => user.email === email && user.password === password
+    );
   }
 }
