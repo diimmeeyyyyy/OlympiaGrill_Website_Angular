@@ -14,17 +14,23 @@
         <input [(ngModel)]="acceptTerms" type="checkbox" name="" id="" />
         <p>Ich akzeptiere die AGB</p>
       </span>
-      <button
-        (click)="addUser()"
-        [disabled]="!checkRegisterRequirements()"
-        [ngClass]="{ 'enable-register-button': checkRegisterRequirements() }"
-      >
-        Registrieren
-      </button>
+      <div>
+        <img src="/assets/img/back-to-logIn.png" (click)="navigateToLogIn()" />
+        <button
+          (click)="addUser()"
+          [disabled]="!checkRegisterRequirements()"
+          [ngClass]="{ 'enable-register-button': checkRegisterRequirements() }"
+        >
+          Registrieren
+        </button>
+      </div>
     </section>
   </main>
 </div>
 
 <section *ngIf="registrationSuccess" class="registrationSuccessfully">
-  <span> Registrierung erfolgreich!</span>
+  <span>
+    Registrierung erfolgreich! <br /><br />
+    Weiterleitung zur Anmeldung in {{ countdown }}
+  </span>
 </section>

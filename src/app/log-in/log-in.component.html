@@ -1,33 +1,35 @@
 <div class="position">
+  <section class="headline">
+    <h1>OLYMPIA - GRILL</h1>
+    <h2>HOLZWICKEDE</h2>
+  </section>
   <main>
-    <div class="headline">
-      <h1>OLYMPIA - GRILL</h1>
-      <h2>HOLZWICKEDE</h2>
-    </div>
+    <section class="log-in">
+      <h2 class="headline-log-in">Anmeldung</h2>
 
-    <h2 class="log-in">Anmeldung</h2>
+      <form onsubmit="logInUser(); return false" class="form">
+        <div class="inputfield">
+          <input type="email" placeholder="E-Mail" />
+          <img src="./../../assets/img/register-email.png" />
+        </div>
+        <div class="inputfield">
+          <input type="password" placeholder="Passwort" />
+          <img src="./../../assets/img/register-password.png" />
+        </div>
 
-    <form onsubmit="logInUser(); return false" class="form">
-      <input type="email" placeholder="E-Mail" />
-      <input type="password" placeholder="Passwort" />
-      <div class="log-in-button">
-        <button
-          mat-fab
-          color="primary"
-          aria-label="Example icon button with a delete icon"
-        >
-          <mat-icon>login</mat-icon>
-        </button>
-        <button
-          mat-flat-button
-          color="primary"
-          aria-label="Example icon button with a delete icon"
-          (click)="navigateToPreOrder()"
-        >
-          Guest Log-In
-        </button>
-      </div>
-    </form>
+        <div class="log-in-button">
+          <img src="./../../assets/img/log-in.png">
+          <button
+            mat-flat-button
+            color="primary"
+            aria-label="Example icon button with a delete icon"
+            (click)="navigateToPreOrder()"
+          >
+            Guest Log-In
+          </button>
+        </div>
+      </form>
+    </section>
     <div class="not-registered-yet-div">
       <p>Noch nicht registriert?</p>
       <a (click)="navigateToRegister()">Registrieren</a>

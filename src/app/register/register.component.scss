@@ -1,6 +1,6 @@
 @import "./../../styles.scss";
 
-div {
+.background {
   height: 100vh;
   width: 100vw;
   @include dflex();
@@ -26,7 +26,7 @@ div {
       top: 0;
       font-size: 35px;
       padding: 10px;
-      border-radius: 10px 0 10px 0;
+      border-radius: 0 0 10px 10px;
       background-color: rgb(63, 80, 181);
       color: white;
     }
@@ -34,20 +34,28 @@ div {
 }
 
 .register-form {
-  flex-direction: column;
-  @include dflex($g: 32px);
+  @include dflexColumn($g: 32px);
   > span {
     @include dflex($g: 10px);
     color: white;
     background-color: rgba(0, 0, 0, 0.4);
     border-radius: 20px;
-    padding: 5px;
+    padding: 10px;
     > input {
       margin: 0;
       width: 20px;
+      height: 20px;
     }
   }
-  > button {
+  > div {
+    @include dflex($g: 30px);
+  }
+  > div img {
+    width: 70px;
+    filter: drop-shadow(2px 4px 6px black);
+    cursor: pointer;
+  }
+  > div button {
     font-size: 20px;
     padding: 10px;
     background-color: gray;
@@ -55,19 +63,12 @@ div {
     color: white;
     border: none;
     cursor: pointer;
+    filter: drop-shadow(2px 4px 6px black);
   }
 }
 
 .enable-register-button {
   background-color: green !important;
-}
-
-.position-password-requirements {
-  position: relative;
-  flex-direction: column;
-  display: flex;
-  align-items: center;
-  width: 100%;
 }
 
 .registrationSuccessfully {
@@ -78,9 +79,7 @@ div {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include dflex();
   > span {
     color: greenyellow;
     font-weight: bold;
@@ -91,9 +90,28 @@ div {
   }
 }
 
-/* MEDIA-QUERIES */
+/* ==============
+MEDIA-QUERIES
+=================*/
+@media (min-width: 450px) {
+  .register-form {
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 10px;
+    border-radius: 20px;
+    > span {
+      background-color: unset;
+    }
+    > div img {
+      filter: unset;
+    }
+    > div button {
+      filter: unset;
+    }
+  }
+}
+
 @media (max-width: 800px) {
-  div {
+  .background {
     background-size: cover;
     background-position-x: unset;
     background-position-y: unset;

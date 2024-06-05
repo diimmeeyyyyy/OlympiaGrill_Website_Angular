@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { LogInAndRegisterService } from '../shared/firebase-services/log-in-and-register.service';
 import { User } from '../interfaces/user.interface';
 import { RegisterInputfieldComponent } from './register-inputfield/register-inputfield.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -13,10 +14,14 @@ import { RegisterInputfieldComponent } from './register-inputfield/register-inpu
   styleUrl: './register.component.scss',
 })
 export class RegisterComponent {
-  constructor(private registerService: LogInAndRegisterService) {}
+  constructor(
+    private registerService: LogInAndRegisterService,
+    private router: Router
+  ) {}
 
   acceptTerms = false;
   registrationSuccess = false;
+  countdown = 5;
 
   inputfields = [
     {
@@ -49,12 +54,23 @@ export class RegisterComponent {
     };
     this.registerService.addUser(user);
     this.clearInputfields();
-    debugger;
     this.successfullyRegistrationMessage();
   }
 
   successfullyRegistrationMessage() {
     this.registrationSuccess = true;
+    this.startCountdown();
+  }
+
+  startCountdown() {
+    const intervalId = setInterval(() => {
+      this.countdown--;
+
+      if (this.countdown === 0) {
+        clearInterval(intervalId);
+        this.router.navigate(['/']);
+      }
+    }, 1000);
   }
 
   clearInputfields() {
@@ -118,5 +134,9 @@ export class RegisterComponent {
 
   passwordsMatch() {
     return this.inputfields[2].value === this.inputfields[3].value;
+  }
+
+  navigateToLogIn() {
+    this.router.navigateByUrl('/');
   }
 }

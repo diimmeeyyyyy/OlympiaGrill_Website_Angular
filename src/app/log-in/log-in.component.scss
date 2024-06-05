@@ -11,30 +11,31 @@
   background-color: antiquewhite;
   > main {
     width: 500px;
-    flex-direction: column;
-    @include dflex($g: 30px);
-    border-radius: 20px;
+    @include dflexColumn($g: 30px);
+    /* border-radius: 20px;
     padding-block: 30px;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5); */
   }
 }
 
 .headline {
   position: absolute;
   top: 20px;
-  flex-direction: column;
-  @include dflex($g: 5px);
+  @include dflexColumn($g: 5px);
   color: aliceblue;
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 20px;
   padding-inline: 10px;
-  padding-top: 10px;
   > h1 {
-    font-size: clamp(25px, 4vw, 40px);
+    font-size: clamp(35px, 4vw, 40px);
   }
 }
 
 .log-in {
+  @include dflexColumn($g: 15px);
+}
+
+.headline-log-in {
   padding: 10px;
   border-radius: 10px 0 10px 0;
   background-color: $main-color;
@@ -47,14 +48,17 @@
 
 .log-in-button {
   @include dflex($g: 24px);
+  > img {
+    background: $main-color;
+    border-radius: 32px;
+    cursor: pointer;
+  }
 }
 
 form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include dflexColumn($g:20px);
   width: 100%;
-  gap: 20px;
+  
   > input {
     width: 250px;
     padding: 10px;
@@ -62,11 +66,12 @@ form {
   }
 }
 
+.inputfield {
+  @include inputfield();
+}
+
 .not-registered-yet-div {
-  position: absolute;
-  bottom: 40px;
-  flex-direction: column;
-  @include dflex($g: 10px);
+  @include dflexColumn($g: 10px);
   background-color: antiquewhite;
   border-radius: 20px;
   padding: 10px;
@@ -94,7 +99,7 @@ form {
     background-position-x: unset;
     background-position-y: unset;
   }
-  .headline {
+  /* .headline {
     top: 100px;
-  }
+  } */
 }
