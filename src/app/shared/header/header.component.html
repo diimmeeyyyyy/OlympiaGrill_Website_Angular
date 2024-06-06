@@ -1,10 +1,6 @@
 <header #Header>
   <img src="./assets/img/papa.png" />
 
-  <!-- <section>
-    <p>Hallo {{ getGreetingName() }}</p>
-  </section> -->
-
   <nav *ngIf="!screenIsLarge()">
     <div class="navbar">
       <div class="container nav-container">
@@ -38,6 +34,7 @@
     <div class="menu-large-screen">
       <p (click)="navigateToPreOrder()">Zum Abholen vorbestellen</p>
       <p href="">Kontakt & Anfahrt</p>
+      <p (click)="logOut()">Abmelden</p>
     </div>
   </nav>
 </header>

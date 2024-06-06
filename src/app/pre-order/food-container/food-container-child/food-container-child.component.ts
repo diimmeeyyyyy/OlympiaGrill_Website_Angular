@@ -100,7 +100,10 @@ export class FoodContainerChildComponent {
       return 'backgroundFoodClassGY';
     } else if (this.dish.foodClass === 'K') {
       return 'backgroundFoodClassK';
-    } else {
+    }else if(this.dish.foodClass === 'GYSP'){
+      return 'backgroundFoodClassGYSP'
+    } 
+    else {
       return 'backgroundFoodClassGR';
     }
   }

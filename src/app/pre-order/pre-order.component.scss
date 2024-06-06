@@ -1,7 +1,13 @@
 @import "./../../styles.scss";
 
+app-pre-order {
+  flex-grow: 1;
+  display: flex;
+}
+
 main {
   display: flex;
+  flex-grow: 1;
 }
 
 .meal-section {

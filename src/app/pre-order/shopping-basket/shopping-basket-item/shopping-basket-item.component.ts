@@ -63,14 +63,37 @@ export class ShoppingBasketItemComponent {
       return this.toppingsStringGR();
     } else if (this.dish.foodClass === 'S') {
       return this.toppingsStringS();
-    } else if (this.dish.foodClass === 'TX' || this.dish.foodClass === 'CP') {
-      if (this.dish.toppings.length === 0) {
-        return 'Nichts drauf';
-      } else {
-        return this.dish.toppings.join(', ');
-      }
+    } else if (
+      this.dish.foodClass === 'TX' ||
+      this.dish.foodClass === 'CP' ||
+      this.dish.foodClass === 'GY'
+    ) {
+      return this.toppingsStringTX();
+    } else if (
+      this.dish.foodClass === 'PITA' ||
+      this.dish.foodClass === 'BUR'
+    ) {
+      return this.toppingsStringPITA();
+    } else if (this.dish.foodClass === 'GYSP') {
+      return this.toppingsStringGYSP();
     } else {
-      return this.dish.toppings;
+      return this.dish.toppings.join(', ');
+    }
+  }
+
+  toppingsStringPITA() {
+    if (this.dish.toppings.length === 0) {
+      return 'komplett';
+    } else {
+      return this.dish.toppings.join(', ');
+    }
+  }
+
+  toppingsStringTX() {
+    if (this.dish.toppings.length === 0) {
+      return 'Nichts drauf';
+    } else {
+      return this.dish.toppings.join(', ');
     }
   }
 
@@ -89,7 +112,7 @@ export class ShoppingBasketItemComponent {
       this.dish.sides === 'Mit Pommes' &&
       this.dish.toppings.length === 0
     ) {
-      return 'Mit Pommes';
+      return 'Mit Pommes ohne';
     } else if (
       this.dish.sides === 'Mit Pommes' &&
       this.dish.toppings.length !== 0
@@ -97,6 +120,21 @@ export class ShoppingBasketItemComponent {
       return 'Mit Pommes ' + this.dish.toppings.join(', ');
     } else {
       return;
+    }
+  }
+
+  toppingsStringGYSP() {
+    if (this.dish.sides === 'Ohne Beilage') {
+      return this.dish.gyrosSpecial + ', ohne Beilage';
+    } else if (
+      this.dish.sides === 'Mit Pommes' &&
+      this.dish.toppings.length === 0
+    ) {
+      return this.dish.gyrosSpecial + ' und mit Pommes ohne';
+    } else {
+      return (
+        this.dish.gyrosSpecial + 'und Pommes' + this.dish.toppings.join(', ')
+      );
     }
   }
 }

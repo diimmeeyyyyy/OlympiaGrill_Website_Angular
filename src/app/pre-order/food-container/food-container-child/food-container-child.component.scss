@@ -184,6 +184,11 @@ button {
   background-position-x: -15px;
 }
 
+.backgroundFoodClassGYSP {
+  background-image: url("./../../../../assets/img/backgroundFoodClassGYSP.jpg");
+  background-size: cover;
+}
+
 @mixin surroundingDiv($fd: column) {
   display: flex;
   flex-direction: $fd;

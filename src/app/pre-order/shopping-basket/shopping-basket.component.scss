@@ -169,6 +169,7 @@ main {
   left: 50%;
   bottom: 0;
   transform: translateX(-50%);
+  filter: drop-shadow(2px 4px 6px black);
   z-index: 100;
 }
 

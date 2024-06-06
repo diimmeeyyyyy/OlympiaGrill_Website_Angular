@@ -15,7 +15,6 @@ import { subscriptionLogsToBeFn } from 'rxjs/internal/testing/TestScheduler';
 import { FoodClass } from '../../interfaces/food-class.interface';
 import { ShoppingBasketItem } from '../../interfaces/shopping-basket-item.interface';
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -136,6 +135,14 @@ export class PreorderdataService {
     this.unsubChildren();
     this.unsubSchnitzel();
     this.unsubGrilledDishes();
+    this.unsubFoodClassTX();
+    this.unsubFoodClassS();
+    this.unsubFoodClassGR();
+    this.unsubFoodClassPITA();
+    this.unsubFoodClassGY();
+    this.unsubFoodClassPITAVEG();
+    this.unsubFoodClassBUR();
+    this.unsubFoodClassK();
   }
 
   //Um auf die jeweilige Collection zuzugreifen:
