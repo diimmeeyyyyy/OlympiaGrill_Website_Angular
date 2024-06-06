@@ -100,10 +100,13 @@ export class FoodContainerChildComponent {
       return 'backgroundFoodClassGY';
     } else if (this.dish.foodClass === 'K') {
       return 'backgroundFoodClassK';
-    }else if(this.dish.foodClass === 'GYSP'){
-      return 'backgroundFoodClassGYSP'
-    } 
-    else {
+    } else if (this.dish.foodClass === 'GYSP') {
+      return 'backgroundFoodClassGYSP';
+    } else if (this.dish.foodClass === 'BUR') {
+      return 'backgroundFoodClassBUR';
+    } else if (this.dish.foodClass === 'GYSA') {
+      return 'backgroundFoodClassGYSA';
+    } else {
       return 'backgroundFoodClassGR';
     }
   }
@@ -157,7 +160,7 @@ export class FoodContainerChildComponent {
   pulse(event: MouseEvent) {
     const element = event.target as HTMLElement;
     element.classList.add('pulse');
-  
+
     setTimeout(() => {
       element.classList.remove('pulse');
     }, 200); // 200ms matches the animation duration

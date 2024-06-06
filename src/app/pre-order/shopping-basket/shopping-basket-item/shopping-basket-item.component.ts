@@ -76,6 +76,10 @@ export class ShoppingBasketItemComponent {
       return this.toppingsStringPITA();
     } else if (this.dish.foodClass === 'GYSP') {
       return this.toppingsStringGYSP();
+    } else if (this.dish.foodClass === 'GYSA') {
+      return this.toppingsStringGYSA();
+    } else if (this.dish.foodClass === 'BIF') {
+      return this.toppingsStringBIF();
     } else {
       return this.dish.toppings.join(', ');
     }
@@ -134,6 +138,24 @@ export class ShoppingBasketItemComponent {
     } else {
       return (
         this.dish.gyrosSpecial + 'und Pommes' + this.dish.toppings.join(', ')
+      );
+    }
+  }
+
+  toppingsStringGYSA() {
+    if (this.dish.toppings.length === 0) {
+      return 'Mit ' + this.dish.salad;
+    } else {
+      return 'Mit ' + this.dish.salad + ', ' + this.dish.toppings.join(', ');
+    }
+  }
+
+  toppingsStringBIF() {
+    if (this.dish.toppings.length === 0) {
+      return this.dish.bifteki + ' und ' + this.dish.salad;
+    } else {
+      return (
+        this.dish.bifteki + ' , ' + this.dish.salad + ' , ' + this.dish.toppings.join(', ')
       );
     }
   }

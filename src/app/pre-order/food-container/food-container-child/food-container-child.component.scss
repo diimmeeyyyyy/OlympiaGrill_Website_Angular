@@ -187,6 +187,18 @@ button {
 .backgroundFoodClassGYSP {
   background-image: url("./../../../../assets/img/backgroundFoodClassGYSP.jpg");
   background-size: cover;
+  background-position: right;
+}
+
+.backgroundFoodClassBUR {
+  background-image: url("./../../../../assets/img/backgroundFoodClassCP.jpg");
+  background-size: cover;
+  background-position-x: -55px;
+}
+
+.backgroundFoodClassGYSA {
+  background-image: url("./../../../../assets/img/backgroundFoodClassGYSA.jpg");
+  background-size: cover;
 }
 
 @mixin surroundingDiv($fd: column) {
