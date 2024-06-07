@@ -39,8 +39,8 @@ export class LogInComponent {
     });
   }
 
-  emailImage = '/assets/img/register-email.png';
-  passwordImage = '/assets/img/register-password.png';
+  emailImage = './assets/img/register-email.png';
+  passwordImage = './assets/img/register-password.png';
 
   checkEmail(email: string) {
     const userEmail = this.logInService.registeredUsers.find(
@@ -48,9 +48,9 @@ export class LogInComponent {
     );
 
     if (userEmail) {
-      return '/assets/img/dataExist.png';
+      return './assets/img/dataExist.png';
     } else {
-      return '/assets/img/register-email.png';
+      return './assets/img/register-email.png';
     }
   }
 
@@ -58,9 +58,9 @@ export class LogInComponent {
     const userData = this.userExists(email, password);
 
     if (userData) {
-      return '/assets/img/dataExist.png';
+      return './assets/img/dataExist.png';
     } else {
-      return '/assets/img/register-password.png';
+      return './assets/img/register-password.png';
     }
   }
 

@@ -18,6 +18,17 @@
     filter: drop-shadow(2px 4px 6px black);
   }
 }
+.food-container-child::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: -1;
+  border-radius: 20px;
+}
 
 @keyframes scaleInAnimation {
   from {
@@ -191,14 +202,24 @@ button {
 }
 
 .backgroundFoodClassBUR {
-  background-image: url("./../../../../assets/img/backgroundFoodClassCP.jpg");
+  background-image: url("./../../../../assets/img/backgroundFoodClassBUR.jpg");
   background-size: cover;
-  background-position-x: -55px;
+  background-position-x: -120px;
+  background-position-y: 10px;
 }
 
 .backgroundFoodClassGYSA {
   background-image: url("./../../../../assets/img/backgroundFoodClassGYSA.jpg");
   background-size: cover;
+}
+
+.backgrondFoodClassPITAVEG {
+  background-image: url("./../../../../assets/img/backgroundFoodClassPITAVEG.jpg");
+  background-position-x: -5px;
+}
+
+.backgroundFoodClassCP {
+  background-image: url("./../../../../assets/img/backgroundFoodClassCP.jpg");
 }
 
 @mixin surroundingDiv($fd: column) {
@@ -228,5 +249,11 @@ MEDIA-QUERIES
 @media (min-width: 420px) {
   .food-container-child {
     width: 420px;
+  }
+}
+
+@media (min-width: 680px) {
+  .food-container-child {
+    border: none;
   }
 }

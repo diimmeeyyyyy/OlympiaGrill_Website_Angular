@@ -106,6 +106,10 @@ export class FoodContainerChildComponent {
       return 'backgroundFoodClassBUR';
     } else if (this.dish.foodClass === 'GYSA') {
       return 'backgroundFoodClassGYSA';
+    } else if (this.dish.foodClass === 'PITAVEG') {
+      return 'backgrondFoodClassPITAVEG';
+    } else if (this.dish.foodClass === 'CP') {
+      return 'backgroundFoodClassCP';
     } else {
       return 'backgroundFoodClassGR';
     }
