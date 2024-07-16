@@ -175,7 +175,7 @@ MENU-LARGE-SCREEN
 =================*/
 .menu-large-screen {
   @include dflex($g: 20px);
-  > p {
+  > a {
     cursor: pointer;
     text-decoration: none;
     background-color: rgb(55, 103, 189);

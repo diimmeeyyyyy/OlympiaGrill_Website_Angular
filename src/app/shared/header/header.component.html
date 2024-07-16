@@ -23,7 +23,7 @@
               >Zum Abholen vorbestellen</a
             >
           </li>
-          <li><a (click)="closeMenu()">Kontakt & Anfahrt</a></li>
+          <!-- <li><a (click)="closeMenu()">Kontakt & Anfahrt</a></li> -->
           <li><a (click)="logOut()">Abmelden</a></li>
         </div>
       </div>
@@ -32,9 +32,9 @@
 
   <nav *ngIf="screenIsLarge()">
     <div class="menu-large-screen">
-      <p (click)="navigateToPreOrder()">Zum Abholen vorbestellen</p>
-      <p href="">Kontakt & Anfahrt</p>
-      <p (click)="logOut()">Abmelden</p>
+      <a (click)="navigateToPreOrder()">Zum Abholen vorbestellen</a>
+      <!-- <p href="">Kontakt & Anfahrt</p> -->
+      <a (click)="logOut()">Abmelden</a>
     </div>
   </nav>
 </header>

@@ -20,7 +20,6 @@ export class LogInComponent {
     logInService.loggedIn = false;
     this.logInService.guestLoggedIn = false;
     logInService.userLoggedIn = false;
-    console.log(logInService.registeredUsers);
   }
 
   navigateToPreOrder() {

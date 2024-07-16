@@ -1,3 +1,5 @@
-<app-header *ngIf="checkIfLoggedIn()"></app-header>
-<router-outlet />
-<app-footer *ngIf="checkIfLoggedIn()"></app-footer>
+<main class="flex-container">
+  <app-header *ngIf="checkIfLoggedIn()"></app-header>
+  <router-outlet />
+  <app-footer *ngIf="checkIfLoggedIn()"></app-footer>
+</main>

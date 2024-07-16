@@ -188,7 +188,7 @@ MEDIA - QUERIES
 
 @media (min-width: 1024px) {
   app-pre-order {
-    flex-grow: unset;
+    /* flex-grow: unset; */
     display: unset;
   }
 }

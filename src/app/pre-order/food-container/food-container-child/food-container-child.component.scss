@@ -62,15 +62,6 @@ button {
   }
 }
 
-/* .close-button {
-  position: absolute;
-  right: 0;
-  top: 0;
-  background: lightcoral;
-  border-radius: 0px 18px 0 18px;
-  border: none;
-} */
-
 .all-toppings {
   @include dflexColumn($jc: unset, $ai: unset, $g: 10px);
   margin-block: 5px;
