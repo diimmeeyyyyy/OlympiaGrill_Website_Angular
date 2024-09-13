@@ -68,6 +68,8 @@
       class="order-request-btn"
       *ngIf="!basketIsEmpty()"
       [ngClass]="{ 'ready-to-request': minOrderValue() }"
+      [disabled]="!minOrderValue()"
+      (click)="sendOrderRequest()"
     >
       <p>Bestellanfrage schicken</p>
       <p>{{ getTotalPrice() }} €</p>

@@ -15,6 +15,7 @@ import { Dish } from '../interfaces/dish.interface';
 import { FoodContainerChildComponent } from './food-container/food-container-child/food-container-child.component';
 import { ShoppingBasketComponent } from './shopping-basket/shopping-basket.component';
 import { LogInAndRegisterService } from '../shared/firebase-services/log-in-and-register.service';
+import { ShoppingbasketService } from '../shared/firebase-services/shoppingbasket.service';
 
 @Component({
   selector: 'app-pre-order',
@@ -33,6 +34,7 @@ import { LogInAndRegisterService } from '../shared/firebase-services/log-in-and-
 })
 export class PreOrderComponent {
   preorderdata = inject(PreorderdataService);
+  basketService = inject(ShoppingbasketService);
   showChildContainer = false;
   selectedFoodType: string = '';
 
@@ -112,7 +114,7 @@ export class PreOrderComponent {
 
   redirectionButtonToShoppingBasket() {
     if (window.innerWidth <= 1024) {
-      return this.preorderdata.totalItemAmount > 0;
+      return this.basketService.totalItemAmount > 0;
     } else {
       return false;
     }

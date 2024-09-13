@@ -11,6 +11,7 @@ import { PreorderdataService } from '../../shared/firebase-services/preorderdata
 import { ShoppingBasketItemComponent } from './shopping-basket-item/shopping-basket-item.component';
 import { ChangeDetectorRef } from '@angular/core';
 import { ShoppingbasketService } from '../../shared/firebase-services/shoppingbasket.service';
+import { OrderRequest } from '../../interfaces/orderRequest.interface';
 
 @Component({
   selector: 'app-shopping-basket',
@@ -166,7 +167,21 @@ export class ShoppingBasketComponent {
     });
   }
 
-  /*  sendOrderRequest(){
+  sendOrderRequest() {
+    let order:OrderRequest ={
+      client:'DIMI TEST',
+      order: this.basketService.shoppingBasket
+    }
+    debugger;
+    console.log(this.basketService.shoppingBasket);
+    //todo Bestellung in Firebase hinzufügen
+    this.basketService.requestOrder(order);
 
-  } */
+    /* todo basket leeren */
+    this.basketService.shoppingBasket.length = 0;
+    this.basketService.totalItemAmount = 0;
+    this.closeShoppingBasket();
+
+    /* todo Benachrichtigung, dass die Bestellanfrage bei uns eingeangen ist */
+  }
 }

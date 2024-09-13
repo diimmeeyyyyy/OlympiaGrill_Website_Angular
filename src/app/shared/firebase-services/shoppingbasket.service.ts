@@ -1,10 +1,13 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { ShoppingBasketItem } from '../../interfaces/shopping-basket-item.interface';
+import { addDoc, collection, Firestore } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ShoppingbasketService {
+  firestore: Firestore = inject(Firestore);
+
   shoppingBasket: ShoppingBasketItem[] = [];
   totalItemAmount = this.shoppingBasket.reduce(
     (total, item) => total + item.amount,
@@ -75,4 +78,23 @@ export class ShoppingbasketService {
     }
     return true;
   }
+
+  async requestOrder(order: any) {
+    console.log('Bestellanfrage wurde gesendet');
+    await addDoc(this.getRequestOrderRef(), order);
+  }
+
+  getRequestOrderRef() {
+    let requestOrder = collection(this.firestore, 'orderRequests');
+    return requestOrder;
+  }
+
+  /*  async addUser(user: User) {
+    await addDoc(this.getRegisteredUsersRef(), user);
+  }
+
+  getRegisteredUsersRef() {
+    const registeredUsers = collection(this.firestore, 'registeredUsers');
+    return registeredUsers;
+  } */
 }
