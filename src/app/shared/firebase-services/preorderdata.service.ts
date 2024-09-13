@@ -177,21 +177,16 @@ export class PreorderdataService {
     };
   }
 
-  async addToShoppingBasket(item: ShoppingBasketItem) {
-    /* await addDoc(this.getShoppingBasketRef(), item); */
+  /* async addToShoppingBasket(item: ShoppingBasketItem) {
     this.shoppingBasket.push(item);
     this.totalItemAmount += item.amount;
-    console.log(this.shoppingBasket);
-    //CATCH & THEN
   }
 
   getShoppingBasketRef() {
     return collection(this.firestore, 'shoppingBasket');
   }
 
-  /* =================================================
-  TO CHECK IF ITEM ALREADY EXISTS IN SHOPPING-BASKET
-  =====================================================*/
+
   checkIfDishAlreadyExistsInBasket(item: ShoppingBasketItem) {
     if (this.dishAlreadyExistsInBasket(item)) {
       let index = this.getDishIndex(item);
@@ -238,5 +233,5 @@ export class PreorderdataService {
       }
     }
     return true;
-  }
+  } */
 }

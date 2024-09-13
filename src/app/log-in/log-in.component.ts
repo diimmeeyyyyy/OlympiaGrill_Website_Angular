@@ -27,6 +27,7 @@ export class LogInComponent {
       this.logInService.guestLoggedIn = true;
     }
     this.router.navigateByUrl('/preOrder');
+    document.body.style.overflow = 'auto';
   }
 
   navigateToRegister() {

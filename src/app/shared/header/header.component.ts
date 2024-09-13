@@ -50,5 +50,6 @@ export class HeaderComponent {
 
   logOut() {
     this.router.navigateByUrl('/');
+    this.logInService.loggedIn = false;
   }
 }

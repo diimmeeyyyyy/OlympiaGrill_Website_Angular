@@ -15,16 +15,6 @@ main {
   background-image: url("./../../../assets/img/shoppingBasketBackground.jpg");
   background-size: cover;
 }
-/* main::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.2);
-  z-index: -1;
-} */
 
 .headline-and-closing-button {
   display: flex;
@@ -35,7 +25,7 @@ main {
     margin-top: 10px;
     font-size: 32px;
     text-align: center;
-    color: rgb(55, 103, 189);
+    /* color: rgb(55, 103, 189); */
     background-color: aliceblue;
     padding: 5px;
     border-radius: 5px;
@@ -173,7 +163,8 @@ main {
   z-index: 100;
 }
 
-.total-price-div {
+.order-request-btn {
+  border: none;
   position: absolute;
   bottom: 0;
   right: 0;
@@ -205,14 +196,15 @@ main {
   }
 }
 
-.ready-to-checkout {
+.ready-to-request {
   background-color: green;
   cursor: pointer;
-  &:hover {
-    background-color: darkgreen;
-  }
   > p {
     color: white;
+    font-weight: bolder;
+  }
+  &:hover {
+    background-color: darkgreen;
   }
 }
 

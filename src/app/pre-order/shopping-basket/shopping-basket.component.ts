@@ -5,10 +5,12 @@ import {
   Output,
   ViewChild,
   EventEmitter,
+  inject,
 } from '@angular/core';
 import { PreorderdataService } from '../../shared/firebase-services/preorderdata.service';
 import { ShoppingBasketItemComponent } from './shopping-basket-item/shopping-basket-item.component';
 import { ChangeDetectorRef } from '@angular/core';
+import { ShoppingbasketService } from '../../shared/firebase-services/shoppingbasket.service';
 
 @Component({
   selector: 'app-shopping-basket',
@@ -18,8 +20,10 @@ import { ChangeDetectorRef } from '@angular/core';
   styleUrl: './shopping-basket.component.scss',
 })
 export class ShoppingBasketComponent {
+  basketService = inject(ShoppingbasketService);
+
   constructor(
-    private preOrderService: PreorderdataService,
+    /* private preOrderService: PreorderdataService, */
     private cdref: ChangeDetectorRef
   ) {}
 
@@ -66,11 +70,11 @@ export class ShoppingBasketComponent {
   }
 
   getShoppingBasket() {
-    return this.preOrderService.shoppingBasket;
+    return this.basketService.shoppingBasket;
   }
 
   getTotalPrice() {
-    let totalPrice = this.preOrderService.shoppingBasket.reduce(
+    let totalPrice = this.basketService.shoppingBasket.reduce(
       (total, item) => total + item.amount * item.price,
       0
     );
@@ -78,25 +82,24 @@ export class ShoppingBasketComponent {
   }
 
   onChangedItemPrice(updatedData: { amount: number; index: number }) {
-    const index = this.preOrderService.shoppingBasket.findIndex(
+    const index = this.basketService.shoppingBasket.findIndex(
       (item) => item.id === updatedData.index
     );
     if (index !== -1) {
-      this.preOrderService.shoppingBasket[index].amount = updatedData.amount;
+      this.basketService.shoppingBasket[index].amount = updatedData.amount;
     }
-    console.log(this.preOrderService.shoppingBasket);
     this.getTotalPrice();
   }
 
   onRemoveItem(index: number) {
-    this.preOrderService.shoppingBasket.splice(index, 1);
+    this.basketService.shoppingBasket.splice(index, 1);
     this.getTotalPrice();
     if (this.basketIsEmpty() && this.screenIsSmall()) {
-      this.preOrderService.totalItemAmount = 0;
-      this.preOrderService.nextId = 0;
+      this.basketService.totalItemAmount = 0;
+      this.basketService.nextId = 0;
       this.closeShoppingBasket();
     } else {
-      this.preOrderService.totalItemAmount--;
+      this.basketService.totalItemAmount--;
     }
     this.getBorderRadius();
     this.assignNewId();
@@ -106,13 +109,13 @@ export class ShoppingBasketComponent {
   }
 
   assignNewId() {
-    this.preOrderService.shoppingBasket.forEach((item, index) => {
+    this.basketService.shoppingBasket.forEach((item, index) => {
       item.id = index;
     });
   }
 
   basketIsEmpty() {
-    return this.preOrderService.shoppingBasket.length === 0;
+    return this.basketService.shoppingBasket.length === 0;
   }
 
   screenIsSmall() {
@@ -146,7 +149,7 @@ export class ShoppingBasketComponent {
   }
 
   minOrderValue() {
-    let total = this.preOrderService.shoppingBasket.reduce(
+    let total = this.basketService.shoppingBasket.reduce(
       (sum, item) => sum + item.price * item.amount,
       0
     );
@@ -155,11 +158,15 @@ export class ShoppingBasketComponent {
 
   updatePickUpTime() {
     const date = new Date();
-    date.setSeconds(0); //Um immer auf die nächsten vollen Minuten zu rechnen
+    date.setSeconds(0);
     date.setMinutes(date.getMinutes() + 15);
     this.pickupTime = date.toLocaleTimeString('de-DE', {
       hour: '2-digit',
       minute: '2-digit',
     });
   }
+
+  /*  sendOrderRequest(){
+
+  } */
 }

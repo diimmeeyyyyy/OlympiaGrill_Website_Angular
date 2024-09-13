@@ -39,7 +39,7 @@ export class PreOrderComponent {
   foodList: Dish[] = [];
 
   constructor(
-    private preOrderService: PreorderdataService,
+    /* private preOrderService: PreorderdataService, */
     private renderer: Renderer2,
     public logInAndRegisterService: LogInAndRegisterService
   ) {
@@ -48,31 +48,30 @@ export class PreOrderComponent {
 
   renderFoodTypeSection(name: string) {
     this.selectedFoodType = name;
-    console.log(this.selectedFoodType);
     this.getFoodTypeList();
   }
 
   getFoodTypeList() {
     if (this.selectedFoodType === 'Salate') {
-      return this.preOrderService.salads;
+      return this.preorderdata.salads;
     } else if (this.selectedFoodType === 'Beilagen') {
-      return this.preOrderService.sides;
+      return this.preorderdata.sides;
     } else if (this.selectedFoodType === 'Vorspeisen') {
-      return this.preOrderService.appetizers;
+      return this.preorderdata.appetizers;
     } else if (this.selectedFoodType === 'Schnelle Gerichte') {
-      return this.preOrderService.fastDishes;
+      return this.preorderdata.fastDishes;
     } else if (this.selectedFoodType === 'Kinder') {
-      return this.preOrderService.kids;
+      return this.preorderdata.kids;
     } else if (this.selectedFoodType === 'Schnitzel') {
-      return this.preOrderService.schnitzel;
+      return this.preorderdata.schnitzel;
     } else if (this.selectedFoodType === 'Vom Grill') {
-      return this.preOrderService.grilledDishes;
+      return this.preorderdata.grilledDishes;
     } else if (this.selectedFoodType === 'Gyros Gerichte') {
-      return this.preOrderService.gyrosDishes;
+      return this.preorderdata.gyrosDishes;
     } else if (this.selectedFoodType === 'Pita') {
-      return this.preOrderService.pita;
+      return this.preorderdata.pita;
     } else {
-      return this.preOrderService.popularDishes;
+      return this.preorderdata.popularDishes;
     }
   }
 

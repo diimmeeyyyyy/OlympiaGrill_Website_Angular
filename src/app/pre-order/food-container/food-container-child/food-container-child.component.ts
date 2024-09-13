@@ -6,6 +6,7 @@ import {
   Output,
   ElementRef,
   ViewChild,
+  inject,
 } from '@angular/core';
 import { PreorderdataService } from '../../../shared/firebase-services/preorderdata.service';
 import { FoodClass } from '../../../interfaces/food-class.interface';
@@ -15,6 +16,7 @@ import { BiftekiSelectionComponent } from './bifteki-selection/bifteki-selection
 import { SidesSelectionComponent } from './sides-selection/sides-selection.component';
 import { ShoppingBasketItem } from '../../../interfaces/shopping-basket-item.interface';
 import { ShoppingBasketComponent } from '../../shopping-basket/shopping-basket.component';
+import { ShoppingbasketService } from '../../../shared/firebase-services/shoppingbasket.service';
 
 @Component({
   selector: 'app-food-container-child',
@@ -31,6 +33,8 @@ import { ShoppingBasketComponent } from '../../shopping-basket/shopping-basket.c
   styleUrl: './food-container-child.component.scss',
 })
 export class FoodContainerChildComponent {
+  basketService = inject(ShoppingbasketService);
+
   @Input() dish: any;
   @Input() foodContainerindex!: number;
   @Output() close = new EventEmitter<void>();
@@ -183,7 +187,7 @@ export class FoodContainerChildComponent {
       gyrosSpecial: this.getGyrosSpecial(),
       sides: this.getSides(),
     };
-    this.preOrderService.checkIfDishAlreadyExistsInBasket(item);
+    this.basketService.checkIfDishAlreadyExistsInBasket(item);
     this.closeChildContainer();
   }
 

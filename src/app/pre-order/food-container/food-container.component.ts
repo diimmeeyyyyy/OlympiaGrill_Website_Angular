@@ -1,9 +1,10 @@
 import { CommonModule, ViewportScroller } from '@angular/common';
-import { Component, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef, inject } from '@angular/core';
 import { PreOrderComponent } from '../pre-order.component';
 import { FoodContainerChildComponent } from './food-container-child/food-container-child.component';
 import { PreorderdataService } from '../../shared/firebase-services/preorderdata.service';
 import { ShoppingBasketItem } from '../../interfaces/shopping-basket-item.interface';
+import { ShoppingbasketService } from '../../shared/firebase-services/shoppingbasket.service';
 
 @Component({
   selector: 'app-food-container',
@@ -13,6 +14,7 @@ import { ShoppingBasketItem } from '../../interfaces/shopping-basket-item.interf
   styleUrl: './food-container.component.scss',
 })
 export class FoodContainerComponent {
+  basketService = inject(ShoppingbasketService);
   @Input() dish: any;
   @Input() index!: number;
   showChild = false;
@@ -25,8 +27,6 @@ export class FoodContainerComponent {
     this.childContainer = childContainer;
   }
 
-  constructor(private preOrderService: PreorderdataService) {}
-
   toggleChild() {
     if (this.showChild) {
       this.closeChildContainer();
@@ -34,7 +34,7 @@ export class FoodContainerComponent {
       if (this.dish.foodClass === 'C') {
         let item: ShoppingBasketItem =
           this.createShoppingBasketItemFoodClassC();
-        this.preOrderService.checkIfDishAlreadyExistsInBasket(item);
+        this.basketService.checkIfDishAlreadyExistsInBasket(item);
       } else {
         this.checkIfLargeScreen();
         this.showChild = !this.showChild;

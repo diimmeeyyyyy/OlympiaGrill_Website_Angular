@@ -36,7 +36,7 @@
       </div>
     </section>
 
-    <section
+    <!--  <section
       class="pick-up-time"
       *ngIf="minOrderValue()"
       [style.border-radius]="getBorderRadius()"
@@ -55,7 +55,7 @@
           <p class="loading-dot"></p>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <div
       class="minimum-order-value-notification"
@@ -64,13 +64,13 @@
       <p>Mindestbestellwert: 20 €</p>
     </div>
 
-    <div
-      class="total-price-div"
+    <button
+      class="order-request-btn"
       *ngIf="!basketIsEmpty()"
-      [ngClass]="{ 'ready-to-checkout': minOrderValue() }"
+      [ngClass]="{ 'ready-to-request': minOrderValue() }"
     >
-      <p>Zum Bezahlvorgang</p>
+      <p>Bestellanfrage schicken</p>
       <p>{{ getTotalPrice() }} €</p>
-    </div>
+    </button>
   </main>
 </div>
