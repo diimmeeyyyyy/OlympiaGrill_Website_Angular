@@ -9,13 +9,15 @@ import { HeaderComponent } from '../shared/header/header.component';
 import { FooterComponent } from '../shared/footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { FoodMenuNavComponent } from './food-menu-nav/food-menu-nav.component';
-import { PreorderdataService } from '../shared/firebase-services/preorderdata.service';
+import { PreorderdataService } from '../shared/firebase-services/pre-order-data/preorderdata.service';
 import { FoodContainerComponent } from './food-container/food-container.component';
-import { Dish } from '../interfaces/dish.interface';
+import { Dish } from '../shared/interfaces/dish.interface';
 import { FoodContainerChildComponent } from './food-container/food-container-child/food-container-child.component';
 import { ShoppingBasketComponent } from './shopping-basket/shopping-basket.component';
-import { LogInAndRegisterService } from '../shared/firebase-services/log-in-and-register.service';
-import { ShoppingbasketService } from '../shared/firebase-services/shoppingbasket.service';
+import { LogInAndRegisterService } from '../shared/firebase-services/log-in-and-register/log-in-and-register.service';
+import { ShoppingbasketService } from '../shared/firebase-services/basket/shoppingbasket.service';
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-pre-order',
@@ -26,8 +28,10 @@ import { ShoppingbasketService } from '../shared/firebase-services/shoppingbaske
     FooterComponent,
     FoodMenuNavComponent,
     FoodContainerComponent,
-    FoodContainerChildComponent,
+    /* FoodContainerChildComponent, */
     ShoppingBasketComponent,
+    DialogModule,
+    ButtonModule,
   ],
   templateUrl: './pre-order.component.html',
   styleUrl: './pre-order.component.scss',
@@ -41,7 +45,6 @@ export class PreOrderComponent {
   foodList: Dish[] = [];
 
   constructor(
-    /* private preOrderService: PreorderdataService, */
     private renderer: Renderer2,
     public logInAndRegisterService: LogInAndRegisterService
   ) {

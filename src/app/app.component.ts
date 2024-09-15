@@ -5,7 +5,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { LogInComponent } from './log-in/log-in.component';
 import { CommonModule } from '@angular/common';
 import { filter, map } from 'rxjs/operators';
-import { LogInAndRegisterService } from './shared/firebase-services/log-in-and-register.service';
+import { LogInAndRegisterService } from './shared/firebase-services/log-in-and-register/log-in-and-register.service';
 
 @Component({
   selector: 'app-root',

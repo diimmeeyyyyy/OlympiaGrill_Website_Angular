@@ -8,15 +8,15 @@ import {
   ViewChild,
   inject,
 } from '@angular/core';
-import { PreorderdataService } from '../../../shared/firebase-services/preorderdata.service';
-import { FoodClass } from '../../../interfaces/food-class.interface';
+import { PreorderdataService } from '../../../shared/firebase-services/pre-order-data/preorderdata.service';
+import { FoodClass } from '../../../shared/interfaces/food-class.interface';
 import { SaladSelectionComponent } from './salad-selection/salad-selection.component';
 import { GyrosSpecialSelectionComponent } from './gyros-special-selection/gyros-special-selection.component';
 import { BiftekiSelectionComponent } from './bifteki-selection/bifteki-selection.component';
 import { SidesSelectionComponent } from './sides-selection/sides-selection.component';
-import { ShoppingBasketItem } from '../../../interfaces/shopping-basket-item.interface';
+import { ShoppingBasketItem } from '../../../shared/interfaces/shopping-basket-item.interface';
 import { ShoppingBasketComponent } from '../../shopping-basket/shopping-basket.component';
-import { ShoppingbasketService } from '../../../shared/firebase-services/shoppingbasket.service';
+import { ShoppingbasketService } from '../../../shared/firebase-services/basket/shoppingbasket.service';
 
 @Component({
   selector: 'app-food-container-child',

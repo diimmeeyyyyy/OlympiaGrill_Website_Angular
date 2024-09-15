@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, ViewChildren, QueryList } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { LogInAndRegisterService } from '../shared/firebase-services/log-in-and-register.service';
-import { User } from '../interfaces/user.interface';
+import { LogInAndRegisterService } from '../shared/firebase-services/log-in-and-register/log-in-and-register.service';
+import { User } from '../shared/interfaces/user.interface';
 import { RegisterInputfieldComponent } from './register-inputfield/register-inputfield.component';
 import { Router } from '@angular/router';
 
@@ -51,6 +51,7 @@ export class RegisterComponent {
       name: this.inputfields[0].value,
       email: this.inputfields[1].value,
       password: this.inputfields[2].value,
+      orders: [],
     };
     this.registerService.addUser(user);
     this.clearInputfields();

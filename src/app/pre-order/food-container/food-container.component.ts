@@ -2,9 +2,9 @@ import { CommonModule, ViewportScroller } from '@angular/common';
 import { Component, Input, ViewChild, ElementRef, inject } from '@angular/core';
 import { PreOrderComponent } from '../pre-order.component';
 import { FoodContainerChildComponent } from './food-container-child/food-container-child.component';
-import { PreorderdataService } from '../../shared/firebase-services/preorderdata.service';
-import { ShoppingBasketItem } from '../../interfaces/shopping-basket-item.interface';
-import { ShoppingbasketService } from '../../shared/firebase-services/shoppingbasket.service';
+import { PreorderdataService } from '../../shared/firebase-services/pre-order-data/preorderdata.service';
+import { ShoppingBasketItem } from '../../shared/interfaces/shopping-basket-item.interface';
+import { ShoppingbasketService } from '../../shared/firebase-services/basket/shoppingbasket.service';
 
 @Component({
   selector: 'app-food-container',

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LogInAndRegisterService } from '../shared/firebase-services/log-in-and-register.service';
+import { LogInAndRegisterService } from '../shared/firebase-services/log-in-and-register/log-in-and-register.service';
 
 @Component({
   selector: 'app-privacy-policy',

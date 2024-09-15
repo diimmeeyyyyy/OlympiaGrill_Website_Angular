@@ -17,7 +17,7 @@ export class LogInAndRegisterService {
   loggedIn: boolean;
   loggedInUser!: User;
 
-  registeredUsers: User[] = [];
+  users: User[] = [];
   unsubRegisteredUser;
 
   constructor() {
@@ -38,7 +38,7 @@ export class LogInAndRegisterService {
   subUser() {
     return onSnapshot(this.getRegisteredUsersRef(), (list) => {
       list.forEach((user) => {
-        this.registeredUsers.push(this.setUserObject(user.data()));
+        this.users.push(this.setUserObject(user.data()));
       });
     });
   }
@@ -48,6 +48,7 @@ export class LogInAndRegisterService {
       name: obj.name,
       email: obj.email,
       password: obj.password,
+      orders: obj.orders,
     };
   }
 
@@ -56,7 +57,7 @@ export class LogInAndRegisterService {
   }
 
   getRegisteredUsersRef() {
-    const registeredUsers = collection(this.firestore, 'registeredUsers');
+    const registeredUsers = collection(this.firestore, 'users');
     return registeredUsers;
   }
 }

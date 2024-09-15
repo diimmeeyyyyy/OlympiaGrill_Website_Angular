@@ -9,9 +9,7 @@ import {
   orderBy,
   addDoc,
 } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
 import { Dish } from '../../interfaces/dish.interface';
-import { subscriptionLogsToBeFn } from 'rxjs/internal/testing/TestScheduler';
 import { FoodClass } from '../../interfaces/food-class.interface';
 import { ShoppingBasketItem } from '../../interfaces/shopping-basket-item.interface';
 

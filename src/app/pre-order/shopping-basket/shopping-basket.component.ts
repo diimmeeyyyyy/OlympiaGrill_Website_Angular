@@ -7,11 +7,11 @@ import {
   EventEmitter,
   inject,
 } from '@angular/core';
-import { PreorderdataService } from '../../shared/firebase-services/preorderdata.service';
+import { PreorderdataService } from '../../shared/firebase-services/pre-order-data/preorderdata.service';
 import { ShoppingBasketItemComponent } from './shopping-basket-item/shopping-basket-item.component';
 import { ChangeDetectorRef } from '@angular/core';
-import { ShoppingbasketService } from '../../shared/firebase-services/shoppingbasket.service';
-import { OrderRequest } from '../../interfaces/orderRequest.interface';
+import { ShoppingbasketService } from '../../shared/firebase-services/basket/shoppingbasket.service';
+import { OrderRequest } from '../../shared/interfaces/orderRequest.interface';
 
 @Component({
   selector: 'app-shopping-basket',
@@ -23,10 +23,7 @@ import { OrderRequest } from '../../interfaces/orderRequest.interface';
 export class ShoppingBasketComponent {
   basketService = inject(ShoppingbasketService);
 
-  constructor(
-    /* private preOrderService: PreorderdataService, */
-    private cdref: ChangeDetectorRef
-  ) {}
+  constructor(private cdref: ChangeDetectorRef) {}
 
   pickupTime!: string;
   private timerId: any;
@@ -168,21 +165,24 @@ export class ShoppingBasketComponent {
   }
 
   sendOrderRequest() {
-    let order:OrderRequest ={
+    let order: OrderRequest = {
       timestamp: new Date().getTime(),
-      customer:'DIMI TEST',
-      order: this.basketService.shoppingBasket
-    }
-    debugger;
-    console.log(this.basketService.shoppingBasket);
-    //todo Bestellung in Firebase hinzufügen
-    this.basketService.requestOrder(order);
+      customer: 'DIMI TEST',
+      customerEmail: 'dimi@test.de',
+      order: this.basketService.shoppingBasket,
+    };
 
-    /* todo basket leeren */
+    this.basketService.orderWasRequested = true;
+    this.basketService.visible = true;
+
+    try {
+      this.basketService.requestOrder(order);
+    } catch (error) {
+      console.error('Fehler beim Anfordern der Bestellung', error);
+    }
+
     this.basketService.shoppingBasket.length = 0;
     this.basketService.totalItemAmount = 0;
     this.closeShoppingBasket();
-
-    /* todo Benachrichtigung, dass die Bestellanfrage bei uns eingeangen ist */
   }
 }

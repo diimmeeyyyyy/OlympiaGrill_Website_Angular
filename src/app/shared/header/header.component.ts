@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { LogInAndRegisterService } from '../firebase-services/log-in-and-register.service';
+import { LogInAndRegisterService } from '../firebase-services/log-in-and-register/log-in-and-register.service';
 
 @Component({
   selector: 'app-header',

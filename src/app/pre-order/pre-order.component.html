@@ -32,4 +32,22 @@
       <p class="total-item-amount">{{ basketService.totalItemAmount }}</p>
     </div>
   </button>
+
+  @if(basketService.orderWasRequested){
+  <div class="card flex justify-content-center">
+    <p-dialog
+      header="Eingang deiner Bestellung"
+      [modal]="true"
+      [(visible)]="basketService.visible"
+      [style]="{ width: '25rem' }"
+    >
+      <span class="p-text-secondary block mb-5"
+        >Deine Bestellung ist erfolgreich bei uns eingegangen. <br />
+        Unter dem Menüpunkt 'Meine Bestellungen' kannst du den aktuellen Status
+        einsehen. Sobald wir deine Anfrage bearbeiten, erhälst du eine
+        E-Mail</span
+      >
+    </p-dialog>
+  </div>
+  }
 </main>

@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
-import { LogInAndRegisterService } from '../shared/firebase-services/log-in-and-register.service';
+import { LogInAndRegisterService } from '../shared/firebase-services/log-in-and-register/log-in-and-register.service';
 
 @Component({
   selector: 'app-log-in',
@@ -43,7 +43,7 @@ export class LogInComponent {
   passwordImage = './assets/img/register-password.png';
 
   checkEmail(email: string) {
-    const userEmail = this.logInService.registeredUsers.find(
+    const userEmail = this.logInService.users.find(
       (user) => user.email === email
     );
 
@@ -74,7 +74,7 @@ export class LogInComponent {
   }
 
   userExists(email: string, password: string) {
-    return this.logInService.registeredUsers.find(
+    return this.logInService.users.find(
       (user) => user.email === email && user.password === password
     );
   }

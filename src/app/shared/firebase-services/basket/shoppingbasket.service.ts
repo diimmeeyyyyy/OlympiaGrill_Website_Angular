@@ -7,6 +7,8 @@ import { addDoc, collection, Firestore } from '@angular/fire/firestore';
 })
 export class ShoppingbasketService {
   firestore: Firestore = inject(Firestore);
+  orderWasRequested: boolean = false;
+  visible: boolean = false;
 
   shoppingBasket: ShoppingBasketItem[] = [];
   totalItemAmount = this.shoppingBasket.reduce(

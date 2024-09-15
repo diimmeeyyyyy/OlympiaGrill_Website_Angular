@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { PreorderdataService } from '../firebase-services/preorderdata.service';
+import { Component, inject } from '@angular/core';
+import { PreorderdataService } from '../firebase-services/pre-order-data/preorderdata.service';
 import { Router } from '@angular/router';
+import { ShoppingbasketService } from '../firebase-services/basket/shoppingbasket.service';
 
 @Component({
   selector: 'app-footer',
@@ -11,13 +12,11 @@ import { Router } from '@angular/router';
   styleUrl: './footer.component.scss',
 })
 export class FooterComponent {
-  constructor(
-    private preOrderService: PreorderdataService,
-    private router: Router
-  ) {}
+  basketService = inject(ShoppingbasketService);
+  constructor(private router: Router) {}
 
   checkMarginBottom() {
-    return this.preOrderService.totalItemAmount > 0 && window.innerWidth < 450;
+    return this.basketService.totalItemAmount > 0 && window.innerWidth < 450;
   }
 
   navigateToImprint() {
