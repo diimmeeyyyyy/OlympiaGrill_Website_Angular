@@ -1,17 +1,22 @@
 import { Injectable, inject } from '@angular/core';
 import {
+  DocumentReference,
   Firestore,
   addDoc,
   collection,
+  doc,
   onSnapshot,
+  updateDoc,
 } from '@angular/fire/firestore';
 import { User } from '../../interfaces/user.interface';
+import { UserService } from '../user/user.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LogInAndRegisterService {
   firestore: Firestore = inject(Firestore);
+  userService = inject(UserService);
   guestLoggedIn: boolean;
   userLoggedIn: boolean;
   loggedIn: boolean;
@@ -36,7 +41,7 @@ export class LogInAndRegisterService {
   }
 
   subUser() {
-    return onSnapshot(this.getRegisteredUsersRef(), (list) => {
+    return onSnapshot(this.getUsersRef(), (list) => {
       list.forEach((user) => {
         this.users.push(this.setUserObject(user.data()));
       });
@@ -53,10 +58,17 @@ export class LogInAndRegisterService {
   }
 
   async addUser(user: User) {
-    await addDoc(this.getRegisteredUsersRef(), user);
+    //todo überprüfen, es bereits einen User mit der E-Mail gibt
+    try {
+      const docRef: DocumentReference = await addDoc(this.getUsersRef(), user);
+      user.id = docRef.id;
+      await this.userService.updateUser(user);
+    } catch (err) {
+      console.error('Error updating Data', err);
+    }
   }
 
-  getRegisteredUsersRef() {
+  getUsersRef() {
     const registeredUsers = collection(this.firestore, 'users');
     return registeredUsers;
   }

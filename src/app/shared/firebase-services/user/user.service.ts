@@ -1,5 +1,6 @@
 import { inject, Injectable } from '@angular/core';
-import { Firestore } from '@angular/fire/firestore';
+import { doc, Firestore, updateDoc } from '@angular/fire/firestore';
+import { User } from '../../interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -7,4 +8,20 @@ import { Firestore } from '@angular/fire/firestore';
 export class UserService {
   firestore: Firestore = inject(Firestore);
   constructor() {}
+
+  activeUser!: User;
+
+  async updateUser(user: User) {
+    try {
+      if (!user.id) {
+        throw new Error('User ID is missing');
+      }
+
+      const userDocRef = doc(this.firestore, 'users', user.id);
+      await updateDoc(userDocRef, { ...user });
+      console.log('User updated successfully');
+    } catch (err) {
+      console.error('ERROR UPDATING DATA', err);
+    }
+  }
 }
