@@ -169,7 +169,8 @@ export class ShoppingBasketComponent {
 
   sendOrderRequest() {
     let order:OrderRequest ={
-      client:'DIMI TEST',
+      timestamp: new Date().getTime(),
+      customer:'DIMI TEST',
       order: this.basketService.shoppingBasket
     }
     debugger;

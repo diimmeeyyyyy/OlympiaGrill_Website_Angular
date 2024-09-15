@@ -1,4 +1,7 @@
+import { ShoppingBasketItem } from './shopping-basket-item.interface';
+
 export interface OrderRequest {
-  client: string;
-  order: any;
+  timestamp: number;
+  customer: string;
+  order: ShoppingBasketItem[];
 }
