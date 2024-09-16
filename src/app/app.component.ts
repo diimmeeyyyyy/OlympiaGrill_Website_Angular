@@ -6,6 +6,7 @@ import { LogInComponent } from './log-in/log-in.component';
 import { CommonModule } from '@angular/common';
 import { filter, map } from 'rxjs/operators';
 import { LogInAndRegisterService } from './shared/firebase-services/log-in-and-register/log-in-and-register.service';
+import { UserService } from './shared/firebase-services/user/user.service';
 
 @Component({
   selector: 'app-root',
@@ -22,14 +23,13 @@ import { LogInAndRegisterService } from './shared/firebase-services/log-in-and-r
 })
 export class AppComponent {
   title = 'olympiaGrill';
+  userService = inject(UserService);
 
-  constructor(public logInAndRegisterService: LogInAndRegisterService) {}
+  constructor(private router: Router) {}
 
-  checkIfLoggedIn() {
-    if (this.logInAndRegisterService.loggedIn) {
-      return true;
-    } else {
-      return false;
+  urlIsRoot() {
+    if (this.router.url === '/') {
     }
+    return this.router.url === '/';
   }
 }

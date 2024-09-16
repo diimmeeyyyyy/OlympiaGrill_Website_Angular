@@ -1,9 +1,9 @@
-import { OrderRequest } from './orderRequest.interface';
+import { Order } from './order.interface';
 
 export interface User {
-  id?: string;
+  id: string;
   name: string;
   email: string;
   password: string;
-  orders: OrderRequest[];
+  orders: string[];
 }

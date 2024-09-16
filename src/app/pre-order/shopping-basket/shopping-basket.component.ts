@@ -11,7 +11,7 @@ import { PreorderdataService } from '../../shared/firebase-services/pre-order-da
 import { ShoppingBasketItemComponent } from './shopping-basket-item/shopping-basket-item.component';
 import { ChangeDetectorRef } from '@angular/core';
 import { ShoppingbasketService } from '../../shared/firebase-services/basket/shoppingbasket.service';
-import { OrderRequest } from '../../shared/interfaces/orderRequest.interface';
+import { Order } from '../../shared/interfaces/order.interface';
 
 @Component({
   selector: 'app-shopping-basket',
@@ -164,19 +164,22 @@ export class ShoppingBasketComponent {
     });
   }
 
-  sendOrderRequest() {
-    let order: OrderRequest = {
+  async sendOrderRequest() {
+    console.log(this.basketService.shoppingBasket);
+
+    let order: Order = {
       timestamp: new Date().getTime(),
       customer: 'DIMI TEST',
       customerEmail: 'dimi@test.de',
       order: this.basketService.shoppingBasket,
+      status: 'open',
     };
 
     this.basketService.orderWasRequested = true;
     this.basketService.visible = true;
 
     try {
-      this.basketService.requestOrder(order);
+      await this.basketService.requestOrder(order);
     } catch (error) {
       console.error('Fehler beim Anfordern der Bestellung', error);
     }

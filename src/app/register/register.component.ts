@@ -48,6 +48,7 @@ export class RegisterComponent {
 
   addUser() {
     let user: User = {
+      id: '',
       name: this.inputfields[0].value,
       email: this.inputfields[1].value,
       password: this.inputfields[2].value,

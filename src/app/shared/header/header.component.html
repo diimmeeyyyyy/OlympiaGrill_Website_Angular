@@ -18,9 +18,9 @@
           <span class="line line3"></span>
         </div>
         <div class="menu-items">
-          <li><a>Meine Bestellungen</a></li>
+          <li><a (click)="navigateTo('myOrders'); closeMenu()">Meine Bestellungen</a></li>
           <li>
-            <a (click)="navigateToPreOrder(); closeMenu()"
+            <a (click)="navigateTo('preOrder'); closeMenu()"
               >Vorbestellen zum Abholen</a
             >
           </li>
@@ -33,7 +33,7 @@
 
   <nav *ngIf="screenIsLarge()">
     <div class="menu-large-screen">
-      <a (click)="navigateToPreOrder()">Zum Abholen vorbestellen</a>
+      <a (click)="navigateTo('preOrder')">Zum Abholen vorbestellen</a>
       <!-- <p href="">Kontakt & Anfahrt</p> -->
       <a (click)="logOut()">Abmelden</a>
     </div>

@@ -9,9 +9,17 @@ export class UserService {
   firestore: Firestore = inject(Firestore);
   constructor() {}
 
-  activeUser!: User;
+  activeUser: User | null = null;
+
+  setActiveUser(user: User) {
+    this.activeUser = user;
+  }
 
   async updateUser(user: User) {
+    debugger;
+    console.log(this.activeUser);
+    console.log(user);
+
     try {
       if (!user.id) {
         throw new Error('User ID is missing');

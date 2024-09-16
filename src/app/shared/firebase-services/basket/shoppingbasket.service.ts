@@ -1,12 +1,23 @@
 import { inject, Injectable } from '@angular/core';
 import { ShoppingBasketItem } from '../../interfaces/shopping-basket-item.interface';
-import { addDoc, collection, Firestore } from '@angular/fire/firestore';
+import {
+  addDoc,
+  collection,
+  doc,
+  DocumentReference,
+  Firestore,
+  updateDoc,
+} from '@angular/fire/firestore';
+import { Order } from '../../interfaces/order.interface';
+import { User } from '../../interfaces/user.interface';
+import { UserService } from '../user/user.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ShoppingbasketService {
   firestore: Firestore = inject(Firestore);
+  userService = inject(UserService);
   orderWasRequested: boolean = false;
   visible: boolean = false;
 
@@ -81,22 +92,30 @@ export class ShoppingbasketService {
     return true;
   }
 
-  async requestOrder(order: any) {
+  async requestOrder(order: Order) {
     console.log('Bestellanfrage wurde gesendet');
-    await addDoc(this.getRequestOrderRef(), order);
+    let docRef = await addDoc(this.getRequestOrderRef(), order);
+    order.id = docRef.id;
+    this.userService.activeUser?.orders.push(order.id);
+    await this.userService.updateUser(this.userService.activeUser!);
+    await this.updateOrder(order);
   }
 
   getRequestOrderRef() {
-    let requestOrder = collection(this.firestore, 'orderRequests');
+    let requestOrder = collection(this.firestore, 'orders');
     return requestOrder;
   }
 
-  /*  async addUser(user: User) {
-    await addDoc(this.getRegisteredUsersRef(), user);
-  }
+  async updateOrder(order: Order) {
+    if (!order.id) {
+      throw new Error('User ID is missing');
+    }
 
-  getRegisteredUsersRef() {
-    const registeredUsers = collection(this.firestore, 'registeredUsers');
-    return registeredUsers;
-  } */
+    const userDocRef = doc(this.firestore, 'orders', order.id);
+    await updateDoc(userDocRef, { ...order });
+    console.log('User updated successfully');
+  }
+  catch(err: any) {
+    console.error('ERROR UPDATING DATA', err);
+  }
 }

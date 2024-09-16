@@ -1,5 +1,9 @@
 <main class="flex-container">
-  <app-header *ngIf="checkIfLoggedIn()"></app-header>
+  @if (!urlIsRoot()) {
+  <app-header></app-header>
+  }
   <router-outlet />
-  <app-footer *ngIf="checkIfLoggedIn()"></app-footer>
+  @if (!urlIsRoot()) {
+  <app-footer></app-footer>
+  }
 </main>

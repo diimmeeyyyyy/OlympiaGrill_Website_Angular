@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { LogInAndRegisterService } from '../firebase-services/log-in-and-register/log-in-and-register.service';
+import { UserService } from '../firebase-services/user/user.service';
 
 @Component({
   selector: 'app-header',
@@ -12,10 +13,8 @@ import { LogInAndRegisterService } from '../firebase-services/log-in-and-registe
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  constructor(
-    private router: Router,
-    public logInService: LogInAndRegisterService
-  ) {}
+  userService = inject(UserService);
+  constructor(private router: Router) {}
   menuOpen = false;
 
   closeMenu() {
@@ -23,8 +22,8 @@ export class HeaderComponent {
     document.body.style.overflow = 'auto';
   }
 
-  navigateToPreOrder() {
-    this.router.navigateByUrl('/preOrder');
+  navigateTo(url: string) {
+    this.router.navigateByUrl(`/${url}`);
   }
 
   onCheckboxChange(event: Event) {
@@ -40,16 +39,16 @@ export class HeaderComponent {
     return window.innerWidth >= 1024;
   }
 
-  getGreetingName() {
+  /*  getGreetingName() {
     if (!this.logInService.loggedInUser) {
       return 'Gast';
     } else {
       return this.logInService.loggedInUser.name;
     }
-  }
+  } */
 
   logOut() {
+    this.userService.activeUser = null;
     this.router.navigateByUrl('/');
-    this.logInService.loggedIn = false;
   }
 }

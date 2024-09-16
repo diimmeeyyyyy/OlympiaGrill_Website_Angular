@@ -1,0 +1,23 @@
+.wrapper {
+  height: calc(100vh - 317px);
+  > main {
+    display: flex;
+    flex-direction: column;
+    padding-top: 40px;
+    align-items: center;
+  }
+}
+
+h1,
+p {
+  margin: 0;
+}
+
+h1 {
+  /* width: fit-content; */
+  font-size: clamp(21px, 4vw, 26px);
+  padding: 10px;
+  background: rgb(55, 103, 189);
+  color: white;
+  border-radius: 50px;
+}

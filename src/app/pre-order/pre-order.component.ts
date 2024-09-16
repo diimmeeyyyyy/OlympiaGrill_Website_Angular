@@ -18,6 +18,7 @@ import { LogInAndRegisterService } from '../shared/firebase-services/log-in-and-
 import { ShoppingbasketService } from '../shared/firebase-services/basket/shoppingbasket.service';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
+import { UserService } from '../shared/firebase-services/user/user.service';
 
 @Component({
   selector: 'app-pre-order',
@@ -39,16 +40,15 @@ import { ButtonModule } from 'primeng/button';
 export class PreOrderComponent {
   preorderdata = inject(PreorderdataService);
   basketService = inject(ShoppingbasketService);
+  userService = inject(UserService);
   showChildContainer = false;
   selectedFoodType: string = '';
 
   foodList: Dish[] = [];
 
-  constructor(
-    private renderer: Renderer2,
-    public logInAndRegisterService: LogInAndRegisterService
-  ) {
-    this.logInAndRegisterService.loggedIn = true;
+  constructor(private renderer: Renderer2) {
+    /* debugger;
+    console.log(this.userService.activeUser?.id); */
   }
 
   renderFoodTypeSection(name: string) {

@@ -20,7 +20,7 @@ export class LogInAndRegisterService {
   guestLoggedIn: boolean;
   userLoggedIn: boolean;
   loggedIn: boolean;
-  loggedInUser!: User;
+  /* loggedInUser!: User; */
 
   users: User[] = [];
   unsubRegisteredUser;
@@ -32,9 +32,9 @@ export class LogInAndRegisterService {
     this.unsubRegisteredUser = this.subUser();
   }
 
-  setLoggedInUser(user: User) {
+  /*  setLoggedInUser(user: User) {
     this.loggedInUser = user;
-  }
+  } */
 
   ngonDestroy() {
     this.unsubRegisteredUser();
@@ -50,6 +50,7 @@ export class LogInAndRegisterService {
 
   setUserObject(obj: any): User {
     return {
+      id: obj.id,
       name: obj.name,
       email: obj.email,
       password: obj.password,

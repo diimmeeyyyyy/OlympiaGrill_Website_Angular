@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { LogInAndRegisterService } from '../shared/firebase-services/log-in-and-register/log-in-and-register.service';
+import { UserService } from '../shared/firebase-services/user/user.service';
 
 @Component({
   selector: 'app-log-in',
@@ -13,6 +14,8 @@ import { LogInAndRegisterService } from '../shared/firebase-services/log-in-and-
   styleUrl: './log-in.component.scss',
 })
 export class LogInComponent {
+  userService = inject(UserService);
+
   constructor(
     public logInService: LogInAndRegisterService,
     private router: Router
@@ -22,10 +25,21 @@ export class LogInComponent {
     logInService.userLoggedIn = false;
   }
 
+  logInAsGuest() {
+    let guest = {
+      id: '123456789',
+      name: 'guest',
+      email: 'guest@gmx.de',
+      password: 'guest',
+      orders: [],
+    };
+    this.userService.setActiveUser(guest);
+    debugger;
+    console.log(this.userService.activeUser);
+    this.navigateToPreOrder();
+  }
+
   navigateToPreOrder() {
-    if (!this.logInService.userLoggedIn) {
-      this.logInService.guestLoggedIn = true;
-    }
     this.router.navigateByUrl('/preOrder');
     document.body.style.overflow = 'auto';
   }
@@ -67,8 +81,7 @@ export class LogInComponent {
   logInUser(email: string, password: string) {
     const user = this.userExists(email, password);
     if (user) {
-      this.logInService.setLoggedInUser(user);
-      this.logInService.userLoggedIn = true;
+      this.userService.setActiveUser(user);
       this.navigateToPreOrder();
     }
   }
