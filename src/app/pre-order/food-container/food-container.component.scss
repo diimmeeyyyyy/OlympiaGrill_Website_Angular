@@ -7,7 +7,8 @@ main {
 }
 
 .dish-container {
-  background-color: lightblue;
+  /*  background-color: lightblue; */
+  background-color: aliceblue;
   width: 320px;
   border-radius: 10px;
   @include dflex($jc: space-between, $ai: unset);
@@ -18,20 +19,21 @@ main {
 }
 
 .right {
-  @include dflex($jc: unset, $ai: flex-start);
+  @include dflex($jc: unset, $ai: center);
+  margin-right: 5px;
   > img {
-    width: 55px;
+    width: 45px;
     background-color: whitesmoke;
-    border-bottom: 1px solid black;
-    border-left: 1px solid black;
+    /*  border-bottom: 1px solid black;
+    border-left: 1px solid black; */
     cursor: pointer;
     border-radius: 0px 10px 0px 10px;
-    &:hover {
+    /* &:hover {
       background-color: white;
     }
     &:active {
       background-color: lightgreen;
-    }
+    } */
   }
 }
 
