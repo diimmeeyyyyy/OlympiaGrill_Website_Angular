@@ -34,7 +34,6 @@ export class LogInComponent {
       orders: [],
     };
     this.userService.setActiveUser(guest);
-    debugger;
     console.log(this.userService.activeUser);
     this.navigateToPreOrder();
   }

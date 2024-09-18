@@ -93,14 +93,10 @@ export class ShoppingbasketService {
   }
 
   async requestOrder(order: Order) {
-    debugger;
     console.log('Bestellanfrage wurde gesendet');
     let docRef = await addDoc(this.getRequestOrderRef(), order);
-    debugger;
     order.id = docRef.id;
-    debugger;
     this.userService.activeUser?.orders.push(order.id);
-    debugger
     await this.userService.updateUser(this.userService.activeUser!);
     await this.updateOrder(order);
   }
