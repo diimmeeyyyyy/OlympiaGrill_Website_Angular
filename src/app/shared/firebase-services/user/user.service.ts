@@ -16,6 +16,7 @@ export class UserService {
   }
 
   async updateUser(user: User) {
+    debugger;
     try {
       if (!user.id) {
         throw new Error('User ID is missing');

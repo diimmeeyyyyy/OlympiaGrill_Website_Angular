@@ -97,7 +97,13 @@ export class ShoppingbasketService {
     let docRef = await addDoc(this.getRequestOrderRef(), order);
     order.id = docRef.id;
     this.userService.activeUser?.orders.push(order.id);
-    await this.userService.updateUser(this.userService.activeUser!);
+    debugger;
+    if (
+      this.userService.activeUser?.name !== 'guest' &&
+      this.userService.activeUser
+    ) {
+      await this.userService.updateUser(this.userService.activeUser);
+    }
     await this.updateOrder(order);
   }
 

@@ -165,9 +165,6 @@ export class ShoppingBasketComponent {
   }
 
   async sendOrderRequest() {
-    console.log(this.basketService.shoppingBasket);
-    debugger;
-
     let order: Order = {
       timestamp: new Date().getTime(),
       customer: 'DIMI TEST',
@@ -178,7 +175,6 @@ export class ShoppingBasketComponent {
 
     this.basketService.orderWasRequested = true;
     this.basketService.visible = true;
-    debugger;
 
     try {
       await this.basketService.requestOrder(order);
