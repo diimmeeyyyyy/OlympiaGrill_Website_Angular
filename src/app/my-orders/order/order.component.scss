@@ -1,0 +1,12 @@
+main {
+  display: flex;
+  gap: 8px;
+  > h4 {
+    font-weight: bold;
+    margin: 0;
+  }
+  > p {
+    font-size: 15px;
+    color: gray;
+  }
+}

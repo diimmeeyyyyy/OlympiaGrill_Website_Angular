@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
@@ -21,12 +21,16 @@ import { UserService } from './shared/firebase-services/user/user.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'olympiaGrill';
   userService = inject(UserService);
+  router = inject(Router);
 
-  constructor(private router: Router) {
-    this.init();
+  /* constructor(private router: Router) {} */
+
+  async ngOnInit() {
+    debugger;
+    await this.init();
   }
 
   async init() {

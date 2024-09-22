@@ -11,9 +11,9 @@ export class OrderService {
   userService = inject(UserService);
   myOrders: Order[] = [];
 
-  constructor() {
+  /* constructor() {
     this.loadMyOrders();
-  }
+  } */
 
   async loadMyOrders() {
     debugger;

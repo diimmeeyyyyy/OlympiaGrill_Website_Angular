@@ -2,12 +2,15 @@
   <main>
     <h1>Meine Bestellungen</h1>
 
-    <section>
+    <section class="all-orders">
       @for (order of orderService.myOrders; track $index) {
-      <h4>{{ order.timestamp }}</h4>
-      @for (dish of order.order; track $index) {
-      <app-order [dish]="dish"></app-order>
-      } }
+      <div>
+        <h4>{{ order.timestamp | date : "dd.MM.yyyy" }}</h4>
+        @for (dish of order.order; track $index) {
+        <app-order [dish]="dish"></app-order>
+        }
+      </div>
+      }
     </section>
   </main>
 </div>
