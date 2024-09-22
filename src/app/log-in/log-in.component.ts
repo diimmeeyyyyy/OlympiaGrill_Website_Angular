@@ -80,6 +80,7 @@ export class LogInComponent {
   logInUser(email: string, password: string) {
     const user = this.userExists(email, password);
     if (user) {
+      sessionStorage.setItem('loggedInUser', user.id);
       this.userService.setActiveUser(user);
       this.navigateToPreOrder();
     }

@@ -25,7 +25,17 @@ export class AppComponent {
   title = 'olympiaGrill';
   userService = inject(UserService);
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+    this.init();
+  }
+
+  async init() {
+    let loggedInUserID = sessionStorage.getItem('loggedInUser');
+    if (loggedInUserID) {
+      let user = await this.userService.getUserByID(loggedInUserID);
+      this.userService.activeUser = user;
+    }
+  }
 
   urlIsRoot() {
     if (this.router.url === '/') {

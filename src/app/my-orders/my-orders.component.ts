@@ -4,26 +4,24 @@ import { LogInAndRegisterService } from '../shared/firebase-services/log-in-and-
 import { UserService } from '../shared/firebase-services/user/user.service';
 import { Order } from '../shared/interfaces/order.interface';
 import { OrderService } from '../shared/firebase-services/order/order.service';
+import { OrderComponent } from './order/order.component';
 
 @Component({
   selector: 'app-my-orders',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, OrderComponent],
   templateUrl: './my-orders.component.html',
   styleUrl: './my-orders.component.scss',
 })
 export class MyOrdersComponent {
   userService = inject(UserService);
   orderService = inject(OrderService);
-  myOrder: Order[] = [];
 
-  constructor(public logInAndRegisterService: LogInAndRegisterService) {
-    this.logInAndRegisterService.loggedIn = true;
+  constructor() {
+    this.initializeMyOrders();
   }
 
-  loadOrders() {
-    this.userService.activeUser?.orders.forEach(order => {
-      
-    });
+  async initializeMyOrders() {
+    await this.orderService.loadMyOrders();
   }
 }

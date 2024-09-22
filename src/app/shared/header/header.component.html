@@ -1,6 +1,8 @@
 <header #Header>
   <img src="./assets/img/papa.png" />
 
+  <h4 class="active-user">Hallo, {{ userService.activeUser?.name }}</h4>
+
   <nav *ngIf="!screenIsLarge()">
     <div class="navbar">
       <div class="container nav-container">
@@ -18,7 +20,11 @@
           <span class="line line3"></span>
         </div>
         <div class="menu-items">
-          <li><a (click)="navigateTo('myOrders'); closeMenu()">Meine Bestellungen</a></li>
+          <li>
+            <a (click)="navigateTo('myOrders'); closeMenu()"
+              >Meine Bestellungen</a
+            >
+          </li>
           <li>
             <a (click)="navigateTo('preOrder'); closeMenu()"
               >Vorbestellen zum Abholen</a

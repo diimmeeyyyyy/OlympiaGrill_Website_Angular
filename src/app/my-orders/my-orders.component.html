@@ -3,14 +3,11 @@
     <h1>Meine Bestellungen</h1>
 
     <section>
-      @for (order of userService.activeUser?.orders; track $index) {
-        
-      }
-
-
-
+      @for (order of orderService.myOrders; track $index) {
+      <h4>{{ order.timestamp }}</h4>
+      @for (dish of order.order; track $index) {
+      <app-order [dish]="dish"></app-order>
+      } }
     </section>
-
-
   </main>
 </div>

@@ -48,6 +48,7 @@ export class HeaderComponent {
   } */
 
   logOut() {
+    sessionStorage.clear();
     this.userService.activeUser = null;
     this.router.navigateByUrl('/');
   }
