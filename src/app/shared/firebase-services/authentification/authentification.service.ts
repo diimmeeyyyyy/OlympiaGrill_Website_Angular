@@ -3,6 +3,7 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
 } from 'firebase/auth';
 import { UserService } from '../user/user.service';
 @Injectable({
@@ -62,6 +63,10 @@ LOG-IN
       // Signed in
       console.log(JSON.stringify(userCredential.user.uid));
 
+      this.userService.activeUser = await this.userService.getUserByUserId(
+        userCredential.user.uid
+      );
+
       sessionStorage.setItem(
         'loggedInUser',
         JSON.stringify(userCredential.user.uid)
@@ -71,4 +76,22 @@ LOG-IN
       alert(error);
     }
   }
+
+  /* =========
+  LOG-OUT
+  ============*/
+  async logOut(){
+    signOut(this.auth)
+      .then(() => {
+        // Sign-out successful.
+      })
+      .catch((error) => {
+        // An error happened.
+      });
+  }
+
+
+
 }
+
+

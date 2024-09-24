@@ -82,9 +82,12 @@ export class LogInComponent {
     }
   } */
 
+  /* enableButton() {
+    return this.email && this.password.length > 9;
+  } */
+
   async logInUser() {
     await this.authService.logIn(this.email, this.password);
-    debugger;
     if (sessionStorage.getItem('loggedInUser')) {
       this.navigateToPreOrder();
     }

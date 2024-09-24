@@ -47,8 +47,8 @@ export class PreOrderComponent {
   foodList: Dish[] = [];
 
   constructor(private renderer: Renderer2) {
-    /* debugger;
-    console.log(this.userService.activeUser?.id); */
+    console.log(this.userService.activeUser);
+    /* this.userService.loadActiveUser(); */
   }
 
   renderFoodTypeSection(name: string) {

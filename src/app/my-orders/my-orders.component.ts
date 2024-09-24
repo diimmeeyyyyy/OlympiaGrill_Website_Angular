@@ -18,8 +18,6 @@ export class MyOrdersComponent implements OnInit {
   orderService = inject(OrderService);
 
   async ngOnInit() {
-    await this.init();
-    debugger;
     if (this.userService.activeUser) {
       this.initializeMyOrders();
     } else {
@@ -27,13 +25,9 @@ export class MyOrdersComponent implements OnInit {
     }
   }
 
-  async init() {
-    let loggedInUserID = sessionStorage.getItem('loggedInUser');
-    if (loggedInUserID) {
-      let user = await this.userService.getUserByID(loggedInUserID);
-      this.userService.activeUser = user;
-    }
-  }
+  /* async init() {
+    this.userService.loadActiveUser();
+  } */
 
   async initializeMyOrders() {
     await this.orderService.loadMyOrders();

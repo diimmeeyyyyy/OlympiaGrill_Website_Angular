@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { LogInAndRegisterService } from '../firebase-services/log-in-and-register/log-in-and-register.service';
 import { UserService } from '../firebase-services/user/user.service';
+import { AuthentificationService } from '../firebase-services/authentification/authentification.service';
 
 @Component({
   selector: 'app-header',
@@ -14,6 +15,7 @@ import { UserService } from '../firebase-services/user/user.service';
 })
 export class HeaderComponent {
   userService = inject(UserService);
+  authService = inject(AuthentificationService);
   constructor(private router: Router) {}
   menuOpen = false;
 
@@ -48,6 +50,7 @@ export class HeaderComponent {
   } */
 
   logOut() {
+    this.authService.logOut();
     sessionStorage.clear();
     this.userService.activeUser = null;
     this.router.navigateByUrl('/');

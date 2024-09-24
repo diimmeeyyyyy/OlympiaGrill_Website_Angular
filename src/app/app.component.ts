@@ -29,18 +29,11 @@ export class AppComponent implements OnInit {
   /* constructor(private router: Router) {} */
 
   async ngOnInit() {
-    debugger;
-    console.log(sessionStorage.getItem('loggedInUser'));
-    
     /* await this.init(); */
   }
 
   async init() {
-    let loggedInUserID = sessionStorage.getItem('loggedInUser');
-    if (loggedInUserID) {
-      let user = await this.userService.getUserByID(loggedInUserID);
-      this.userService.activeUser = user;
-    }
+    this.userService.loadActiveUser();
   }
 
   urlIsRoot(): boolean {

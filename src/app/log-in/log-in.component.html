@@ -28,7 +28,11 @@
         </div>
 
         <div class="log-in-button">
-          <img src="./assets/img/log-in.png" (click)="logInUser()" />
+          <img
+            src="./assets/img/log-in.png"
+            (click)="logInUser()"
+            [ngClass]="{ 'enable-logIn-button': email && password }"
+          />
           <button (click)="logInAsGuest()">Als Gast anmelden</button>
         </div>
       </form>
