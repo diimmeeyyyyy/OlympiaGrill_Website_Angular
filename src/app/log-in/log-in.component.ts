@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-log-in',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIconModule,FormsModule],
+  imports: [CommonModule, MatButtonModule, MatIconModule, FormsModule],
   templateUrl: './log-in.component.html',
   styleUrl: './log-in.component.scss',
 })
@@ -32,11 +32,11 @@ export class LogInComponent {
 
   logInAsGuest() {
     let guest = {
-      id: '123456789',
+      docId: '123456789',
       name: 'guest',
       email: 'guest@gmx.de',
-      password: 'guest',
       orders: [],
+      uId: '123456',
     };
     this.userService.setActiveUser(guest);
     console.log(this.userService.activeUser);
@@ -60,7 +60,7 @@ export class LogInComponent {
   emailImage = './assets/img/register-email.png';
   passwordImage = './assets/img/register-password.png';
 
-  checkEmail(email: string) {
+  /* checkEmail(email: string) {
     const userEmail = this.logInService.users.find(
       (user) => user.email === email
     );
@@ -70,7 +70,7 @@ export class LogInComponent {
     } else {
       return './assets/img/register-email.png';
     }
-  }
+  } */
 
   /* checkPassword(email: string, password: string) {
     const userData = this.userExists(email, password);
@@ -83,18 +83,12 @@ export class LogInComponent {
   } */
 
   async logInUser() {
-    debugger;
     await this.authService.logIn(this.email, this.password);
-    this.navigateToPreOrder();
-  }
-  /* logInUser(email: string, password: string) {
-    const user = this.userExists(email, password);
-    if (user) {
-      sessionStorage.setItem('loggedInUser', user.id);
-      this.userService.setActiveUser(user);
+    debugger;
+    if (sessionStorage.getItem('loggedInUser')) {
       this.navigateToPreOrder();
     }
-  } */
+  }
 
   /* userExists(email: string, password: string) {
     return this.logInService.users.find(

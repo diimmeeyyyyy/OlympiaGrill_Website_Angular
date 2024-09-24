@@ -5,8 +5,11 @@ import {
   addDoc,
   collection,
   doc,
+  getDocs,
   onSnapshot,
+  query,
   updateDoc,
+  where,
 } from '@angular/fire/firestore';
 import { User } from '../../interfaces/user.interface';
 import { UserService } from '../user/user.service';
@@ -50,10 +53,11 @@ export class LogInAndRegisterService {
 
   setUserObject(obj: any): User {
     return {
-      id: obj.id,
+      docId: obj.id,
       name: obj.name,
       email: obj.email,
       orders: obj.orders,
+      uId: obj.uid,
     };
   }
 
@@ -61,11 +65,18 @@ export class LogInAndRegisterService {
     //todo überprüfen, es bereits einen User mit der E-Mail gibt
     try {
       const docRef: DocumentReference = await addDoc(this.getUsersRef(), user);
-      user.id = docRef.id;
+      user.docId = docRef.id;
       await this.userService.updateUser(user);
     } catch (err) {
       console.error('Error updating Data', err);
     }
+  }
+
+  async checkIfEmailExists(email: string): Promise<boolean> {
+    const usersRef = this.getUsersRef();
+    const q = query(usersRef, where('email', '==', email));
+    const querySnapshot = await getDocs(q);
+    return !querySnapshot.empty;
   }
 
   getUsersRef() {

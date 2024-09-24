@@ -22,19 +22,11 @@ export class AuthentificationService {
   /* ===========================
   SIGN UP WITH E-MAIL & PASSWORD
   ==============================*/
-  async mailSignUp(email: string, password: string) {
-    createUserWithEmailAndPassword(this.auth, email, password)
+  async mailSignUp(email: string, password: string): Promise<string> {
+    return createUserWithEmailAndPassword(this.auth, email, password)
       .then((userCredential: any) => {
-        // Signed in
-        this.showMessage = true;
-        this.loginSuccess = true;
-        /*  this.userService.googleUser = userCredential.user; */
-        this.errorMessage = '';
-
-        setTimeout(() => {
-          /*  this.userService.login(userCredential.user);
-          this.setLocalPersistent(); */
-        }, 1000);
+        /* console.log(userCredential.user.uid); */
+        return userCredential.user.uid;
       })
       .catch((error: any) => {
         this.showMessage = false;
@@ -60,31 +52,14 @@ export class AuthentificationService {
   /* ====
 LOG-IN
 =======*/
-  /*  async logIn(email: string, password: string) {
-    signInWithEmailAndPassword(this.auth, email, password)
-      .then((userCredential: any) => {
-        this.userService.activeUser = userCredential.user;
-
-        sessionStorage.setItem('loggedInUser', userCredential);
-      })
-      .catch((error: { code: any; message: any; }) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      });
-  }
-} */
-
   async logIn(email: string, password: string) {
-    debugger;
     try {
       const userCredential = await signInWithEmailAndPassword(
         this.auth,
         email,
         password
       );
-      debugger;
       // Signed in
-      /*   this.userService.activeUser = userCredential.user; */
       console.log(JSON.stringify(userCredential.user.uid));
 
       sessionStorage.setItem(

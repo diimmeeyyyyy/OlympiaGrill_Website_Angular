@@ -50,21 +50,29 @@ export class RegisterComponent {
   ];
 
   async signUpUser() {
-    /*  let user: User = {
-      id: '',
+    let email = this.inputfields[1].value;
+    let emailExists = await this.registerService.checkIfEmailExists(email);
+
+    if (!emailExists) {
+      let password = this.inputfields[2].value;
+      const uid = await this.authService.mailSignUp(email, password);
+      let user: User = this.userObject(uid);
+      this.registerService.addUser(user);
+      this.clearInputfields();
+      this.successfullyRegistrationMessage();
+    } else {
+      alert('EMAIL EXISTIERT BEREITS');
+    }
+  }
+
+  userObject(uid: string) {
+    return {
+      docId: '',
       name: this.inputfields[0].value,
       email: this.inputfields[1].value,
-      password: this.inputfields[2].value,
       orders: [],
-    }; */
-    /*  this.registerService.addUser(user); */
-    debugger;
-    let email = this.inputfields[1].value;
-    let password = this.inputfields[2].value;
-
-    await this.authService.mailSignUp(email, password);
-    this.clearInputfields();
-    this.successfullyRegistrationMessage();
+      uId: uid,
+    };
   }
 
   successfullyRegistrationMessage() {

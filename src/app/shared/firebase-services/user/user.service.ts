@@ -26,12 +26,11 @@ export class UserService {
   }
 
   async updateUser(user: User) {
-    debugger;
     try {
-      if (!user.id) {
+      if (!user.docId) {
         throw new Error('User ID is missing');
       }
-      const userDocRef = doc(this.firestore, 'users', user.id);
+      const userDocRef = doc(this.firestore, 'users', user.docId);
       await updateDoc(userDocRef, { ...user });
       console.log('User updated successfully');
     } catch (err) {
