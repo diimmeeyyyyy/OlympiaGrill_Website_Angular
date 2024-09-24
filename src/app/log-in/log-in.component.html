@@ -10,39 +10,25 @@
       <form onsubmit="logInUser(); return false" class="form">
         <div class="inputfield">
           <input
+            [(ngModel)]="email"
             type="email"
             placeholder="E-Mail"
-            #emailInput
-            (input)="emailImage = checkEmail(emailInput.value)"
+            name="email"
           />
           <img [src]="emailImage" />
         </div>
         <div class="inputfield">
           <input
+            [(ngModel)]="password"
             type="password"
             placeholder="Passwort"
-            #passwordInput
-            (input)="
-              passwordImage = checkPassword(
-                emailInput.value,
-                passwordInput.value
-              )
-            "
+            name="password"
           />
           <img [src]="passwordImage" />
         </div>
 
         <div class="log-in-button">
-          <img
-            src="./assets/img/log-in.png"
-            [ngClass]="{
-              'enable-logIn-button': userExists(
-                emailInput.value,
-                passwordInput.value
-              )
-            }"
-            (click)="logInUser(emailInput.value, passwordInput.value)"
-          />
+          <img src="./assets/img/log-in.png" (click)="logInUser()" />
           <button (click)="logInAsGuest()">Als Gast anmelden</button>
         </div>
       </form>

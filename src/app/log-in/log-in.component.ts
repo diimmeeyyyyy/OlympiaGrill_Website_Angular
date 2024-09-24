@@ -5,16 +5,21 @@ import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { LogInAndRegisterService } from '../shared/firebase-services/log-in-and-register/log-in-and-register.service';
 import { UserService } from '../shared/firebase-services/user/user.service';
+import { AuthentificationService } from '../shared/firebase-services/authentification/authentification.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-log-in',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIconModule],
+  imports: [CommonModule, MatButtonModule, MatIconModule,FormsModule],
   templateUrl: './log-in.component.html',
   styleUrl: './log-in.component.scss',
 })
 export class LogInComponent {
   userService = inject(UserService);
+  authService = inject(AuthentificationService);
+  email!: string;
+  password!: string;
 
   constructor(
     public logInService: LogInAndRegisterService,
@@ -67,7 +72,7 @@ export class LogInComponent {
     }
   }
 
-  checkPassword(email: string, password: string) {
+  /* checkPassword(email: string, password: string) {
     const userData = this.userExists(email, password);
 
     if (userData) {
@@ -75,20 +80,25 @@ export class LogInComponent {
     } else {
       return './assets/img/register-password.png';
     }
-  }
+  } */
 
-  logInUser(email: string, password: string) {
+  async logInUser() {
+    debugger;
+    await this.authService.logIn(this.email, this.password);
+    this.navigateToPreOrder();
+  }
+  /* logInUser(email: string, password: string) {
     const user = this.userExists(email, password);
     if (user) {
       sessionStorage.setItem('loggedInUser', user.id);
       this.userService.setActiveUser(user);
       this.navigateToPreOrder();
     }
-  }
+  } */
 
-  userExists(email: string, password: string) {
+  /* userExists(email: string, password: string) {
     return this.logInService.users.find(
       (user) => user.email === email && user.password === password
     );
-  }
+  } */
 }

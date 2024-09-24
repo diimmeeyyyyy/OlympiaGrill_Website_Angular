@@ -18,6 +18,7 @@ export class OrderService {
   async loadMyOrders() {
     debugger;
     if (this.userService.activeUser?.orders) {
+      this.myOrders = [];
       for (let orderID of this.userService.activeUser.orders) {
         let order = await this.loadOrder(orderID);
         if (order) {

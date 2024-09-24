@@ -17,7 +17,7 @@
       <div>
         <img src="/assets/img/back-to-logIn.png" (click)="navigateToLogIn()" />
         <button
-          (click)="addUser()"
+          (click)="signUpUser()"
           [disabled]="!checkRegisterRequirements()"
           [ngClass]="{ 'enable-register-button': checkRegisterRequirements() }"
         >

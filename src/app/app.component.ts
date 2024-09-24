@@ -30,7 +30,9 @@ export class AppComponent implements OnInit {
 
   async ngOnInit() {
     debugger;
-    await this.init();
+    console.log(sessionStorage.getItem('loggedInUser'));
+    
+    /* await this.init(); */
   }
 
   async init() {
@@ -41,9 +43,7 @@ export class AppComponent implements OnInit {
     }
   }
 
-  urlIsRoot() {
-    if (this.router.url === '/') {
-    }
-    return this.router.url === '/';
+  urlIsRoot(): boolean {
+    return this.router.url === '/' || this.router.url === '/register';
   }
 }

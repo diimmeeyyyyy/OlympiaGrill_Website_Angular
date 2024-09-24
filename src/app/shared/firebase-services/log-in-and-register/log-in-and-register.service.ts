@@ -53,7 +53,6 @@ export class LogInAndRegisterService {
       id: obj.id,
       name: obj.name,
       email: obj.email,
-      password: obj.password,
       orders: obj.orders,
     };
   }

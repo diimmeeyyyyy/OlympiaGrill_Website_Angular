@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, ViewChildren, QueryList } from '@angular/core';
+import { Component, ViewChildren, QueryList, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { LogInAndRegisterService } from '../shared/firebase-services/log-in-and-register/log-in-and-register.service';
 import { User } from '../shared/interfaces/user.interface';
 import { RegisterInputfieldComponent } from './register-inputfield/register-inputfield.component';
 import { Router } from '@angular/router';
+import { AuthentificationService } from '../shared/firebase-services/authentification/authentification.service';
 
 @Component({
   selector: 'app-register',
@@ -14,6 +15,8 @@ import { Router } from '@angular/router';
   styleUrl: './register.component.scss',
 })
 export class RegisterComponent {
+  authService = inject(AuthentificationService);
+
   constructor(
     private registerService: LogInAndRegisterService,
     private router: Router
@@ -46,15 +49,20 @@ export class RegisterComponent {
     },
   ];
 
-  addUser() {
-    let user: User = {
+  async signUpUser() {
+    /*  let user: User = {
       id: '',
       name: this.inputfields[0].value,
       email: this.inputfields[1].value,
       password: this.inputfields[2].value,
       orders: [],
-    };
-    this.registerService.addUser(user);
+    }; */
+    /*  this.registerService.addUser(user); */
+    debugger;
+    let email = this.inputfields[1].value;
+    let password = this.inputfields[2].value;
+
+    await this.authService.mailSignUp(email, password);
     this.clearInputfields();
     this.successfullyRegistrationMessage();
   }
