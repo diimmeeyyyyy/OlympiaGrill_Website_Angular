@@ -1,12 +1,14 @@
 @import "../../styles.scss";
 
 .wrapper {
-  height: calc(100vh - 317px);
+  min-height: calc(100vh - 317px);
   > main {
     display: flex;
     flex-direction: column;
     padding-top: 40px;
     align-items: center;
+    flex: 1; // Fügen Sie diese Zeile hinzu, um sicherzustellen, dass main den verfügbaren Platz einnimmt
+    /* overflow: hidden; */
   }
 }
 
@@ -17,7 +19,6 @@ h4 {
 }
 
 h1 {
-  /* width: fit-content; */
   font-size: clamp(21px, 4vw, 26px);
   padding: 10px;
   background: rgb(55, 103, 189);
@@ -26,23 +27,29 @@ h1 {
 }
 
 .all-orders {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   width: 100%;
-
+  overflow-y: auto;
+  flex: 1;
   > .one-order {
     display: flex;
     justify-content: space-between;
     background-color: aliceblue;
     padding-inline: 16px;
+    padding-bottom: 8px;
+    border-block: 2px solid;
     &:first-child {
       margin-top: 16px;
+    }
+    &:last-child {
+      margin-bottom: 16px;
     }
     > .left {
       display: flex;
       flex-direction: column;
       gap: 8px;
-      /* &:first-child {
-        margin-top: 16px;
-      } */
       > span {
         display: flex;
         gap: 8px;
@@ -58,11 +65,7 @@ h1 {
       }
     }
     > .right {
-       @include dflexColumn();
-      /* display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center; */
+      @include dflexColumn();
     }
   }
 }

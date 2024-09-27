@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, OnInit } from '@angular/core';
 import {
   collection,
   doc,
@@ -14,11 +14,16 @@ import { User } from '../../interfaces/user.interface';
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
+export class UserService implements OnInit {
   activeUser: User | null = null;
   firestore: Firestore = inject(Firestore);
+  
   constructor() {
     this.loadActiveUser();
+  }
+
+  async ngOnInit() {
+    await this.loadActiveUser();
   }
 
   async loadActiveUser() {

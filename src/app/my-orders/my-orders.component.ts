@@ -18,8 +18,10 @@ export class MyOrdersComponent implements OnInit {
   orderService = inject(OrderService);
 
   async ngOnInit() {
+    await this.userService.loadActiveUser();
+    console.log(this.userService.activeUser);
     if (this.userService.activeUser) {
-      this.initializeMyOrders();
+      await this.initializeMyOrders();
     } else {
       console.log('activeUser is null');
     }

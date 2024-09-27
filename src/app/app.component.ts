@@ -28,6 +28,10 @@ export class AppComponent implements OnInit {
 
   /* constructor(private router: Router) {} */
 
+  constructor() {
+    this.userService.loadActiveUser();
+  }
+
   async ngOnInit() {
     /* await this.init(); */
   }
