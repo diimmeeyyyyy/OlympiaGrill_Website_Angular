@@ -1,3 +1,5 @@
+@import "../../styles.scss";
+
 .wrapper {
   height: calc(100vh - 317px);
   > main {
@@ -26,14 +28,41 @@ h1 {
 .all-orders {
   width: 100%;
 
-  > div {
+  > .one-order {
     display: flex;
-    flex-direction: column;
-    gap: 8px;
+    justify-content: space-between;
     background-color: aliceblue;
-    padding-left: 24px;
+    padding-inline: 16px;
     &:first-child {
       margin-top: 16px;
+    }
+    > .left {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      /* &:first-child {
+        margin-top: 16px;
+      } */
+      > span {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        border-inline: 1px solid;
+        width: fit-content;
+        border-bottom: 1px solid;
+        padding-inline: 4px;
+        background: lightgray;
+        > p {
+          font-size: 14px;
+        }
+      }
+    }
+    > .right {
+       @include dflexColumn();
+      /* display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center; */
     }
   }
 }

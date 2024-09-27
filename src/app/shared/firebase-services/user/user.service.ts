@@ -26,7 +26,6 @@ export class UserService {
     if (uId) {
       uId = uId.slice(1, -1);
       let user = await this.getUserByUserId(uId);
-      debugger;
       this.activeUser = user;
     }
   }

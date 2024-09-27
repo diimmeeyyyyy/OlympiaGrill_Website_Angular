@@ -2,15 +2,29 @@
   <main>
     <h1>Meine Bestellungen</h1>
 
+    @if (orderService.myOrders.length === 0) {
+    <h4>NOCH KEINE BESTELLUNGEN</h4>
+    }@else {
     <section class="all-orders">
       @for (order of orderService.myOrders; track $index) {
-      <div>
-        <h4>{{ order.timestamp | date : "dd.MM.yyyy" }}</h4>
-        @for (dish of order.order; track $index) {
-        <app-order [dish]="dish"></app-order>
-        }
-      </div>
+      <section class="one-order">
+        <div class="left">
+          <span>
+            <h4>{{ order.timestamp | date : "dd.MM.yyyy" }}</h4>
+            <p>{{ order.timestamp | date : "HH:mm" }}</p>
+          </span>
+          @for (dish of order.order; track $index) {
+          <app-order [dish]="dish"></app-order>
+          }
+        </div>
+        <div class="right">
+          <h4>Status:</h4>
+          <p>{{ order.status }}</p>
+        </div>
+      </section>
       }
     </section>
+
+    }
   </main>
 </div>
