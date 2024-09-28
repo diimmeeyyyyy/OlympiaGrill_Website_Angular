@@ -94,7 +94,9 @@ export class ShoppingbasketService {
 
   async requestOrder(order: Order) {
     console.log('Bestellanfrage wurde gesendet');
-    let docRef = await addDoc(this.getRequestOrderRef(), order);
+    debugger;
+    let docRef = await addDoc(this.getOrderRef(), order);
+    debugger;
     order.id = docRef.id;
     this.userService.activeUser?.orders.push(order.id);
     debugger;
@@ -107,7 +109,7 @@ export class ShoppingbasketService {
     await this.updateOrder(order);
   }
 
-  getRequestOrderRef() {
+  getOrderRef() {
     let requestOrder = collection(this.firestore, 'orders');
     return requestOrder;
   }

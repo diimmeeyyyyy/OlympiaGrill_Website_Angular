@@ -12,6 +12,8 @@ import { ShoppingBasketItemComponent } from './shopping-basket-item/shopping-bas
 import { ChangeDetectorRef } from '@angular/core';
 import { ShoppingbasketService } from '../../shared/firebase-services/basket/shoppingbasket.service';
 import { Order } from '../../shared/interfaces/order.interface';
+import { ShoppingBasketItem } from '../../shared/interfaces/shopping-basket-item.interface';
+import { UserService } from '../../shared/firebase-services/user/user.service';
 
 @Component({
   selector: 'app-shopping-basket',
@@ -22,6 +24,7 @@ import { Order } from '../../shared/interfaces/order.interface';
 })
 export class ShoppingBasketComponent {
   basketService = inject(ShoppingbasketService);
+  userService = inject(UserService);
 
   constructor(private cdref: ChangeDetectorRef) {}
 
@@ -165,23 +168,61 @@ export class ShoppingBasketComponent {
   }
 
   async sendOrderRequest() {
-    let order: Order = {
+    let shoppingBasket = this.createShoppingBasket();
+    let order: Order = this.createOrder(shoppingBasket);
+    await this.requestOrder(order);
+    this.emptyBasket();
+    this.showNotification();
+  }
+
+  createShoppingBasket() {
+    //REMOVE UNDEFINED-FIELD IN BASKET-OBJECTS, BC OTHERWISE ERROR
+    return this.basketService.shoppingBasket.map((item) =>
+      this.createShoppingBasketItem(item)
+    );
+  }
+
+  createShoppingBasketItem(
+    data: Partial<ShoppingBasketItem>
+  ): ShoppingBasketItem {
+    return {
+      id: data.id ?? 0,
+      title: data.title ?? '',
+      price: data.price ?? 0,
+      amount: data.amount ?? 1,
+      foodClass: data.foodClass ?? '',
+      toppings: data.toppings ?? [],
+      salad: data.salad ?? '',
+      bifteki: data.bifteki ?? '',
+      gyrosSpecial: data.gyrosSpecial ?? '',
+      sides: data.sides ?? '',
+    };
+  }
+
+  createOrder(shoppingBasket: ShoppingBasketItem[]) {
+    return {
       timestamp: new Date().getTime(),
-      customer: 'DIMI TEST',
-      customerEmail: 'dimi@test.de',
-      order: this.basketService.shoppingBasket,
+      customer: this.userService.activeUser?.name || 'guest',
+      customerEmail: this.userService.activeUser?.email || 'guest@gmx.de',
+      order: shoppingBasket,
       status: 'open',
     };
+  }
 
+  showNotification() {
     this.basketService.orderWasRequested = true;
     this.basketService.visible = true;
+  }
 
+  async requestOrder(order: Order) {
     try {
       await this.basketService.requestOrder(order);
     } catch (error) {
       console.error('Fehler beim Anfordern der Bestellung', error);
     }
+  }
 
+  emptyBasket() {
     this.basketService.shoppingBasket.length = 0;
     this.basketService.totalItemAmount = 0;
     this.closeShoppingBasket();
