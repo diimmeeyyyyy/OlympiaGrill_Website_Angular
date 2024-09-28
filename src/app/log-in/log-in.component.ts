@@ -44,7 +44,17 @@ export class LogInComponent {
   }
 
   navigateToPreOrder() {
-    this.router.navigateByUrl('/preOrder');
+    document.body.classList.add('fade-out');
+
+    setTimeout(() => {
+      this.router.navigateByUrl('/preOrder').then(() => {
+        document.body.classList.remove('fade-out');
+        document.body.classList.add('fade-in');
+        setTimeout(() => {
+          document.body.classList.remove('fade-in');
+        }, 1000); 
+      });
+    }, 1000); 
     document.body.style.overflow = 'auto';
   }
 
