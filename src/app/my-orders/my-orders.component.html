@@ -29,6 +29,9 @@
               <p>{{ calculateTotalPrice(order) | euroCurrency }}€</p>
             </span>
           </div>
+          @if (order.status === 'open') {
+          <p-button label="Bestellung stornieren" severity="danger" />
+          }
         </div>
       </section>
       }

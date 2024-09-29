@@ -7,11 +7,18 @@ import { OrderService } from '../shared/firebase-services/order/order.service';
 import { OrderComponent } from './order/order.component';
 import { TabViewModule } from 'primeng/tabview';
 import { EuroCurrencyPipe } from '../shared/pipes/currencies/euro-currency.pipe';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-my-orders',
   standalone: true,
-  imports: [CommonModule, OrderComponent, TabViewModule, EuroCurrencyPipe],
+  imports: [
+    CommonModule,
+    OrderComponent,
+    TabViewModule,
+    EuroCurrencyPipe,
+    ButtonModule,
+  ],
   templateUrl: './my-orders.component.html',
   styleUrl: './my-orders.component.scss',
 })
@@ -36,6 +43,11 @@ export class MyOrdersComponent implements OnInit {
     });
     return total;
   }
+
+  /*  orderStatus!:string;
+  getOrderStatus(){
+    
+  } */
 
   /* async init() {
     this.userService.loadActiveUser();

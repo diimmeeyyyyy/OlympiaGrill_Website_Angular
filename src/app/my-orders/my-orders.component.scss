@@ -39,7 +39,8 @@ h1 {
     background-color: aliceblue;
     padding-inline: 8px;
     padding-bottom: 8px;
-    border-block: 2px solid;
+    border: 2px solid;
+    border-radius: 10px;
     &:first-child {
       margin-top: 16px;
     }
@@ -88,4 +89,10 @@ h1 {
   height: 2px;
   width: 100%;
   background-color: black;
+}
+
+p-button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
