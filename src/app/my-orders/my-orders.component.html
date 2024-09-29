@@ -22,7 +22,12 @@
           <div class="order-footer">
             <span>
               <h4>Status:</h4>
-              <p>{{ order.status }}</p>
+              @if (order.status ==='open') {
+              <div class="open-order">
+                <p>Offen</p>
+                <i class="pi pi-spin pi-cog" style="font-size: 1.5rem"></i>
+              </div>
+              }
             </span>
             <span>
               <h4>Gesamt:</h4>
