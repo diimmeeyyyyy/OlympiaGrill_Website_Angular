@@ -35,9 +35,9 @@ h1 {
   flex: 1;
   > .one-order {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     background-color: aliceblue;
-    padding-inline: 16px;
+    padding-inline: 8px;
     padding-bottom: 8px;
     border-block: 2px solid;
     &:first-child {
@@ -59,13 +59,33 @@ h1 {
         border-bottom: 1px solid;
         padding-inline: 4px;
         background: lightgray;
+        border-radius: 0 0 5px 5px;
         > p {
           font-size: 14px;
         }
       }
     }
-    > .right {
-      @include dflexColumn();
+
+    .order-footer {
+      display: flex;
+      justify-content: space-around;
+      > span {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
     }
   }
+}
+
+.divider-thin {
+  height: 1px;
+  width: 100%;
+  background-color: black;
+}
+
+.divider {
+  height: 2px;
+  width: 100%;
+  background-color: black;
 }

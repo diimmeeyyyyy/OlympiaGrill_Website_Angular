@@ -1,5 +1,8 @@
 <main>
-  <h4>{{ dish?.amount }}x</h4>
-  <h4>{{ dish?.title }}</h4>
+  <div>
+    <h4>{{ dish?.amount }}x</h4>
+    <h4>{{ dish?.title }}</h4>
+  </div>
   <p>{{ getToppingsString(dish!) }}</p>
+  <h4>{{ getTotalPrice() | euroCurrency }}€</h4>
 </main>

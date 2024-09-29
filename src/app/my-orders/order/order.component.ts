@@ -2,16 +2,21 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { ShoppingBasketItem } from '../../shared/interfaces/shopping-basket-item.interface';
 import { Dish } from '../../shared/interfaces/dish.interface';
+import { EuroCurrencyPipe } from '../../shared/pipes/currencies/euro-currency.pipe';
 
 @Component({
   selector: 'app-order',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, EuroCurrencyPipe],
   templateUrl: './order.component.html',
   styleUrl: './order.component.scss',
 })
 export class OrderComponent {
   @Input() dish: ShoppingBasketItem | undefined;
+
+  getTotalPrice(): number {
+    return (this.dish?.price ?? 0) * (this.dish?.amount ?? 0);
+  }
 
   getToppingsString(dish: ShoppingBasketItem) {
     if (dish.foodClass === 'GR') {

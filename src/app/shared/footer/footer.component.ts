@@ -16,7 +16,11 @@ export class FooterComponent {
   constructor(private router: Router) {}
 
   checkMarginBottom() {
-    return this.basketService.totalItemAmount > 0 && window.innerWidth < 450;
+    return (
+      this.basketService.totalItemAmount > 0 &&
+      window.innerWidth < 450 &&
+      this.router.url !== '/myOrders'
+    );
   }
 
   navigateToImprint() {

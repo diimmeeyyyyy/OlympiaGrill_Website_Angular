@@ -15,16 +15,24 @@
           </span>
           @for (dish of order.order; track $index) {
           <app-order [dish]="dish"></app-order>
-          }
-        </div>
-        <div class="right">
-          <h4>Status:</h4>
-          <p>{{ order.status }}</p>
+          @if ($index < order.order.length -1) {
+          <p class="divider-thin"></p>
+          } }
+          <p class="divider"></p>
+          <div class="order-footer">
+            <span>
+              <h4>Status:</h4>
+              <p>{{ order.status }}</p>
+            </span>
+            <span>
+              <h4>Gesamt:</h4>
+              <p>{{ calculateTotalPrice(order) | euroCurrency }}€</p>
+            </span>
+          </div>
         </div>
       </section>
       }
     </section>
-
     }
   </main>
 </div>
