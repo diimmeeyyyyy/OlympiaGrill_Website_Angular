@@ -29,7 +29,7 @@ h1 {
 .all-orders {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 32px;
   width: 100%;
   overflow-y: auto;
   flex: 1;
@@ -97,7 +97,8 @@ p-button {
   justify-content: center;
 }
 
-.open-order {
+.order-status {
   display: flex;
   gap: 5px;
+  align-items: center;
 }

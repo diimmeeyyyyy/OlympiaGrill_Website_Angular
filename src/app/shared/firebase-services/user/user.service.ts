@@ -10,6 +10,7 @@ import {
   where,
 } from '@angular/fire/firestore';
 import { User } from '../../interfaces/user.interface';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +18,8 @@ import { User } from '../../interfaces/user.interface';
 export class UserService implements OnInit {
   activeUser: User | null = null;
   firestore: Firestore = inject(Firestore);
-  
+  router = inject(Router);
+
   constructor() {
     this.loadActiveUser();
   }
@@ -32,6 +34,8 @@ export class UserService implements OnInit {
       uId = uId.slice(1, -1);
       let user = await this.getUserByUserId(uId);
       this.activeUser = user;
+    } else {
+      this.router.navigateByUrl('/');
     }
   }
 

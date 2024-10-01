@@ -8,6 +8,8 @@ import { OrderComponent } from './order/order.component';
 import { TabViewModule } from 'primeng/tabview';
 import { EuroCurrencyPipe } from '../shared/pipes/currencies/euro-currency.pipe';
 import { ButtonModule } from 'primeng/button';
+import { PaginatorModule, PaginatorState } from 'primeng/paginator';
+import { PageEvent } from '../shared/interfaces/page-event.interface';
 
 @Component({
   selector: 'app-my-orders',
@@ -18,6 +20,7 @@ import { ButtonModule } from 'primeng/button';
     TabViewModule,
     EuroCurrencyPipe,
     ButtonModule,
+    PaginatorModule,
   ],
   templateUrl: './my-orders.component.html',
   styleUrl: './my-orders.component.scss',
@@ -55,5 +58,13 @@ export class MyOrdersComponent implements OnInit {
 
   async initializeMyOrders() {
     await this.orderService.loadMyOrders();
+  }
+
+  first: number = 0;
+  rows: number = 2;
+
+  onPageChange(event: PaginatorState) {
+    this.first = event.first ?? 0;
+    this.rows = event.rows ?? 2;
   }
 }

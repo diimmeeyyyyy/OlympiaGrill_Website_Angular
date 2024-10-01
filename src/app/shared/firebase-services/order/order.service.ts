@@ -24,6 +24,7 @@ export class OrderService {
           this.myOrders.push(order);
         }
       }
+      this.myOrders.sort((a, b) => b.timestamp - a.timestamp);
     }
   }
 
