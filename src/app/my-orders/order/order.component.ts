@@ -6,11 +6,18 @@ import { EuroCurrencyPipe } from '../../shared/pipes/currencies/euro-currency.pi
 import { ButtonModule } from 'primeng/button';
 import { DishComponent } from './dish/dish.component';
 import { Order } from '../../shared/interfaces/order.interface';
+import { OrderStatusComponent } from './order-status/order-status.component';
 
 @Component({
   selector: 'app-order',
   standalone: true,
-  imports: [CommonModule, EuroCurrencyPipe, DishComponent, ButtonModule],
+  imports: [
+    CommonModule,
+    EuroCurrencyPipe,
+    DishComponent,
+    ButtonModule,
+    OrderStatusComponent,
+  ],
   templateUrl: './order.component.html',
   styleUrl: './order.component.scss',
 })

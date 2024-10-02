@@ -11,20 +11,7 @@
     } }
     <p class="divider"></p>
     <div class="order-footer">
-      <span>
-        <h4>Status:</h4>
-        @if (order.status ==='open') {
-        <div class="order-status">
-          <p>Offen</p>
-          <i class="pi pi-spin pi-cog" style="font-size: 1.25rem"></i>
-        </div>
-        }@else {
-        <div class="order-status">
-          <p>Abgeschlossen</p>
-          <i class="pi pi-check-circle"></i>
-        </div>
-        }
-      </span>
+      <app-order-status [status]="order.status"></app-order-status>
       <span>
         <h4>Gesamt:</h4>
         <p>{{ calculateTotalPrice(order) | euroCurrency }}€</p>

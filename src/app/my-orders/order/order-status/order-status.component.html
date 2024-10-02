@@ -1,0 +1,14 @@
+<main>
+  <h4>Status:</h4>
+  @if (status ==='open') {
+  <div class="order-status">
+    <p>Offen</p>
+    <i class="pi pi-spin pi-cog" style="font-size: 1.25rem"></i>
+  </div>
+  }@else {
+  <div class="order-status">
+    <p>Abgeschlossen</p>
+    <i class="pi pi-check-circle"></i>
+  </div>
+  }
+</main>
