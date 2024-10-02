@@ -35,7 +35,7 @@ export class MyOrdersComponent implements OnInit {
     } else {
       console.log('activeUser is null');
     }
-   /*  this.updatePaginatedOrders(); */
+    this.updatePaginatedOrders();
   }
 
   /*  orderStatus!:string;
@@ -51,19 +51,20 @@ export class MyOrdersComponent implements OnInit {
     await this.orderService.loadMyOrders();
   }
 
-  first: number = 1;
-  rows: number = 2;
+  first: number = 0;
+  rows: number = 3;
   paginatedOrders: any[] = [];
 
   onPageChange(event: PaginatorState) {
-    this.first = event.first ?? 1;
-    this.rows = event.rows ?? 2;
-    /* this.updatePaginatedOrders(); */
+    this.first = event.first ?? +3;
+    this.rows = event.rows ?? 3;
+    this.updatePaginatedOrders();
+    window.scrollTo(0, 0);
   }
 
-  /* updatePaginatedOrders() {
+  updatePaginatedOrders() {
     const start = this.first;
     const end = this.first + this.rows;
     this.paginatedOrders = this.orderService.myOrders.slice(start, end);
-  } */
+  }
 }

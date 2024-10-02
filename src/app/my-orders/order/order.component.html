@@ -5,7 +5,6 @@
       <p>{{ order.timestamp | date : "HH:mm" }}</p>
     </span>
     @for (dish of order.order; track $index) {
-    <!--  <app-order [dish]="dish"></app-order> -->
     <app-dish [dish]="dish"></app-dish>
     @if ($index < order.order.length -1) {
     <p class="divider-thin"></p>

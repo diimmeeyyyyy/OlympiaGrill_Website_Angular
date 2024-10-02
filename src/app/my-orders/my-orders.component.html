@@ -6,45 +6,8 @@
     <h4>NOCH KEINE BESTELLUNGEN</h4>
     }@else {
     <section class="all-orders">
-      @for (order of orderService.myOrders; track $index) {
+      @for (order of paginatedOrders; track $index) {
       <app-order [order]="order"></app-order>
-      <!-- <section class="one-order">
-        <div class="left">
-          <span>
-            <h4>{{ order.timestamp | date : "dd.MM.yyyy" }}</h4>
-            <p>{{ order.timestamp | date : "HH:mm" }}</p>
-          </span>
-          @for (dish of order.order; track $index) {
-          <app-order [dish]="dish"></app-order>
-          @if ($index < order.order.length -1) {
-          <p class="divider-thin"></p>
-          } }
-          <p class="divider"></p>
-          <div class="order-footer">
-            <span>
-              <h4>Status:</h4>
-              @if (order.status ==='open') {
-              <div class="order-status">
-                <p>Offen</p>
-                <i class="pi pi-spin pi-cog" style="font-size: 1.25rem"></i>
-              </div>
-              }@else {
-              <div class="order-status">
-                <p>Abgeschlossen</p>
-                <i class="pi pi-check-circle"></i>
-              </div>
-              }
-            </span>
-            <span>
-              <h4>Gesamt:</h4>
-              <p>{{ calculateTotalPrice(order) | euroCurrency }}€</p>
-            </span>
-          </div>
-          @if (order.status === 'open') {
-          <p-button label="Bestellung stornieren" severity="danger" />
-          }
-        </div>
-      </section> -->
       }
     </section>
     }
