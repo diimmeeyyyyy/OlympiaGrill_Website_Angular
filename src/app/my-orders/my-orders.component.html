@@ -1,4 +1,9 @@
 <div class="wrapper">
+  @if (isLoading) {
+    <div class="progress-spinner">
+      <p-progressSpinner ariaLabel="loading" />
+    </div>
+  }@else{
   <main>
     <h1>Meine Bestellungen</h1>
 
@@ -20,4 +25,5 @@
       styleClass="paginator"
     />
   </main>
+  }
 </div>

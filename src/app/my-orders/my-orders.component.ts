@@ -8,6 +8,7 @@ import { EuroCurrencyPipe } from '../shared/pipes/currencies/euro-currency.pipe'
 import { ButtonModule } from 'primeng/button';
 import { PaginatorModule, PaginatorState } from 'primeng/paginator';
 import { PageEvent } from '../shared/interfaces/page-event.interface';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @Component({
   selector: 'app-my-orders',
@@ -19,6 +20,7 @@ import { PageEvent } from '../shared/interfaces/page-event.interface';
     EuroCurrencyPipe,
     ButtonModule,
     PaginatorModule,
+    ProgressSpinnerModule,
   ],
   templateUrl: './my-orders.component.html',
   styleUrl: './my-orders.component.scss',
@@ -26,26 +28,24 @@ import { PageEvent } from '../shared/interfaces/page-event.interface';
 export class MyOrdersComponent implements OnInit {
   userService = inject(UserService);
   orderService = inject(OrderService);
+  isLoading: boolean = false;
 
   async ngOnInit() {
+    this.isLoading = true;
+    await this.initMyOrders();
+    this.isLoading = false;
+  }
+
+  async initMyOrders() {
     await this.userService.loadActiveUser();
     console.log(this.userService.activeUser);
     if (this.userService.activeUser) {
       await this.initializeMyOrders();
+      this.updatePaginatedOrders();
     } else {
-      console.log('activeUser is null');
+      console.error('activeUser is null');
     }
-    this.updatePaginatedOrders();
   }
-
-  /*  orderStatus!:string;
-  getOrderStatus(){
-    
-  } */
-
-  /* async init() {
-    this.userService.loadActiveUser();
-  } */
 
   async initializeMyOrders() {
     await this.orderService.loadMyOrders();
