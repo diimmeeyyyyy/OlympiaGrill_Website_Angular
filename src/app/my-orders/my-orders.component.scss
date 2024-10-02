@@ -33,72 +33,12 @@ h1 {
   width: 100%;
   overflow-y: auto;
   flex: 1;
-  > .one-order {
-    display: flex;
-    flex-direction: column;
-    background-color: aliceblue;
-    padding-inline: 8px;
-    padding-bottom: 8px;
-    border: 2px solid;
-    border-radius: 10px;
+  >app-order{
     &:first-child {
-      margin-top: 16px;
-    }
-    &:last-child {
-      margin-bottom: 16px;
-    }
-    > .left {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      > span {
-        display: flex;
-        gap: 8px;
-        align-items: center;
-        border-inline: 1px solid;
-        width: fit-content;
-        border-bottom: 1px solid;
-        padding-inline: 4px;
-        background: lightgray;
-        border-radius: 0 0 5px 5px;
-        > p {
-          font-size: 14px;
-        }
-      }
-    }
-
-    .order-footer {
-      display: flex;
-      justify-content: space-around;
-      > span {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-    }
+    margin-top: 16px;
   }
-}
-
-.divider-thin {
-  height: 1px;
-  width: 100%;
-  background-color: black;
-}
-
-.divider {
-  height: 2px;
-  width: 100%;
-  background-color: black;
-}
-
-p-button {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.order-status {
-  display: flex;
-  gap: 5px;
-  align-items: center;
+  &:last-child {
+    margin-bottom: 16px;
+  }
+  }
 }

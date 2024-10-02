@@ -1,8 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { LogInAndRegisterService } from '../shared/firebase-services/log-in-and-register/log-in-and-register.service';
 import { UserService } from '../shared/firebase-services/user/user.service';
-import { Order } from '../shared/interfaces/order.interface';
 import { OrderService } from '../shared/firebase-services/order/order.service';
 import { OrderComponent } from './order/order.component';
 import { TabViewModule } from 'primeng/tabview';
@@ -37,14 +35,7 @@ export class MyOrdersComponent implements OnInit {
     } else {
       console.log('activeUser is null');
     }
-  }
-
-  calculateTotalPrice(order: Order): number {
-    let total: number = 0;
-    order.order.forEach((dish) => {
-      total += dish.price * dish.amount;
-    });
-    return total;
+   /*  this.updatePaginatedOrders(); */
   }
 
   /*  orderStatus!:string;
@@ -60,11 +51,19 @@ export class MyOrdersComponent implements OnInit {
     await this.orderService.loadMyOrders();
   }
 
-  first: number = 0;
+  first: number = 1;
   rows: number = 2;
+  paginatedOrders: any[] = [];
 
   onPageChange(event: PaginatorState) {
-    this.first = event.first ?? 0;
+    this.first = event.first ?? 1;
     this.rows = event.rows ?? 2;
+    /* this.updatePaginatedOrders(); */
   }
+
+  /* updatePaginatedOrders() {
+    const start = this.first;
+    const end = this.first + this.rows;
+    this.paginatedOrders = this.orderService.myOrders.slice(start, end);
+  } */
 }

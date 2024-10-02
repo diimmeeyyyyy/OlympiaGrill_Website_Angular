@@ -7,7 +7,8 @@
     }@else {
     <section class="all-orders">
       @for (order of orderService.myOrders; track $index) {
-      <section class="one-order">
+      <app-order [order]="order"></app-order>
+      <!-- <section class="one-order">
         <div class="left">
           <span>
             <h4>{{ order.timestamp | date : "dd.MM.yyyy" }}</h4>
@@ -43,7 +44,7 @@
           <p-button label="Bestellung stornieren" severity="danger" />
           }
         </div>
-      </section>
+      </section> -->
       }
     </section>
     }

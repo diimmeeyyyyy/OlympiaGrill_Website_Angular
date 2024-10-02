@@ -1,0 +1,19 @@
+main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  > div {
+    display: flex;
+    gap: 6px;
+  }
+  > p {
+    font-size: 15px;
+    color: gray;
+  }
+}
+
+h4 {
+  font-weight: bold;
+  margin: 0;
+}
