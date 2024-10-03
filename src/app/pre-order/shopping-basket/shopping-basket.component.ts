@@ -14,11 +14,25 @@ import { ShoppingbasketService } from '../../shared/firebase-services/basket/sho
 import { Order } from '../../shared/interfaces/order.interface';
 import { ShoppingBasketItem } from '../../shared/interfaces/shopping-basket-item.interface';
 import { UserService } from '../../shared/firebase-services/user/user.service';
+import { CalendarModule } from 'primeng/calendar';
+import { FormsModule } from '@angular/forms';
+import { DropdownModule } from 'primeng/dropdown';
+
+interface PickUpTime {
+  option: string;
+  value: number;
+}
 
 @Component({
   selector: 'app-shopping-basket',
   standalone: true,
-  imports: [CommonModule, ShoppingBasketItemComponent],
+  imports: [
+    CommonModule,
+    ShoppingBasketItemComponent,
+    CalendarModule,
+    FormsModule,
+    DropdownModule,
+  ],
   templateUrl: './shopping-basket.component.html',
   styleUrl: './shopping-basket.component.scss',
 })
@@ -27,8 +41,10 @@ export class ShoppingBasketComponent {
   userService = inject(UserService);
 
   constructor(private cdref: ChangeDetectorRef) {}
-
-  pickupTime!: string;
+  pickUpOptions: PickUpTime[] | undefined;
+  selectedTime!: PickUpTime;
+  /* time!: Date;
+  pickupTime!: string; */
   private timerId: any;
   @ViewChild(ShoppingBasketItemComponent, { read: ElementRef })
   item!: ElementRef;
@@ -43,12 +59,7 @@ export class ShoppingBasketComponent {
   @Output() shoppingBasketReady = new EventEmitter<ElementRef>();
 
   ngOnInit() {
-    this.updatePickUpTime();
-    const secondsUntilNextMinute = 60 - new Date().getSeconds();
-    setTimeout(() => {
-      this.updatePickUpTime();
-      this.timerId = setInterval(() => this.updatePickUpTime(), 60000);
-    }, secondsUntilNextMinute * 1000);
+    this.initPickUpOptions();
   }
 
   ngAfterViewInit() {
@@ -68,6 +79,15 @@ export class ShoppingBasketComponent {
     if (this.timerId) {
       clearInterval(this.timerId);
     }
+  }
+
+  initPickUpOptions() {
+    this.pickUpOptions = [
+      { option: 'sofort', value: 0 },
+      { option: 'in 20 Minuten', value: 20 },
+      { option: 'in 30 Minuten', value: 30 },
+    ];
+    this.selectedTime = { option: 'sofort', value: 0 };
   }
 
   getShoppingBasket() {
@@ -155,16 +175,6 @@ export class ShoppingBasketComponent {
       0
     );
     return total >= 20;
-  }
-
-  updatePickUpTime() {
-    const date = new Date();
-    date.setSeconds(0);
-    date.setMinutes(date.getMinutes() + 15);
-    this.pickupTime = date.toLocaleTimeString('de-DE', {
-      hour: '2-digit',
-      minute: '2-digit',
-    });
   }
 
   async sendOrderRequest() {

@@ -56,13 +56,26 @@
         </div>
       </div>
     </section> -->
-
-    <div
-      class="minimum-order-value-notification"
-      *ngIf="checkoutConditionsAreMet()"
-    >
+    @if (checkoutConditionsAreMet()) {
+    <div class="minimum-order-value-notification">
       <p>Mindestbestellwert: 20 €</p>
     </div>
+    }@else{
+    <div class="set-pickup-time">
+      <p>Gewünschte Abholzeit:</p>
+      <p-dropdown
+        [options]="pickUpOptions"
+        [(ngModel)]="selectedTime"
+        optionLabel="option"
+        [placeholder]="selectedTime.option"
+      />
+      <!-- <p-calendar
+        inputId="calendar-timeonly"
+        [(ngModel)]="time"
+        [timeOnly]="true"
+      /> -->
+    </div>
+    }
 
     <button
       class="order-request-btn"
