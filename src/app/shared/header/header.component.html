@@ -30,7 +30,7 @@
               >Vorbestellen zum Abholen</a
             >
           </li>
-          <li><a>Mein Profil</a></li>
+          <li><a>Mein Konto</a></li>
           <li><a (click)="logOut()">Abmelden</a></li>
         </div>
       </div>
@@ -39,8 +39,9 @@
 
   <nav *ngIf="screenIsLarge()">
     <div class="menu-large-screen">
+      <a (click)="navigateTo('myOrders'); closeMenu()">Meine Bestellungen</a>
       <a (click)="navigateTo('preOrder')">Zum Abholen vorbestellen</a>
-      <!-- <p href="">Kontakt & Anfahrt</p> -->
+      <a>Mein Konto</a>
       <a (click)="logOut()">Abmelden</a>
     </div>
   </nav>
