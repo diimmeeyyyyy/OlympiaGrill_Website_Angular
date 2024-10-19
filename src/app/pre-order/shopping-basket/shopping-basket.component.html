@@ -23,7 +23,6 @@
           (changedItemAmount)="onChangedItemPrice($event)"
           (removeItem)="onRemoveItem($event)"
         ></app-shopping-basket-item>
-        <!--  </Section> -->
         <div class="message-shoppingBasket-empty" *ngIf="basketIsEmpty()">
           <img src="./assets/img/ShoppingBasket.png" />
           <h2>Warenkorb leer</h2>
@@ -36,26 +35,6 @@
       </div>
     </section>
 
-    <!--  <section
-      class="pick-up-time"
-      *ngIf="minOrderValue()"
-      [style.border-radius]="getBorderRadius()"
-    >
-      <img src="./assets/img/pick-up-food-shopping-basket.png" />
-      <div class="pick-up-text">
-        <h3>Abholung:</h3>
-        <p>15 Minuten</p>
-        <span>
-          <img src="/assets/img/indicate-pick-up-time.png">
-          <p>{{ pickupTime }}</p>
-        </span>
-        <div class="loading-dots-div">
-          <p class="loading-dot"></p>
-          <p class="loading-dot"></p>
-          <p class="loading-dot"></p>
-        </div>
-      </div>
-    </section> -->
     @if (checkoutConditionsAreMet()) {
     <div class="minimum-order-value-notification">
       <p>Mindestbestellwert: 20 €</p>
@@ -69,11 +48,6 @@
         optionLabel="option"
         [placeholder]="selectedTime.option"
       />
-      <!-- <p-calendar
-        inputId="calendar-timeonly"
-        [(ngModel)]="time"
-        [timeOnly]="true"
-      /> -->
     </div>
     }
 

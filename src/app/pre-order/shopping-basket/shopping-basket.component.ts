@@ -17,6 +17,7 @@ import { UserService } from '../../shared/firebase-services/user/user.service';
 import { CalendarModule } from 'primeng/calendar';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
+import { timestamp } from 'rxjs';
 
 interface PickUpTime {
   option: string;
@@ -210,8 +211,10 @@ export class ShoppingBasketComponent {
   }
 
   createOrder(shoppingBasket: ShoppingBasketItem[]) {
+    debugger;
     return {
       timestamp: new Date().getTime(),
+      pickUpTime: new Date().getTime() + this.selectedTime.value * 6000,
       customer: this.userService.activeUser?.name || 'guest',
       customerEmail: this.userService.activeUser?.email || 'guest@gmx.de',
       order: shoppingBasket,
