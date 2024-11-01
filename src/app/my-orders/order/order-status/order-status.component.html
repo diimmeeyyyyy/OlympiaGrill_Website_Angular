@@ -5,7 +5,12 @@
     <p>Offen</p>
     <i class="pi pi-spin pi-cog" style="font-size: 1.25rem"></i>
   </div>
-  }@else {
+  }@else if (status === 'confirmed') {
+  <div class="order-status" class="order-status">
+    <p>Bestätigt für {{ confirmedPickUpTime | date : "HH:mm" }}</p>
+    <i class="pi pi-spin pi-cog" style="font-size: 1.25rem"></i>
+  </div>
+  } @else if(status === 'done'){
   <div class="order-status">
     <p>Abgeschlossen</p>
     <i class="pi pi-check-circle"></i>

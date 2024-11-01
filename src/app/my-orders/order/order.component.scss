@@ -12,22 +12,35 @@ h4 {
   padding-bottom: 8px;
   border: 2px solid;
   border-radius: 10px;
-  > .left {
+  > .content {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    > span {
+    gap: 16px;
+
+    > .order-header {
       display: flex;
-      gap: 8px;
-      align-items: center;
-      border-inline: 1px solid;
-      width: fit-content;
-      border-bottom: 1px solid;
-      padding-inline: 4px;
-      background: lightgray;
-      border-radius: 0 0 5px 5px;
-      > p {
-        font-size: 14px;
+      justify-content: space-between;
+      > span {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        border-inline: 1px solid;
+        width: fit-content;
+        border-bottom: 1px solid;
+        padding-inline: 4px;
+        background: lightgray;
+        border-radius: 0 0 5px 5px;
+        > p {
+          font-size: 14px;
+        }
+      }
+      > aside {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        > p {
+          font-size: 14px;
+        }
       }
     }
   }

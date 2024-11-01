@@ -34,6 +34,7 @@ export class MyOrdersComponent implements OnInit {
     this.isLoading = true;
     await this.initMyOrders();
     this.isLoading = false;
+    /* this.orderService.updateStatus(); */
   }
 
   async initMyOrders() {

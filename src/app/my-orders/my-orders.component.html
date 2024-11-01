@@ -1,8 +1,8 @@
 <div class="wrapper">
   @if (isLoading) {
-    <div class="progress-spinner">
-      <p-progressSpinner ariaLabel="loading" />
-    </div>
+  <div class="progress-spinner">
+    <p-progressSpinner ariaLabel="loading" />
+  </div>
   }@else{
   <main>
     <h1>Meine Bestellungen</h1>
@@ -12,7 +12,9 @@
     }@else {
     <section class="all-orders">
       @for (order of paginatedOrders; track $index) {
-      <app-order [order]="order"></app-order>
+      <app-order
+        [order]="order"
+      ></app-order>
       }
     </section>
     }

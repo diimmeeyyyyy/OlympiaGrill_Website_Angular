@@ -1,9 +1,17 @@
 <main class="one-order">
-  <section class="left">
-    <span>
-      <h4>{{ order.timestamp | date : "dd.MM.yyyy" }}</h4>
-      <p>{{ order.timestamp | date : "HH:mm" }}</p>
-    </span>
+  <section class="content">
+    <div class="order-header">
+      <span>
+        <h4>{{ order.timestamp | date : "dd.MM.yyyy" }}</h4>
+        <p>{{ order.timestamp | date : "HH:mm" }}</p>
+      </span>
+      @if (order.status === 'open') {
+      <aside (click)="updateStatus()">
+        <p>Status aktualisieren</p>
+        <i class="pi pi-sync"></i>
+      </aside>
+      }
+    </div>
     @for (dish of order.order; track $index) {
     <app-dish [dish]="dish"></app-dish>
     @if ($index < order.order.length -1) {
@@ -11,7 +19,10 @@
     } }
     <p class="divider"></p>
     <div class="order-footer">
-      <app-order-status [status]="order.status"></app-order-status>
+      <app-order-status
+        [status]="order.status"
+        [confirmedPickUpTime]="order.pickUpTime"
+      ></app-order-status>
       <span>
         <h4>Gesamt:</h4>
         <p>{{ calculateTotalPrice(order) | euroCurrency }}€</p>

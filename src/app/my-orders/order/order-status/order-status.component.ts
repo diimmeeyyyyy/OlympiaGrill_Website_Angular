@@ -1,5 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { OrderService } from '../../../shared/firebase-services/order/order.service';
 
 @Component({
   selector: 'app-order-status',
@@ -10,4 +13,28 @@ import { Component, Input } from '@angular/core';
 })
 export class OrderStatusComponent {
   @Input() status!: string;
+  @Input() confirmedPickUpTime!: number;
+  /* statusSubscription!: Subscription; */
+
+  
+  /* constructor(private router: Router, private orderService: OrderService) {}
+
+  ngOnInit(): void {
+    this.statusSubscription = this.orderService.statusChanged.subscribe(
+      (newStatus: string) => {
+        this.status = newStatus;
+        this.reloadPage();
+      }
+    );
+  }
+
+  ngOnDestroy(): void {
+    if (this.statusSubscription) {
+      this.statusSubscription.unsubscribe();
+    }
+  }
+
+  reloadPage(): void {
+    this.router.navigate([this.router.url]);
+  } */
 }
